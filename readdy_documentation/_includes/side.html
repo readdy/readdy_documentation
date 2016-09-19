@@ -1,0 +1,19 @@
+<div class="side">
+	<nav>
+		<ul>
+			{% for page in site.pages %} {% if page.title %}
+			<li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
+			{% endif %} {% endfor %}
+			<li><a href="{{ "/reference_manual" | prepend: site.baseurl }}">Reference Manual</a></li>
+		</ul>
+		</li>
+		</ul>
+	</nav>
+
+</div>
+
+<!--
+<nav>
+	<h1><a href="{{ site.baseurl }}">{{ site.title }}</a></h1>
+</nav>
+-->

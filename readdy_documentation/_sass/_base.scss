@@ -1,13 +1,14 @@
-$content-width: 800px;
-$main: #19CCAA;
 $font-style: 'Source Sans Pro', sans-serif;
-$font-color: #262626;
+//$heading-font: 'Lato', sans-serif;
+//$heading-font: 'Roboto Slab', serif;
+$heading-font: 'Lora', serif;
 $link-color: #425469;
+$main: #19CCAA;
 $link-hover-color: $main;
-$heading-font: 'Lato', sans-serif;
-$heading-font-color: #425469;
 $light: #E7EDF4;
-$header:  #1D1425;
+$side-background:  #1D1425;
+$main-font-color: #262626;
+$side-font-color: #262626;
 
 *,
 *::before,
