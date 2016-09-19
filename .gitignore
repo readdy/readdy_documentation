@@ -1,0 +1,5 @@
+# ruby bundler schmutz
+*.lock
+
+# jekyll build schmutz
+*.sass-cache
