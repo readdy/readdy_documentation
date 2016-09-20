@@ -50,21 +50,29 @@ h3, h4, h5 {
 // links
 a, a:visited {
 	color: $link-color;
-	text-decoration: underline;
 	font-weight: bold;
+	text-decoration: none;
 }
 
-a:hover {
+a:hover, a:focus {
 	color: $link-hover-color;
-	text-decoration: underline;
 }
 
-// side bar
+// sidebar
 .side {
 	padding: 2rem 1rem;
 	background-color: $side-background;
 	color: $side-font-color;
 	text-align: center;
+}
+
+.side a, .side a:visited {
+	color: $side-font-color;
+	font-weight: normal;
+}
+
+.side a:hover, .side a:focus {
+	font-weight: bold;
 }
 
 @media (min-width: 48em) {
@@ -74,8 +82,68 @@ a:hover {
     left: 0;
     bottom: 0;
     width: 18rem;
-    text-align: left;
+    text-align: center;
   }
+}
+
+// generic side logo
+@media (min-width: 48em) {
+	.side-logo {
+		background-position: center;
+		background-repeat: no-repeat;
+		margin-bottom: 1rem;
+		margin-top: 1rem;
+	}
+}
+
+// specific logos, namely cmb and readdy
+@media (min-width: 48em) {
+	.logo-cmb {
+		background-image: url( "/assets/cmb_white_100px.png" );
+		height: 79px;
+	}
+}
+@media (min-width: 58em) {
+	.logo-cmb {
+		background-image: url( "/assets/cmb_white_120px.png" );
+		height: 95px;
+	}
+}
+
+@media (min-width: 48em) {
+	.logo-readdy {
+		background-image: url( "/assets/readdy_white_150px.png" );
+		height: 42px;
+		margin-bottom: 2rem;
+	}
+}
+@media (min-width: 58em) {
+	.logo-readdy {
+		background-image: url( "/assets/readdy_white_180px.png" );
+		height: 50px;
+		margin-bottom: 2rem;
+	}
+}
+
+.side-nav {
+	margin-bottom: 1rem;
+	margin-top: 1rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	border-top: solid;
+	border-top-width: 1px;
+	border-top-color: currentColor;
+	border-bottom: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: currentColor;
+	text-align: left;
+}
+.side-nav-item {
+	display: block;
+	line-height: 1.5;
+}
+side-nav-item.active {
+	font-weight: bold;
 }
 
 // main window
@@ -102,9 +170,4 @@ a:hover {
     margin-left: 22rem;
     margin-right: 4rem;
   }
-}
-
-.footer {
-	text-align: center;
-	padding: 40px;
 }

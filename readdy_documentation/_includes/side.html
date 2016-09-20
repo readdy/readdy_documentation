@@ -1,19 +1,12 @@
 <div class="side">
-	<nav>
-		<ul>
-			{% for page in site.pages %} {% if page.title %}
-			<li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
-			{% endif %} {% endfor %}
-			<li><a href="{{ "/reference_manual" | prepend: site.baseurl }}">Reference Manual</a></li>
-		</ul>
-		</li>
-		</ul>
+	<div class="side-logo logo-readdy"></div>
+	ReaDDy - A particle-based reaction-diffusion simulator
+	<nav class="side-nav">
+		{% for page in site.pages %} {% if page.title %}
+		<a class="side-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ page.url | site.baseurl }}">{{ page.title }}</a>
+		{% endif %} {% endfor %}
+		<a class="side-nav-item" href="{{ "/reference_manual" | prepend: site.baseurl }}">Reference Manual</a>
 	</nav>
-
+	by CMB group
+	<div class="side-logo logo-cmb"></div>
 </div>
-
-<!--
-<nav>
-	<h1><a href="{{ site.baseurl }}">{{ site.title }}</a></h1>
-</nav>
--->

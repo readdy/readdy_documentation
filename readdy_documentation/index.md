@@ -3,7 +3,7 @@ layout: default
 title: Home
 ---
 
-<h2>Main Page</h2>
+## Main Page
 
 Get started:
 * Install it
