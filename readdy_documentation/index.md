@@ -5,6 +5,4 @@ title: Home
 
 ## Main Page
 
-Get started:
-* Install it
-* Profit!
+This is a test.
