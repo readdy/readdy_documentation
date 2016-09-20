@@ -1,0 +1,18 @@
+$font-style: 'Source Sans Pro', sans-serif;
+//$heading-font: 'Lato', sans-serif;
+//$heading-font: 'Roboto Slab', serif;
+$heading-font: 'Lora', serif;
+$link-color: #425469;
+$link-hover-color: #19CCAA;
+$light: #E7EDF4;
+$side-background: #161221;
+$main-font-color: #262626;
+$side-font-color: #ffffff;
+
+*,
+*::before,
+*::after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}

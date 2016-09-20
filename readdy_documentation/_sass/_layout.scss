@@ -1,0 +1,174 @@
+// html and body
+html {
+	font-family: $font-style;
+	margin: 0;
+	padding: 0;
+	-webkit-font-smoothing: antialiased;
+	font-size: 14px;
+}
+
+@media (min-width: 48em) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 58em) {
+  html {
+    font-size: 15px;
+  }
+}
+
+body {
+	color: $main-font-color;
+}
+
+// headings
+h1, h2, h3, h4, h5 {
+	font-weight: bold;
+	color: $main-font-color;
+	font-family: $heading-font;
+	line-height: 1.5;
+}
+
+h1 {
+	font-size: 2rem;
+	a, a:visited {
+		text-decoration: none;
+	}
+}
+
+h2 {
+	margin-top: 1rem;
+	font-size: 1.5rem;
+}
+
+h3, h4, h5 {
+	margin-top: 0.5rem;
+	font-size: 1.2rem;
+}
+
+// links
+a, a:visited {
+	color: $link-color;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:hover, a:focus {
+	color: $link-hover-color;
+}
+
+// sidebar
+.side {
+	padding: 2rem 1rem;
+	background-color: $side-background;
+	color: $side-font-color;
+	text-align: center;
+}
+
+.side a, .side a:visited {
+	color: $side-font-color;
+	font-weight: normal;
+}
+
+.side a:hover, .side a:focus {
+	font-weight: bold;
+}
+
+@media (min-width: 48em) {
+  .side {
+    position: fixed; // this keeps side and main "side to side"
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 18rem;
+    text-align: center;
+  }
+}
+
+// generic side logo
+@media (min-width: 48em) {
+	.side-logo {
+		background-position: center;
+		background-repeat: no-repeat;
+		margin-bottom: 1rem;
+		margin-top: 1rem;
+	}
+}
+
+// specific logos, namely cmb and readdy
+@media (min-width: 48em) {
+	.logo-cmb {
+		background-image: url( "/assets/cmb_white_100px.png" );
+		height: 79px;
+	}
+}
+@media (min-width: 58em) {
+	.logo-cmb {
+		background-image: url( "/assets/cmb_white_120px.png" );
+		height: 95px;
+	}
+}
+
+@media (min-width: 48em) {
+	.logo-readdy {
+		background-image: url( "/assets/readdy_white_150px.png" );
+		height: 42px;
+		margin-bottom: 2rem;
+	}
+}
+@media (min-width: 58em) {
+	.logo-readdy {
+		background-image: url( "/assets/readdy_white_180px.png" );
+		height: 50px;
+		margin-bottom: 2rem;
+	}
+}
+
+.side-nav {
+	margin-bottom: 1rem;
+	margin-top: 1rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	border-top: solid;
+	border-top-width: 1px;
+	border-top-color: currentColor;
+	border-bottom: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: currentColor;
+	text-align: left;
+}
+.side-nav-item {
+	display: block;
+	line-height: 1.5;
+}
+side-nav-item.active {
+	font-weight: bold;
+}
+
+// main window
+.main {
+	max-width: 38rem;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+  padding-left:  1rem;
+  padding-right: 1rem;
+  margin-left:  auto;
+  margin-right: auto;
+}
+
+@media (min-width: 48em) {
+  .main {
+    max-width: 44rem;
+    margin-left: 20rem;
+    margin-right: 2rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .main {
+    margin-left: 22rem;
+    margin-right: 4rem;
+  }
+}

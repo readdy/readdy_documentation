@@ -1,0 +1,18 @@
+<div class="side">
+	<div class="side-logo logo-readdy"></div>
+	ReaDDy - A particle-based reaction-diffusion simulator
+	<nav class="side-nav">
+		<a class="side-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
+		{% for page in site.pages %}
+			{% if page.title %}
+				{% if page.layout == "page" %}
+				<a class="side-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ page.url | site.baseurl }}">{{ page.title }}</a>
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+		<a class="side-nav-item" href="{{ "/reference_manual" | prepend: site.baseurl }}">Reference Manual</a>
+		<a class="side-nav-item" href="https://github.com/readdy/readdy">ReaDDy on GitHub</a>
+	</nav>
+	by CMB group
+	<div class="side-logo logo-cmb"></div>
+</div>
