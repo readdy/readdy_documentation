@@ -2,11 +2,11 @@
 	<div class="side-logo logo-readdy"></div>
 	ReaDDy - A particle-based reaction-diffusion simulator
 	<nav class="side-nav">
-		<a class="side-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
+		<a class="side-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}">Home</a>
 		{% for page in site.pages %}
 			{% if page.title %}
 				{% if page.layout == "page" %}
-				<a class="side-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ page.url | site.baseurl }}">{{ page.title }}</a>
+				<a class="side-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ page.url | prepend:site.baseurl }}">{{ page.title }}</a>
 				{% endif %}
 			{% endif %}
 		{% endfor %}

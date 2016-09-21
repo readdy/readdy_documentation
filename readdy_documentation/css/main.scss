@@ -1,6 +1,12 @@
 ---
 # Front matter comment to ensure Jekyll properly reads file.
 ---
+
+$baseurl: "";
+{% if site.baseurl != "" %}
+	$baseurl: {{ site.baseurl }};
+{% endif %}
+
 @charset "utf-8";
 @import
 	"base",
