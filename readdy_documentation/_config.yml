@@ -3,7 +3,7 @@ email: readdyadmin@lists.fu-berlin.de
 description: >
   Documentation of ReaDDy, the particle-based reaction-diffusion simulator
 baseurl: ""
-url: "https://readdy.github.io/readdy_documentation/"
+url: "https://readdy.github.io/readdy_documentation"
 github_username:  readdy
 sass:
   sass_dir: _sass
