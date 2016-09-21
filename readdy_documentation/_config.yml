@@ -10,3 +10,7 @@ sass:
 include: ['_pages']
 kramdown:
   input: GFM
+collections:
+  pages:
+    output: true
+    permalink: /pages/:title
