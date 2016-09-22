@@ -1,8 +1,23 @@
 /**
  * Syntax highlighting styles
  */
+
+code {
+  font-family: $mono-font;
+  font-size: 10px;
+  line-height: normal;
+ }
+
+@media(min-width: 58em) {
+  code {
+    font-size: 12px;
+  }
+}
 .highlight {
     background: #f7f7f7;
+    position: relative;
+    overflow-x: scroll;
+    padding: 0.5rem;
 
     .c     { color: #998; font-style: italic } // Comment
     .err   { color: #a61717; background-color: #e3d2d2 } // Error
