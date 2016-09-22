@@ -84,6 +84,7 @@ a:hover, a:focus {
     bottom: 0;
     width: 18rem;
     text-align: center;
+		overflow-y: auto; // if viewport is not high enough, scrollbar appears
   }
 }
 
@@ -129,8 +130,7 @@ a:hover, a:focus {
 .side-nav {
 	margin-bottom: 1rem;
 	margin-top: 1rem;
-	padding-top: 1rem;
-	padding-bottom: 1rem;
+	padding: 1rem;
 	border-top: solid;
 	border-top-width: 1px;
 	border-top-color: currentColor;
@@ -138,6 +138,7 @@ a:hover, a:focus {
 	border-bottom-width: 1px;
 	border-bottom-color: currentColor;
 	text-align: left;
+	background-color: #24222a;
 }
 .side-nav-item {
 	display: block;
@@ -160,7 +161,7 @@ side-nav-item.active {
 
 @media (min-width: 48em) {
   .main {
-    max-width: 44rem;
+    max-width: 48rem;
     margin-left: 20rem;
     margin-right: 2rem;
   }
