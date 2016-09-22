@@ -50,8 +50,8 @@ h3, h4, h5 {
 
 // links
 a, a:visited {
-	color: $link-color;
-	font-weight: bold;
+	color: $side-font-color;
+	font-weight: normal;
 	text-decoration: none;
 }
 
@@ -67,12 +67,12 @@ a:hover, a:focus {
 	text-align: center;
 }
 
-.side a, .side a:visited {
+.side-nav a, .side-nav a:visited {
 	color: $side-font-color;
 	font-weight: normal;
 }
 
-.side a:hover, .side a:focus {
+.side-nav a:hover, .side-nav a:focus {
 	font-weight: bold;
 }
 
