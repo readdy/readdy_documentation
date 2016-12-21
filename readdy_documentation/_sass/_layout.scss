@@ -80,7 +80,7 @@ a:hover, a:focus {
 }
 
 .side-nav a, .side-nav a:visited {
-	color: $side-font-color;
+	color: $main-font-color;
 	font-weight: normal;
 }
 
@@ -111,9 +111,10 @@ a:hover, a:focus {
 	}
 }
 
-// specific logos, namely cmb and readdy
+// specific logos, namely cmb, readdy and github
 @media (min-width: 48em) {
 	.logo-cmb {
+		margin-top: 2rem;
 		background-image: url( $baseurl + "/assets/cmb_white_100px.png" );
 		height: 79px;
 	}
@@ -140,6 +141,30 @@ a:hover, a:focus {
 	}
 }
 
+.github-wrapper {
+	width: 16rem;
+	overflow: hidden;
+	background-color: #696774;
+}
+
+.logo-github {
+	width: 32px;
+	background-image: url( $baseurl + "/assets/GitHub-Mark-Light-32px.png" );
+	height: 32px;
+	margin: 0.5rem;
+	margin-left: 1rem;
+	background-position: center;
+	background-repeat: no-repeat;
+	float: left;
+}
+
+.github-text {
+	float: left;
+	margin-top: 0.9rem;
+	padding-left: 2rem;
+	padding-right: 1rem;
+}
+
 .side-nav {
 	margin-bottom: 1rem;
 	margin-top: 1rem;
@@ -151,7 +176,7 @@ a:hover, a:focus {
 	border-bottom-width: 1px;
 	border-bottom-color: currentColor;
 	text-align: left;
-	background-color: #24222a;
+	background-color: #e3e2e8;
 }
 .side-nav-item {
 	display: block;
