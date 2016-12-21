@@ -67,15 +67,6 @@ a:hover, a:focus {
 	text-align: center;
 }
 
-.side-nav a, .side-nav a:visited {
-	color: $side-font-color;
-	font-weight: normal;
-}
-
-.side-nav a:hover, .side-nav a:focus {
-	font-weight: bold;
-}
-
 @media (min-width: 48em) {
   .side {
     position: fixed; // this keeps side and main "side to side"
@@ -86,6 +77,15 @@ a:hover, a:focus {
     text-align: center;
 		overflow-y: auto; // if viewport is not high enough, scrollbar appears
   }
+}
+
+.side-nav a, .side-nav a:visited {
+	color: $side-font-color;
+	font-weight: normal;
+}
+
+.side-nav a:hover, .side-nav a:focus {
+	font-weight: bold;
 }
 
 // generic side logo
@@ -185,4 +185,40 @@ side-nav-item.active {
     margin-left: 22rem;
     margin-right: 4rem;
   }
+}
+
+// main window for referance manual iframe
+.clip_to_side {
+	max-width: 100%;
+	height: 100%;
+	padding: 0.5rem;
+}
+
+@media (min-width: 48em) {
+  .clip_to_side {
+    margin-left: 18rem;
+    margin-right: 0rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .clip_to_side {
+		margin-left: 18rem;
+    margin-right: 0rem;
+  }
+}
+
+// iframe containing reference manual
+iframe {
+	width: 100%;
+	height: 50vh;
+	padding: 0.5rem;
+}
+
+@media (min-width: 48em) {
+	iframe{
+		// fix height to 90 % of the viewport height because
+		// "position: absolute" is incompatible with the current structure of the site
+		height: 90vh;
+	}
 }
