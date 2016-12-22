@@ -2,7 +2,7 @@
 layout: page
 title: Search results
 ---
-<form action="/search.html" method="get">
+<form action="{{ site.url }}{{ site.baseurl }}/search.html" method="get">
   <input type="text" id="search-box" name="query">
   <input type="submit" value="search">
 </form>
@@ -21,5 +21,5 @@ title: Search results
     {% endfor %}
   };
 </script>
-<script src="/js/lunr.min.js"></script>
-<script src="/js/search.js"></script>
+<script src="{{ site.url }}{{ site.baseurl }}/js/lunr.min.js"></script>
+<script src="{{ site.url }}{{ site.baseurl }}/js/search.js"></script>

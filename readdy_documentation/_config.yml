@@ -4,7 +4,7 @@ description: >
   Documentation of ReaDDy, the particle-based reaction-diffusion simulator
 baseurl: /readdy_documentation
 url: https://readdy.github.io
-github_username:  readdy
+github_username: readdy
 sass:
   sass_dir: _sass
 include: ['_pages']

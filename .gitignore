@@ -3,3 +3,12 @@
 
 # jekyll build schmutz
 *.sass-cache
+
+# jetbrains
+*.idea
+
+# serve script for local jekyll development
+*_serve.sh
+
+# config for local development
+*_config_dev.yml
