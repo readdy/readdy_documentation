@@ -79,6 +79,28 @@ a:hover, a:focus {
   }
 }
 
+.side-searchbar-wrapper {
+	width: 100%;
+	background-color: #f1f0f7;
+	text-align: left;
+	margin-top: 1rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+
+.side-searchbar-wrapper input#search-box {
+	width: 100%;
+	border: none;
+	background-color: #f1f0f7;
+}
+
+.side-searchbar-wrapper input[type="text"] {
+  outline: none;
+	background-color: #f1f0f7;
+}
+
 .side-nav a, .side-nav a:visited {
 	color: $main-font-color;
 	font-weight: normal;
@@ -142,9 +164,11 @@ a:hover, a:focus {
 }
 
 .github-wrapper {
-	width: 16rem;
+	width: 100%;
+	height: 3.2rem;
 	overflow: hidden;
 	background-color: #696774;
+	position: relative; // for clickability
 }
 
 .logo-github {
