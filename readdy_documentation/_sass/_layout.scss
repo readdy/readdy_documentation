@@ -111,7 +111,7 @@ input {
 }
 
 .side-nav a:hover, .side-nav a:focus {
-  font-weight: bold;
+  color: $link-hover-color;
 }
 
 // generic side logo
@@ -212,10 +212,20 @@ input {
 .side-nav-item {
   display: block;
   line-height: 1.5;
+  padding-left: 0.5rem;
+}
+
+.side-nav-sub-item {
+  display: block;
+  font-size: 13px;
+  line-height: 1.3;
+  padding-left: 1rem;
 }
 
 .side-nav-item.active {
-  font-weight: bold;
+  background-color: #d0cfde;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
 }
 
 // main window
@@ -279,3 +289,13 @@ iframe {
     height: 90vh;
   }
 }
+
+.entry {
+  padding-left: 1rem;
+}
+
+ .entry-heading h2 {
+   border-bottom: #eee7f9 solid;
+   width: 100%;
+   padding-bottom: 0;
+ }

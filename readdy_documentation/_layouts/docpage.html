@@ -1,0 +1,22 @@
+---
+layout: default
+---
+
+<h1>{{ page.title }}</h1>
+
+{{ page.content }}
+
+{% for pageentry in page.entries %}
+    {% for entry in site.docentries %}
+        {% assign sectionid = pageentry %}
+        {% assign entrypath = pageentry | prepend: "_docentries/" | append: ".md" %}
+        {% if entry.path == entrypath %}
+            <section id="{{ sectionid }}">
+                <div class="entry-heading"><h2>{{ entry.title | mardownify }}</h2></div>
+                <div class="entry">
+                    {{ entry.content | markdownify }}
+                </div>
+            </section>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
