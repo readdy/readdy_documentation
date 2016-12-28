@@ -108,7 +108,6 @@ input {
 }
 
 .side-nav a, .side-nav a:visited {
-  color: $main-font-color;
   font-weight: normal;
 }
 
@@ -211,19 +210,22 @@ input {
   background-color: #e3e2e8;
 }
 
-.side-nav-item {
+a.side-nav-item {
+  color: $main-font-color;
   display: block;
   line-height: 1.5;
   padding-left: 0.5rem;
 }
 
-.side-nav-sub-item {
+a.side-nav-sub-item {
+  color: $subitem-font-color;
   background-color: $active-page-color;
   display: block;
   font-size: 13px;
   line-height: 1.3;
   padding-left: 1rem;
   padding-bottom: 0.2rem;
+  padding-top: 0.2rem;
 }
 
 .side-nav-item.active {
@@ -300,7 +302,7 @@ iframe {
 }
 
 .entry-heading h2 {
-  border-bottom: #eee7f9 solid 0.5rem;
+  border-bottom: $entry-heading-color solid 0.5rem;
   padding-left: 1rem;
   width: 100%;
   padding-bottom: 0;
@@ -311,4 +313,8 @@ iframe {
   padding-left: 0.5rem;
   width: 100%;
   padding-bottom: 0;
+}
+
+.centered {
+  text-align: center;
 }
