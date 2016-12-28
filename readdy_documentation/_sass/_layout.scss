@@ -52,9 +52,9 @@ h3, h4, h5 {
 
 // links
 a, a:visited {
-  color: $side-font-color;
+  color: $link-color;
   font-weight: normal;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 a:hover, a:focus {
@@ -71,6 +71,15 @@ input {
   background-color: $side-background;
   color: $side-font-color;
   text-align: center;
+}
+
+.side a, .side a:visited {
+  color: $side-font-color;
+  text-decoration: none;
+}
+
+.side a:hover, .side a:focus {
+  color: $link-hover-color;
 }
 
 @media (min-width: 48em) {
@@ -109,6 +118,7 @@ input {
 
 .side-nav a, .side-nav a:visited {
   font-weight: normal;
+  color: $main-font-color;
 }
 
 .side-nav a:hover, .side-nav a:focus {
@@ -237,11 +247,12 @@ a.side-nav-sub-item {
   max-width: 38rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 3rem;
+  padding-right: 4rem;
   margin-left: auto;
   margin-right: auto;
   background-color: $main-background;
+  line-height: 1.5;
 }
 
 @media (min-width: 48em) {
@@ -318,3 +329,21 @@ iframe {
 .centered {
   text-align: center;
 }
+
+.main table {
+  //border-collapse: collapse;
+}
+
+.main tr:nth-child(even){
+  background-color: #f2f2f2
+}
+
+.main th, .main td {
+  padding: 0.5rem;
+}
+
+.main th {
+  background-color: $active-page-color;
+  color: $main-font-color;
+}
+
