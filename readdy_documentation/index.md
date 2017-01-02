@@ -1,8 +1,10 @@
 ---
-layout: default
-title: Home
+layout: homepage
+title: ReaDDy - Reaction Diffusion Dynamics
 ---
 
-## Main Page
+Welcome to the website of ReaDDy - a particle-based reaction-diffusion simulator
 
-This is a test.
+$$
+\sum_{i=0}^{N} i = \frac{N(N+1)}{2}
+$$

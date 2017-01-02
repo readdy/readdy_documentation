@@ -1,10 +1,10 @@
 // html and body
 html {
-	font-family: $font-style;
-	margin: 0;
-	padding: 0;
-	-webkit-font-smoothing: antialiased;
-	font-size: 14px;
+  font-family: $font-style;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
 }
 
 @media (min-width: 48em) {
@@ -20,60 +20,66 @@ html {
 }
 
 body {
-	color: $main-font-color;
+  color: $main-font-color;
+  background-color: $body-background;
+  margin: 0;
 }
 
 // headings
 h1, h2, h3, h4, h5 {
-	font-weight: bold;
-	color: $main-font-color;
-	font-family: $heading-font;
-	line-height: 1.5;
+  font-weight: bold;
+  color: $main-font-color;
+  font-family: $heading-font;
+  line-height: 1.5;
 }
 
 h1 {
-	font-size: 2rem;
-	a, a:visited {
-		text-decoration: none;
-	}
+  font-size: 2rem;
+  a, a:visited {
+    text-decoration: none;
+  }
 }
 
 h2 {
-	margin-top: 1rem;
-	font-size: 1.5rem;
+  margin-top: 2rem;
+  font-size: 1.5rem;
 }
 
 h3, h4, h5 {
-	margin-top: 0.5rem;
-	font-size: 1.2rem;
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
 }
 
 // links
 a, a:visited {
-	color: $side-font-color;
-	font-weight: normal;
-	text-decoration: none;
+  color: $link-color;
+  font-weight: normal;
+  text-decoration: underline;
 }
 
 a:hover, a:focus {
-	color: $link-hover-color;
+  color: $link-hover-color;
+}
+
+input {
+  font-family: $font-style;
 }
 
 // sidebar
 .side {
-	padding: 2rem 1rem;
-	background-color: $side-background;
-	color: $side-font-color;
-	text-align: center;
+  padding: 2rem 1rem;
+  background-color: $side-background;
+  color: $side-font-color;
+  text-align: center;
 }
 
-.side-nav a, .side-nav a:visited {
-	color: $side-font-color;
-	font-weight: normal;
+.side a, .side a:visited {
+  color: $side-font-color;
+  text-decoration: none;
 }
 
-.side-nav a:hover, .side-nav a:focus {
-	font-weight: bold;
+.side a:hover, .side a:focus {
+  color: $link-hover-color;
 }
 
 @media (min-width: 48em) {
@@ -84,105 +90,260 @@ a:hover, a:focus {
     bottom: 0;
     width: 18rem;
     text-align: center;
-		overflow-y: auto; // if viewport is not high enough, scrollbar appears
+    overflow-y: auto; // if viewport is not high enough, scrollbar appears
   }
+}
+
+.side-searchbar-wrapper {
+  width: 100%;
+  background-color: #f1f0f7;
+  text-align: left;
+  margin-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.side-searchbar-wrapper input#search-box {
+  width: 100%;
+  border: none;
+  background-color: #f1f0f7;
+}
+
+.side-searchbar-wrapper input[type="text"] {
+  outline: none;
+  background-color: #f1f0f7;
+}
+
+.side-nav a, .side-nav a:visited {
+  font-weight: normal;
+  color: $main-font-color;
+}
+
+.side-nav a:hover, .side-nav a:focus {
+  color: $link-hover-color;
 }
 
 // generic side logo
 @media (min-width: 48em) {
-	.side-logo {
-		background-position: center;
-		background-repeat: no-repeat;
-		margin-bottom: 1rem;
-		margin-top: 1rem;
-		position: relative; // for clickability
-	}
-	.side-logo a {
-    position:absolute;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    text-decoration:none; // Makes sure the link doesn't get underlined
-    z-index:10; // raises anchor tag above everything else in div
-    background-color:white; // workaround to make clickable in IE
+  .side-logo {
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    position: relative; // for clickability
+  }
+  .side-logo a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-decoration: none; // Makes sure the link doesn't get underlined
+    z-index: 10; // raises anchor tag above everything else in div
+    background-color: white; // workaround to make clickable in IE
     opacity: 0; // workaround to make clickable in IE
     filter: alpha(opacity=1); // workaround to make clickable in IE
-	}
+  }
 }
 
-// specific logos, namely cmb and readdy
+// specific logos, namely cmb, readdy and github
 @media (min-width: 48em) {
-	.logo-cmb {
-		background-image: url( $baseurl + "/assets/cmb_white_100px.png" );
-		height: 79px;
-	}
+  .logo-cmb {
+    margin-top: 2rem;
+    background-image: url($baseurl + "/assets/cmb_white_100px.png");
+    height: 79px;
+  }
 }
+
 @media (min-width: 58em) {
-	.logo-cmb {
-		background-image: url( $baseurl + "/assets/cmb_white_120px.png" );
-		height: 95px;
-	}
+  .logo-cmb {
+    background-image: url($baseurl + "/assets/cmb_white_120px.png");
+    height: 95px;
+  }
 }
 
 @media (min-width: 48em) {
-	.logo-readdy {
-		background-image: url( $baseurl + "/assets/readdy_white_150px.png" );
-		height: 42px;
-		margin-bottom: 2rem;
-	}
+  .logo-readdy {
+    background-image: url($baseurl + "/assets/readdy_white_150px.png");
+    height: 42px;
+    margin-bottom: 2rem;
+  }
 }
+
 @media (min-width: 58em) {
-	.logo-readdy {
-		background-image: url( $baseurl + "/assets/readdy_white_180px.png" );
-		height: 50px;
-		margin-bottom: 2rem;
-	}
+  .logo-readdy {
+    background-image: url($baseurl + "/assets/readdy_white_180px.png");
+    height: 50px;
+    margin-bottom: 2rem;
+  }
+}
+
+.github-wrapper {
+  width: 100%;
+  height: 3.2rem;
+  overflow: hidden;
+  background-color: #696774;
+  position: relative; // for clickability
+}
+
+.logo-github {
+  width: 32px;
+  background-image: url($baseurl + "/assets/GitHub-Mark-Light-32px.png");
+  height: 32px;
+  margin: 0.5rem;
+  margin-left: 1rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  float: left;
+}
+
+.github-text {
+  float: left;
+  margin-top: 0.9rem;
+  padding-left: 2rem;
+  padding-right: 1rem;
 }
 
 .side-nav {
-	margin-bottom: 1rem;
-	margin-top: 1rem;
-	padding: 1rem;
-	border-top: solid;
-	border-top-width: 1px;
-	border-top-color: currentColor;
-	border-bottom: solid;
-	border-bottom-width: 1px;
-	border-bottom-color: currentColor;
-	text-align: left;
-	background-color: #24222a;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-top: solid;
+  border-top-width: 1px;
+  border-top-color: currentColor;
+  border-bottom: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: currentColor;
+  text-align: left;
+  background-color: #e3e2e8;
 }
-.side-nav-item {
-	display: block;
-	line-height: 1.5;
+
+a.side-nav-item {
+  color: $main-font-color;
+  display: block;
+  line-height: 1.5;
+  padding-left: 0.5rem;
 }
-side-nav-item.active {
-	font-weight: bold;
+
+a.side-nav-sub-item {
+  color: $subitem-font-color;
+  background-color: $active-page-color;
+  display: block;
+  font-size: 13px;
+  line-height: 1.3;
+  padding-left: 1rem;
+  padding-bottom: 0.2rem;
+  padding-top: 0.2rem;
+}
+
+.side-nav-item.active {
+  background-color: $active-page-color;
 }
 
 // main window
 .main {
-	max-width: 38rem;
-	padding-top: 2rem;
-	padding-bottom: 2rem;
-  padding-left:  1rem;
-  padding-right: 1rem;
-  margin-left:  auto;
+  max-width: 38rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 3rem;
+  padding-right: 4rem;
+  margin-left: auto;
   margin-right: auto;
+  background-color: $main-background;
+  line-height: 1.5;
 }
 
 @media (min-width: 48em) {
   .main {
-    max-width: 48rem;
-    margin-left: 20rem;
-    margin-right: 2rem;
+    max-width: 60rem;
+    margin-left: 18rem;
+    margin-right: 0rem;
   }
 }
 
 @media (min-width: 64em) {
   .main {
-    margin-left: 22rem;
-    margin-right: 4rem;
+    margin-left: 18rem;
+    margin-right: 0rem;
   }
 }
+
+// main window for referance manual iframe
+.clip_to_side {
+  max-width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+@media (min-width: 48em) {
+  .clip_to_side {
+    margin-left: 18rem;
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 64em) {
+  .clip_to_side {
+    margin-left: 19rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+// iframe containing reference manual
+iframe {
+  width: 100%;
+  height: 50vh;
+  padding: 0.5rem;
+}
+
+@media (min-width: 48em) {
+  iframe {
+    // fix height to 90 % of the viewport height because
+    // "position: absolute" is incompatible with the current structure of the site
+    height: 90vh;
+  }
+}
+
+.entry {
+  padding-left: 1rem;
+}
+
+.entry-heading h2 {
+  border-bottom: $entry-heading-color solid 0.5rem;
+  padding-left: 1rem;
+  width: 100%;
+  padding-bottom: 0;
+}
+
+.docpage-heading h1 {
+  border-bottom: $active-page-color solid 0.5rem;
+  padding-left: 0.5rem;
+  width: 100%;
+  padding-bottom: 0;
+}
+
+.centered {
+  text-align: center;
+}
+
+.main table {
+  //border-collapse: collapse;
+}
+
+.main tr:nth-child(even){
+  background-color: #f2f2f2
+}
+
+.main th, .main td {
+  padding: 0.5rem;
+}
+
+.main th {
+  background-color: $active-page-color;
+  color: $main-font-color;
+}
+

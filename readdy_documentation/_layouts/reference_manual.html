@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+{% include head.html %}
+
+<body>
+	{% include side.html %}
+	<div class="main clip_to_side">
+    <iframe src="{{ "/reference_manual/index.html" | prepend: site.baseurl }}">
+    </iframe>
+	</div>
+</body>
+
+</html>
