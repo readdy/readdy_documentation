@@ -8,29 +8,18 @@ github_username: readdy
 sass:
   sass_dir: _sass
 include:
-  - "_docpages"
-  - "_docentries"
+  - "_tutorials"
 kramdown:
   input: GFM
   syntax_highlighter: rouge
 collections:
-  docpages:
+  tutorials:
     output: true
     permalink: /:collection/:path/
-  docentries:
-    output: false # docentries' content is included when building docpage
 defaults:
   -
     scope:
-      path: ""
-      type: "docpages"
+      type: "tutorials"
     values:
-      layout: "docpage"
-      title: ""
-      entries: []
-  -
-    scope:
-      path: ""
-      type: "docentries"
-    values:
-      title: ""
+      layout: "tutorial"
+      title: "defaulttitle"

@@ -1,6 +1,6 @@
 <div class="side">
     <div class="side-logo logo-readdy"><a href="{{ site.url }}{{ site.baseurl }}/index.html"></a></div>
-    <a href="{{ site.url }}{{ site.baseurl }}">ReaDDy - A particle-based reaction-diffusion simulator</a>
+    <a href="{{ site.url }}{{ site.baseurl }}/index.html">ReaDDy - A particle-based reaction-diffusion simulator</a>
 
     <div class="side-searchbar-wrapper">
         <form action="{{ site.url }}{{ site.baseurl }}/search.html" method="get">
@@ -9,8 +9,11 @@
     </div>
 
     <nav class="side-nav">
-        <a class="side-nav-item{% if page.url == '/' %} active{% endif %}"
-           href="{{ site.url }}{{ site.baseurl }}/index.html">Home</a>
+        <a class="side-nav-item{% if page.url == '/installation.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/installation.html">Installation</a>
+        <a class="side-nav-item{% if page.url == '/get_started.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/get_started.html">Get started</a>
+        <a class="side-nav-item{% if page.url == '/reactions.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/reactions.html">Reactions</a>
+        <a class="side-nav-item{% if page.url == '/potentials.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/potentials.html">Potentials</a>
+        <a class="side-nav-item{% if page.url == '/observables.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/observables.html">Observables</a>
         {% for node in site.docpages %}
             <a class="side-nav-item{% if page.url == node.url %} active{% endif %}"
                href="{{ node.url | prepend:site.baseurl }}">{{ node.title }}</a>
@@ -27,11 +30,12 @@
                 {% endfor %}
             {% endif %}
         {% endfor %}
-        <a class="side-nav-item{% if page.url == '/reference_manual_page.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/reference_manual_page.html">Reference Manual</a>
+        <a class="side-nav-item{% if page.url == '/development.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/development.html">Development</a>
+        <a class="side-nav-item{% if page.url == '/reference_manual.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/reference_manual.html">Reference Manual</a>
     </nav>
 
     <div class="github-wrapper">
-        <a href="https://github.com/readdy/readdy" style="width: 100%; height:100%; position:absolute; top:0; left:0;">
+        <a href="https://github.com/readdy/readdy" style="width: 16rem; height:100%; position:absolute; top:0; left:0; background-color: #48454E;">
             <div class="github-text">ReaDDy on GitHub</div>
             <div class="side-logo logo-github"></div>
         </a>

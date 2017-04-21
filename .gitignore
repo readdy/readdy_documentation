@@ -3,12 +3,20 @@
 
 # jekyll build schmutz
 *.sass-cache
+*.jekyll-metadata
 
 # jetbrains
 *.idea
 
+# sublime
+*.sublime-project
+*.sublime-workspace
+
 # serve script for local jekyll development
 *_serve.sh
+
+# jekyll output, in case of an in-source build
+*_site
 
 # config for local development
 *_config_dev.yml
