@@ -13,6 +13,14 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 collections:
+  reactions:
+    output: false
+  potentials_order1:
+    output: false
+  potentials_order2:
+    output: false
+  observables:
+    output: false
   tutorials:
     output: true
     permalink: /:collection/:path/
