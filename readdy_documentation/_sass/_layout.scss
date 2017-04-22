@@ -65,10 +65,27 @@ input {
   font-family: $font-style;
 }
 
+// the side bar wrapper has the actual size of the side bar, 
+// while "side" is a bit larger and always has a scrollbar, 
+// which is hidden by the "side-wrapper"
+.side-wrapper {
+  background-color: $side-background;
+}
+
+@media (min-width: 48em) {
+  .side-wrapper {
+    overflow: hidden;
+    position: fixed; // this keeps side and main "side to side"
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 18rem;
+  }
+}
+
 // sidebar
 .side {
   padding: 2rem 0rem;
-  background-color: $side-background;
   color: $side-font-color;
   text-align: center;
 }
@@ -84,36 +101,30 @@ input {
 
 @media (min-width: 48em) {
   .side {
-    position: fixed; // this keeps side and main "side to side"
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 18rem;
+    width: 20rem;
+    height: 100vh;
     text-align: center;
-    overflow-y: auto;
-  }
-  ::-webkit-scrollbar {
-    width: 0px;  /* remove scrollbar space */
-    background: transparent;  /* optional: just make scrollbar invisible */
+    overflow-y: scroll;
   }
 }
 
 .side-searchbar-wrapper {
-  width: 16rem;
+  width: 15rem;
   background-color: #f1f0f7;
   text-align: left;
   margin-top: 1rem;
-  margin-left: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  margin-left: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
 }
 
 .side-searchbar-wrapper input#search-box {
   //width: 100%;
   border: none;
   background-color: #f1f0f7;
+  font-size: smaller;
 }
 
 .side-searchbar-wrapper input[type="text"] {
