@@ -3,4 +3,4 @@ layout: page
 title: Get started
 ---
 
-This is how it works
+Demonstration/explanation of the main concepts around the simulation object.

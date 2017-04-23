@@ -50,6 +50,14 @@
             {% endfor %}
         {% endif %}
         <a class="side-nav-item{% if page.url == '/development.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/development.html">Development</a>
+        {% if page.url == '/development.html' %}
+            {% assign sorted_development = site.development | sort: 'position' %}
+            {% for entry in sorted_development %}
+                <a class="side-nav-sub-item" href="{{ node.url | prepend:site.baseurl }}#{{ entry.sectionName }}">
+                    {{ entry.title | markdownify | remove: '<p>' | remove: '</p>' }}
+                </a>
+            {% endfor %}
+        {% endif %}
         <a class="side-nav-item{% if page.url == '/reference_manual.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/reference_manual.html">Reference Manual</a>
     </nav>
 

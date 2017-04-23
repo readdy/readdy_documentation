@@ -21,6 +21,8 @@ collections:
     output: false
   observables:
     output: false
+  development:
+    output: false
   tutorials:
     output: true
     permalink: /:collection/:path/

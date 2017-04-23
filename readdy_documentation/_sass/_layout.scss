@@ -4,18 +4,18 @@ html {
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 @media (min-width: 48em) {
   html {
-    font-size: 13px;
+    font-size: 14px;
   }
 }
 
 @media (min-width: 58em) {
   html {
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 
@@ -333,14 +333,13 @@ iframe {
 }
 
 .entry-heading h2 {
-  border-bottom: $side-font-color solid 0.2rem;
+  border-bottom: $active-page-color solid 0.2rem;
   width: 100%;
   padding-bottom: 0;
 }
 
 .docpage-heading h1 {
-  border-bottom: $side-font-color solid 0.2rem;
-  border-color: $side-font-color;
+  border-bottom: $active-page-color solid 0.2rem;
   padding-left: 0.5rem;
   width: 100%;
   padding-bottom: 0;
@@ -348,10 +347,6 @@ iframe {
 
 .centered {
   text-align: center;
-}
-
-.main table {
-  //border-collapse: collapse;
 }
 
 .main tr:nth-child(even){
@@ -367,3 +362,18 @@ iframe {
   color: $main-font-color;
 }
 
+.foot {
+  color: #BDBDBD;
+  padding-top: 1rem;
+  border-top: #BDBDBD solid 0.1rem;
+  text-align: center;
+}
+
+.foot a, .foot a:visited {
+  color: #BDBDBD;
+  text-decoration: none;
+}
+
+.foot a:hover, .foot a:focus {
+  color: $link-hover-color;
+}
