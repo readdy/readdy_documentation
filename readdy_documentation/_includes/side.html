@@ -18,24 +18,24 @@
         {% if page.url == '/reactions.html' %}
             {% assign sorted_reactions = site.reactions | sort: 'position' %}
             {% for reaction in sorted_reactions %}
-                <a class="side-nav-sub-item" href="{{ node.url | prepend:site.baseurl }}#{{ reaction.sectionName }}">
+                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/reactions.html#{{ reaction.sectionName }}">
                     {{ reaction.title | markdownify | remove: '<p>' | remove: '</p>' }}
                 </a>
             {% endfor %}
         {% endif %}
         <a class="side-nav-item{% if page.url == '/potentials.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/potentials.html">Potentials</a>
         {% if page.url == '/potentials.html' %}
-            <a class="side-nav-sub-item" href="{{ node.url | prepend:site.baseurl }}#firstorderpotentials">First order potentials</a>
+            <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/potentials.html#firstorderpotentials">External potentials</a>
             {% assign sorted_potentials_o1 = site.potentials_order1 | sort: 'position' %}
             {% for potential in sorted_potentials_o1 %}
-                <a class="side-nav-sub-item side-nav-sub-sub-item" href="{{ node.url | prepend:site.baseurl }}#{{ potential.sectionName }}">
+                <a class="side-nav-sub-item side-nav-sub-sub-item" href="{{ site.url }}{{ site.baseurl }}/potentials.html#{{ potential.sectionName }}">
                     {{ potential.title | markdownify | remove: '<p>' | remove: '</p>'}}
                 </a>
             {% endfor %}
-            <a class="side-nav-sub-item" href="{{ node.url | prepend:site.baseurl }}#secondorderpotentials">Second order potentials</a>
+            <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/potentials.html#secondorderpotentials">Pair potentials</a>
             {% assign sorted_potentials_o2 = site.potentials_order2 | sort: 'position' %}
             {% for potential in sorted_potentials_o2 %}
-                <a class="side-nav-sub-item side-nav-sub-sub-item" href="{{ node.url | prepend:site.baseurl }}#{{ potential.sectionName }}">
+                <a class="side-nav-sub-item side-nav-sub-sub-item" href="{{ site.url }}{{ site.baseurl }}/potentials.html#{{ potential.sectionName }}">
                     {{ potential.title | markdownify | remove: '<p>' | remove: '</p>'}}
                 </a>
             {% endfor %}
@@ -44,8 +44,26 @@
         {% if page.url == '/observables.html' %}
             {% assign sorted_observables = site.observables | sort: 'position' %}
             {% for observable in sorted_observables %}
-                <a class="side-nav-sub-item" href="{{ node.url | prepend:site.baseurl }}#{{ observable.sectionName }}">
+                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/observables.html#{{ observable.sectionName }}">
                     {{ observable.title | markdownify | remove: '<p>' | remove: '</p>' }}
+                </a>
+            {% endfor %}
+        {% endif %}
+        <a class="side-nav-item{% if page.url == '/tutorials.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/tutorials.html">Tutorials</a>
+        {% if page.url == '/tutorials.html' %}
+            {% assign sorted_tutorials = site.tutorials | sort: 'position' %}
+            {% for tutorial in sorted_tutorials %}
+                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/tutorials.html#{{ tutorial.sectionName }}">
+                    {{ tutorial.title | markdownify | remove: '<p>' | remove: '</p>' }}
+                </a>
+            {% endfor %}
+        {% endif %}
+        <a class="side-nav-item{% if page.url == '/advanced_topics.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/advanced_topics.html">Advanced Topics</a>
+        {% if page.url == '/advanced_topics.html' %}
+            {% assign sorted_topics = site.advanced_topics | sort: 'position' %}
+            {% for topic in sorted_topics %}
+                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/advanced_topics.html#{{ topic.sectionName }}">
+                    {{ topic.title | markdownify | remove: '<p>' | remove: '</p>' }}
                 </a>
             {% endfor %}
         {% endif %}
@@ -53,7 +71,7 @@
         {% if page.url == '/development.html' %}
             {% assign sorted_development = site.development | sort: 'position' %}
             {% for entry in sorted_development %}
-                <a class="side-nav-sub-item" href="{{ node.url | prepend:site.baseurl }}#{{ entry.sectionName }}">
+                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/development.html#{{ entry.sectionName }}">
                     {{ entry.title | markdownify | remove: '<p>' | remove: '</p>' }}
                 </a>
             {% endfor %}

@@ -338,6 +338,11 @@ iframe {
   padding-bottom: 0;
 }
 
+.entry-heading h1 {
+  font-size: 2.2rem;
+  border-bottom: $active-page-color solid 0.2rem;
+}
+
 .docpage-heading h1 {
   border-bottom: $active-page-color solid 0.2rem;
   padding-left: 0.5rem;

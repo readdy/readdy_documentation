@@ -1,0 +1,26 @@
+dist: trusty
+sudo: required
+language: ruby
+rvm:
+  - 2.4
+
+os: linux
+
+cache:
+  apt: true
+
+addons:
+  apt:
+    packages:
+    - cmake
+    - gcc
+    - g++
+    - doxygen
+    - graphviz
+
+install: gem install bundler
+
+script: ./build_website.sh
+
+notifications:
+  email: false

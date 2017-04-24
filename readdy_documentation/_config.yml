@@ -7,8 +7,6 @@ url: https://readdy.github.io
 github_username: readdy
 sass:
   sass_dir: _sass
-include:
-  - "_tutorials"
 kramdown:
   input: GFM
   syntax_highlighter: rouge
@@ -23,13 +21,15 @@ collections:
     output: false
   development:
     output: false
+  advanced_topics:
+    output: false
   tutorials:
     output: true
-    permalink: /:collection/:path/
+    permalink: /:collection/:path
 defaults:
   -
     scope:
       type: "tutorials"
     values:
-      layout: "tutorial"
+      layout: "page"
       title: "defaulttitle"
