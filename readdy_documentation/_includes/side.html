@@ -49,11 +49,11 @@
                 </a>
             {% endfor %}
         {% endif %}
-        <a class="side-nav-item{% if page.url == '/tutorials.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/tutorials.html">Tutorials</a>
-        {% if page.url == '/tutorials.html' %}
+        <a class="side-nav-item{% if page.url == '/tutorials.html' or page.url contains '/tutorials/' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/tutorials.html">Tutorials</a>
+        {% if page.url == '/tutorials.html' or page.url contains '/tutorials/' %}
             {% assign sorted_tutorials = site.tutorials | sort: 'position' %}
             {% for tutorial in sorted_tutorials %}
-                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/tutorials.html#{{ tutorial.sectionName }}">
+                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}{{ tutorial.url }}">
                     {{ tutorial.title | markdownify | remove: '<p>' | remove: '</p>' }}
                 </a>
             {% endfor %}
