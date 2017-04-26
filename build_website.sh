@@ -46,7 +46,10 @@ function get_readdy {
 
 function convert_tutorials {
   cd $HOME/readdy_tutorials
-  echo which jupyter-nbconvert
+  # remove the github repo utils so they don't end up in the website output
+  rm .gitignore || true
+  rm README.md || true
+
   for x in *.ipynb; do
     jupyter-nbconvert --to markdown $x
     rm $x
