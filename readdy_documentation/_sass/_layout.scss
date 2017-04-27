@@ -27,14 +27,14 @@ body {
 
 // headings
 h1, h2, h3, h4, h5 {
-  font-weight: bold;
+  font-weight: normal;
   color: $main-font-color;
   font-family: $heading-font;
   line-height: 1.5;
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   a, a:visited {
     text-decoration: none;
   }
@@ -42,12 +42,12 @@ h1 {
 
 h2 {
   margin-top: 2rem;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 h3, h4, h5 {
   margin-top: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 // links
@@ -65,12 +65,29 @@ input {
   font-family: $font-style;
 }
 
+// the side bar wrapper has the actual size of the side bar, 
+// while "side" is a bit larger and always has a scrollbar, 
+// which is hidden by the "side-wrapper"
+.side-wrapper {
+  background-color: $side-background;
+}
+
+@media (min-width: 48em) {
+  .side-wrapper {
+    overflow: hidden;
+    position: fixed; // this keeps side and main "side to side"
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 18rem;
+  }
+}
+
 // sidebar
 .side {
-  padding: 2rem 1rem;
-  background-color: $side-background;
+  padding: 2rem 0rem;
   color: $side-font-color;
-  text-align: center;
+  //text-align: center;
 }
 
 .side a, .side a:visited {
@@ -84,31 +101,30 @@ input {
 
 @media (min-width: 48em) {
   .side {
-    position: fixed; // this keeps side and main "side to side"
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 18rem;
-    text-align: center;
-    overflow-y: auto; // if viewport is not high enough, scrollbar appears
+    width: 20rem;
+    height: 100vh;
+    //text-align: center;
+    overflow-y: scroll;
   }
 }
 
 .side-searchbar-wrapper {
-  width: 100%;
+  width: 15rem;
   background-color: #f1f0f7;
   text-align: left;
   margin-top: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  margin-left: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
 }
 
 .side-searchbar-wrapper input#search-box {
-  width: 100%;
+  //width: 100%;
   border: none;
   background-color: #f1f0f7;
+  font-size: smaller;
 }
 
 .side-searchbar-wrapper input[type="text"] {
@@ -116,13 +132,50 @@ input {
   background-color: #f1f0f7;
 }
 
+.side-nav {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  text-align: left;
+  background-color: $nav-background;
+}
+
 .side-nav a, .side-nav a:visited {
   font-weight: normal;
-  color: $main-font-color;
+  color: $side-font-color;
 }
 
 .side-nav a:hover, .side-nav a:focus {
   color: $link-hover-color;
+}
+
+a.side-nav-item {
+  color: $side-font-color;
+  display: block;
+  line-height: 1.5;
+  padding: 0.3rem;
+  padding-left: 1rem;
+}
+
+a.side-nav-sub-item {
+  color: $side-font-color;
+  background-color: $active-page-color;
+  display: block;
+  font-size: small;
+  line-height: 1.3;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 0.4rem;
+  padding-top: 0rem;
+}
+
+a.side-nav-sub-sub-item {
+  padding-left: 3rem;
+}
+
+.side-nav-item.active {
+  background-color: $active-page-color;
 }
 
 // generic side logo
@@ -132,6 +185,7 @@ input {
     background-repeat: no-repeat;
     margin-bottom: 1rem;
     margin-top: 1rem;
+    margin-right: 1.5rem;
     position: relative; // for clickability
   }
   .side-logo a {
@@ -168,7 +222,7 @@ input {
   .logo-readdy {
     background-image: url($baseurl + "/assets/readdy_white_150px.png");
     height: 42px;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 }
 
@@ -176,15 +230,17 @@ input {
   .logo-readdy {
     background-image: url($baseurl + "/assets/readdy_white_180px.png");
     height: 50px;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 }
 
 .github-wrapper {
-  width: 100%;
+  width: 16rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
   height: 3.2rem;
   overflow: hidden;
-  background-color: #696774;
+  background-color: $nav-background;
   position: relative; // for clickability
 }
 
@@ -204,42 +260,6 @@ input {
   margin-top: 0.9rem;
   padding-left: 2rem;
   padding-right: 1rem;
-}
-
-.side-nav {
-  margin-bottom: 1rem;
-  margin-top: 1rem;
-  padding: 1rem;
-  border-top: solid;
-  border-top-width: 1px;
-  border-top-color: currentColor;
-  border-bottom: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: currentColor;
-  text-align: left;
-  background-color: #e3e2e8;
-}
-
-a.side-nav-item {
-  color: $main-font-color;
-  display: block;
-  line-height: 1.5;
-  padding-left: 0.5rem;
-}
-
-a.side-nav-sub-item {
-  color: $subitem-font-color;
-  background-color: $active-page-color;
-  display: block;
-  font-size: 13px;
-  line-height: 1.3;
-  padding-left: 1rem;
-  padding-bottom: 0.2rem;
-  padding-top: 0.2rem;
-}
-
-.side-nav-item.active {
-  background-color: $active-page-color;
 }
 
 // main window
@@ -313,14 +333,18 @@ iframe {
 }
 
 .entry-heading h2 {
-  border-bottom: $entry-heading-color solid 0.5rem;
-  padding-left: 1rem;
+  border-bottom: $active-page-color solid 0.2rem;
   width: 100%;
   padding-bottom: 0;
 }
 
+.entry-heading h1 {
+  font-size: 2.2rem;
+  border-bottom: $active-page-color solid 0.2rem;
+}
+
 .docpage-heading h1 {
-  border-bottom: $active-page-color solid 0.5rem;
+  border-bottom: $active-page-color solid 0.2rem;
   padding-left: 0.5rem;
   width: 100%;
   padding-bottom: 0;
@@ -328,10 +352,6 @@ iframe {
 
 .centered {
   text-align: center;
-}
-
-.main table {
-  //border-collapse: collapse;
 }
 
 .main tr:nth-child(even){
@@ -343,7 +363,22 @@ iframe {
 }
 
 .main th {
-  background-color: $active-page-color;
+  background-color: #CECCD2;
   color: $main-font-color;
 }
 
+.foot {
+  color: #BDBDBD;
+  padding-top: 1rem;
+  border-top: #BDBDBD solid 0.1rem;
+  text-align: center;
+}
+
+.foot a, .foot a:visited {
+  color: #BDBDBD;
+  text-decoration: none;
+}
+
+.foot a:hover, .foot a:focus {
+  color: $link-hover-color;
+}

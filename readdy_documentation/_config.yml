@@ -7,30 +7,29 @@ url: https://readdy.github.io
 github_username: readdy
 sass:
   sass_dir: _sass
-include:
-  - "_docpages"
-  - "_docentries"
 kramdown:
   input: GFM
   syntax_highlighter: rouge
 collections:
-  docpages:
+  reactions:
+    output: false
+  potentials_order1:
+    output: false
+  potentials_order2:
+    output: false
+  observables:
+    output: false
+  development:
+    output: false
+  advanced_topics:
+    output: false
+  tutorials:
     output: true
-    permalink: /:collection/:path/
-  docentries:
-    output: false # docentries' content is included when building docpage
+    permalink: /:collection/:path
 defaults:
   -
     scope:
-      path: ""
-      type: "docpages"
+      type: "tutorials"
     values:
-      layout: "docpage"
-      title: ""
-      entries: []
-  -
-    scope:
-      path: ""
-      type: "docentries"
-    values:
-      title: ""
+      layout: "page"
+      title: "defaulttitle"

@@ -1,40 +1,90 @@
+<div class="side-wrapper">
 <div class="side">
     <div class="side-logo logo-readdy"><a href="{{ site.url }}{{ site.baseurl }}/index.html"></a></div>
-    <a href="{{ site.url }}{{ site.baseurl }}">ReaDDy - A particle-based reaction-diffusion simulator</a>
+    <div style="margin-right: 1.5rem; text-align: center;">
+        <a href="{{ site.url }}{{ site.baseurl }}/index.html">ReaDDy - A particle-based<br>reaction-diffusion simulator</a>
+    </div>
 
     <div class="side-searchbar-wrapper">
         <form action="{{ site.url }}{{ site.baseurl }}/search.html" method="get">
-            <input type="text" id="search-box" name="query" placeholder="search ...">
+            <input type="text" id="search-box" name="query" placeholder="Search ...">
         </form>
     </div>
 
     <nav class="side-nav">
-        <a class="side-nav-item{% if page.url == '/' %} active{% endif %}"
-           href="{{ site.url }}{{ site.baseurl }}/index.html">Home</a>
-        {% for node in site.docpages %}
-            <a class="side-nav-item{% if page.url == node.url %} active{% endif %}"
-               href="{{ node.url | prepend:site.baseurl }}">{{ node.title }}</a>
-            {% if page.url == node.url %}
-                {% for pageentry in node.entries %}
-                    {% for entry in site.docentries %}
-                        {% assign sectionid = pageentry %}
-                        {% assign entrypath = pageentry | prepend: "_docentries/" | append: ".md" %}
-                        {% if entry.path == entrypath %}
-                            <a class="side-nav-sub-item"
-                               href="{{ node.url | prepend:site.baseurl }}#{{ sectionid }}">{{ entry.title }}</a>
-                        {% endif %}
-                    {% endfor %}
-                {% endfor %}
-            {% endif %}
-        {% endfor %}
-        <a class="side-nav-item{% if page.url == '/reference_manual_page.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/reference_manual_page.html">Reference Manual</a>
+        <a class="side-nav-item{% if page.url == '/installation.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/installation.html">Installation</a>
+        <a class="side-nav-item{% if page.url == '/get_started.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/get_started.html">Get started</a>
+        <a class="side-nav-item{% if page.url == '/reactions.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/reactions.html">Reactions</a>
+        {% if page.url == '/reactions.html' %}
+            {% assign sorted_reactions = site.reactions | sort: 'position' %}
+            {% for reaction in sorted_reactions %}
+                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/reactions.html#{{ reaction.sectionName }}">
+                    {{ reaction.title | markdownify | remove: '<p>' | remove: '</p>' }}
+                </a>
+            {% endfor %}
+        {% endif %}
+        <a class="side-nav-item{% if page.url == '/potentials.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/potentials.html">Potentials</a>
+        {% if page.url == '/potentials.html' %}
+            <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/potentials.html#firstorderpotentials">External potentials</a>
+            {% assign sorted_potentials_o1 = site.potentials_order1 | sort: 'position' %}
+            {% for potential in sorted_potentials_o1 %}
+                <a class="side-nav-sub-item side-nav-sub-sub-item" href="{{ site.url }}{{ site.baseurl }}/potentials.html#{{ potential.sectionName }}">
+                    {{ potential.title | markdownify | remove: '<p>' | remove: '</p>'}}
+                </a>
+            {% endfor %}
+            <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/potentials.html#secondorderpotentials">Pair potentials</a>
+            {% assign sorted_potentials_o2 = site.potentials_order2 | sort: 'position' %}
+            {% for potential in sorted_potentials_o2 %}
+                <a class="side-nav-sub-item side-nav-sub-sub-item" href="{{ site.url }}{{ site.baseurl }}/potentials.html#{{ potential.sectionName }}">
+                    {{ potential.title | markdownify | remove: '<p>' | remove: '</p>'}}
+                </a>
+            {% endfor %}
+        {% endif %}
+        <a class="side-nav-item{% if page.url == '/observables.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/observables.html">Observables</a>
+        {% if page.url == '/observables.html' %}
+            {% assign sorted_observables = site.observables | sort: 'position' %}
+            {% for observable in sorted_observables %}
+                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/observables.html#{{ observable.sectionName }}">
+                    {{ observable.title | markdownify | remove: '<p>' | remove: '</p>' }}
+                </a>
+            {% endfor %}
+        {% endif %}
+        <a class="side-nav-item{% if page.url == '/tutorials.html' or page.url contains '/tutorials/' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/tutorials.html">Tutorials</a>
+        {% if page.url == '/tutorials.html' or page.url contains '/tutorials/' %}
+            {% assign sorted_tutorials = site.tutorials | sort: 'position' %}
+            {% for tutorial in sorted_tutorials %}
+                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}{{ tutorial.url }}">
+                    {{ tutorial.title | markdownify | remove: '<p>' | remove: '</p>' }}
+                </a>
+            {% endfor %}
+        {% endif %}
+        <a class="side-nav-item{% if page.url == '/advanced_topics.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/advanced_topics.html">Advanced Topics</a>
+        {% if page.url == '/advanced_topics.html' %}
+            {% assign sorted_topics = site.advanced_topics | sort: 'position' %}
+            {% for topic in sorted_topics %}
+                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/advanced_topics.html#{{ topic.sectionName }}">
+                    {{ topic.title | markdownify | remove: '<p>' | remove: '</p>' }}
+                </a>
+            {% endfor %}
+        {% endif %}
+        <a class="side-nav-item{% if page.url == '/development.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/development.html">Development</a>
+        {% if page.url == '/development.html' %}
+            {% assign sorted_development = site.development | sort: 'position' %}
+            {% for entry in sorted_development %}
+                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/development.html#{{ entry.sectionName }}">
+                    {{ entry.title | markdownify | remove: '<p>' | remove: '</p>' }}
+                </a>
+            {% endfor %}
+        {% endif %}
+        <a class="side-nav-item{% if page.url == '/reference_manual.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/reference_manual.html">Reference Manual</a>
     </nav>
 
     <div class="github-wrapper">
-        <a href="https://github.com/readdy/readdy" style="width: 100%; height:100%; position:absolute; top:0; left:0;">
+        <a href="https://github.com/readdy/readdy" style="width: 16rem; height:100%; position:absolute; top:0; left:0;">
             <div class="github-text">ReaDDy on GitHub</div>
             <div class="side-logo logo-github"></div>
         </a>
     </div>
     <div class="side-logo logo-cmb"><a href="https://www.mi.fu-berlin.de/en/math/groups/comp-mol-bio/"></a></div>
+</div>
 </div>
