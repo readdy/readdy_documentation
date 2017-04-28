@@ -71,7 +71,7 @@ function make_reference_doc {
   cmake $HOME/readdy -DREADDY_GENERATE_DOCUMENTATION_TARGET_ONLY:BOOL=ON
   make doc
   cd -
-  }
+}
 
 function make_website {
   # setup jekyll via bundler
