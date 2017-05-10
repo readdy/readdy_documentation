@@ -3,7 +3,8 @@ layout: page
 title: FAQ
 ---
 
-Frequently asked questions
+If you have an issue that is not covered here, just post it on our 
+[issue tracker](https://github.com/readdy/readdy/issues) or [contact us](mailto:readdyadmin@lists.fu-berlin.de).
 
 {% assign sorted_faqs = site.faq | sort: 'position' %}
 {% for entry in sorted_faqs %}
