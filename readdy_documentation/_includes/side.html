@@ -77,6 +77,15 @@
             {% endfor %}
         {% endif %}
         <a class="side-nav-item{% if page.url == '/reference_manual.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/reference_manual.html">Reference Manual</a>
+        <a class="side-nav-item{% if page.url == '/faq.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/faq.html">FAQ</a>
+        {% if page.url == '/faq.html' %}
+            {% assign sorted_faqs = site.faq | sort: 'position' %}
+            {% for entry in sorted_faqs %}
+                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/faq.html#{{ entry.sectionName }}">
+                    {{ entry.title | markdownify | remove: '<p>' | remove: '</p>' }}
+                </a>
+            {% endfor %}
+        {% endif %}
     </nav>
 
     <div class="github-wrapper">
