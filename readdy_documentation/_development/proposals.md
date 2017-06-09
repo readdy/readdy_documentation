@@ -37,6 +37,7 @@ file.h5
 
 
 ### Top level usage
+
 ```python
 # define system here together with the units that readdy will use
 system = ReactionDiffusionSystem(length_unit=units.swedish_miles)
@@ -75,35 +76,7 @@ simulation.run(10)
 
 ### General suggestions
 
-- [ ] update API as below (and create top level python api):
-
-```python
-# define system here
-system = ReactionDiffusionSystem(kernel="SingleCPU")
-
-# create simulation (define algorithms to run the system)
-simulation = system.simulation()  # use defaults. 
-simulation.add_observable('rdf')  # actually part of the system, but configured through the simulation object
-simulation.integrator = "EulerBDIntegrator"
-simulation.compute_forces = False
-simulation.reaction_scheduler = "UncontrolledApproximation"
-simulation.evaluate_observables = False
-simulation.run(10)  # does the configuration and runs the simulation
-
-# continue simulation
-simulation.run(10)
-
-# second call RAISES exception, because you can only simulate a system once.
-simulation = system.simulation()  # use defaults. 
-
-# OR
-simulation = system.simulation(integrator = "EulerBDIntegrator",
-                               compute_forces = False,
-...
-)
-simulation.run(10)
-```
-
+- [ ] Cancel python2 support. Less overhead writing 2/3 compatible python modules. E.g. string-handling, dictionary iterating. No `from __future__ import`s.
 - [ ] suggestion: Allow geometry files as input for a box potential such that more complicated shapes can be realized with external tools
 - [ ] implement CUDA kernel
     - meet up with Felix to discuss HALMD integration
