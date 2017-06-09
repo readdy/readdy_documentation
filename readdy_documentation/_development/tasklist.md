@@ -34,5 +34,3 @@ position: 3
     - Consistency of membrane model with the remaining particle/topology concept? How can we integrate these concepts with minimal additional effort?
     - Relation to GPU Kernel: What part of topology handling can be done on the GPU? What on the CPU?
     - Membranes on the GPU?
-* ~~Apply for private repos in readdy organization~~
-* ~~Chris: write down current status + next steps of reversible reaction scheme with interaction potential (for 1/2 particle system)~~

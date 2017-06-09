@@ -23,6 +23,8 @@ collections:
     output: false
   advanced_topics:
     output: false
+  faq:
+    output: false
   tutorials:
     output: true
     permalink: /:collection/:path

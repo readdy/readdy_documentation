@@ -71,7 +71,7 @@ function make_reference_doc {
   cmake $HOME/readdy -DREADDY_GENERATE_DOCUMENTATION_TARGET_ONLY:BOOL=ON
   make doc
   cd -
-  }
+}
 
 function make_website {
   # setup jekyll via bundler
@@ -95,7 +95,7 @@ function setup_output_repo {
   git init
   git config user.name "Christoph Froehner"
   git config user.email "chrisfroe@users.noreply.github.com"
-  git remote add upstream "https://$GH_TOKEN@github.com/readdy/readdy_documentation.git" 
+  git remote add upstream "https://$GH_TOKEN@github.com/readdy/readdy_documentation.git" > /dev/null 2>&1
   git fetch upstream
   git checkout --orphan workbranch
   git reset --hard
@@ -107,7 +107,7 @@ function deploy {
   touch .
   git add -A .
   git commit -m "github pages"
-  git push -q -f upstream workbranch:gh-pages
+  git push -q -f upstream workbranch:gh-pages > /dev/null 2>&1
 }
 
 set_this_up

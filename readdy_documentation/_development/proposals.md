@@ -4,22 +4,61 @@ sectionName: proposals
 position: 4
 ---
 
-### General suggestions
+### File specification
 
-- [ ] update API as below (and create top level python api):
+One file covers the extent of one simulation, e.g. changes in temperature (time-indepedent context) 
+can only span multiple simulations and thus multiple files. This means one might end up with multiple files for one realisation.
+To get back a time ordering, the simulated step range should be stated in the file. 
+Additionally it has to be set when continuing a realisation, i.e. starting a new simulation.
+
+```bash
+file.h5
+  readdy/
+    time_range # might be an observable
+    obs/
+      labelx-msd/ # user defined labels for observables
+      labely-rdf/
+      labelz-traj/
+    config/ # time independent information
+      particle_types
+      reactions
+      potentials
+    snapshots/
+      0/
+        positions
+        topologies
+        time_step_number
+      1/
+        positions
+        topologies
+        time_step_number
+      ...
+```
+
+
+### Top level usage
 
 ```python
-# define system here
-system = ReactionDiffusionSystem(kernel="SingleCPU")
+# define system here together with the units that readdy will use
+system = ReactionDiffusionSystem(length_unit=units.swedish_miles)
+system.kbt = 50. * units.kJ / units.mol # units will be converted when scheme is configured, run()
+system.add_species("A", diffusion_const=4. * units.nm * units.nm / units.ns)
+system.add_species("B", diffusion_const=5.) # default units will be used
+system.add_reaction("A+{13.}B->{42.}C", radius_unit=units.nm, rate_unit=1./units.ns)
+system.add_reaction("B->{3.}C")
 
 # create simulation (define algorithms to run the system)
-simulation = system.simulation()  # use defaults. 
-simulation.add_observable('rdf')  # actually part of the system, but configured through the simulation object
+simulation = system.simulation(kernel="SingleCPU")  # use defaults. 
+simulation.observe_rdf(callback=lambda x: print(x), stride=5, bins=np.arange(0.,10.,1.)*units.nm, write_to_file=Ja,bitte)  # actually part of the system, but configured through the simulation object
+simulation.output_file = "path/to/file"
 simulation.integrator = "EulerBDIntegrator"
 simulation.compute_forces = False
 simulation.reaction_scheduler = "UncontrolledApproximation"
 simulation.evaluate_observables = False
-simulation.run(10)  # does the configuration and runs the simulation
+simulation.record_snapshots(stride=50, last_frame=True, output_dir="", overwrite=True)
+simulation.run(10)  # does the configuration and runs the simulation, i.e. system and simulation are finalized here
+# or
+simulation.run_while(util.criterion.n_minutes(10))
 
 # continue simulation
 simulation.run(10)
@@ -35,6 +74,9 @@ simulation = system.simulation(integrator = "EulerBDIntegrator",
 simulation.run(10)
 ```
 
+### General suggestions
+
+- [ ] Cancel python2 support. Less overhead writing 2/3 compatible python modules. E.g. string-handling, dictionary iterating. No `from __future__ import`s.
 - [ ] suggestion: Allow geometry files as input for a box potential such that more complicated shapes can be realized with external tools
 - [ ] implement CUDA kernel
     - meet up with Felix to discuss HALMD integration
