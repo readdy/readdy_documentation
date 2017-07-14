@@ -65,8 +65,8 @@ input {
   font-family: $font-style;
 }
 
-// the side bar wrapper has the actual size of the side bar, 
-// while "side" is a bit larger and always has a scrollbar, 
+// the side bar wrapper has the actual size of the side bar,
+// while "side" is a bit larger and always has a scrollbar,
 // which is hidden by the "side-wrapper"
 .side-wrapper {
   background-color: $side-background;
@@ -381,4 +381,12 @@ iframe {
 
 .foot a:hover, .foot a:focus {
   color: $link-hover-color;
+}
+
+.nav-supergroup-delimiter {
+    color: $nav-delimiter-color;
+    padding-left: 1rem;
+    padding-right: 0;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
 }

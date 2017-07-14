@@ -12,6 +12,9 @@
     </div>
 
     <nav class="side-nav">
+        <div class="nav-supergroup-delimiter">
+            <b>THE BASICS</b>
+        </div>
         <a class="side-nav-item{% if page.url == '/installation.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/installation.html">Installation</a>
         <a class="side-nav-item{% if page.url == '/get_started.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/get_started.html">Get started</a>
         <a class="side-nav-item{% if page.url == '/reactions.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/reactions.html">Reactions</a>
@@ -49,6 +52,9 @@
                 </a>
             {% endfor %}
         {% endif %}
+        <div class="nav-supergroup-delimiter">
+            <b>TUTORIALS</b>
+        </div>
         <a class="side-nav-item{% if page.url == '/tutorials.html' or page.url contains '/tutorials/' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/tutorials.html">Tutorials</a>
         {% if page.url == '/tutorials.html' or page.url contains '/tutorials/' %}
             {% assign sorted_tutorials = site.tutorials | sort: 'position' %}
@@ -58,6 +64,9 @@
                 </a>
             {% endfor %}
         {% endif %}
+        <div class="nav-supergroup-delimiter">
+            <b>ADVANCED TOPICS</b>
+        </div>
         <a class="side-nav-item{% if page.url == '/advanced_topics.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/advanced_topics.html">Advanced Topics</a>
         {% if page.url == '/advanced_topics.html' %}
             {% assign sorted_topics = site.advanced_topics | sort: 'position' %}
