@@ -12,11 +12,15 @@
     </div>
 
     <nav class="side-nav">
+
+
         <div class="nav-supergroup-delimiter">
             <b>THE BASICS</b>
         </div>
+        {% if false %}currently excluded
         <a class="side-nav-item{% if page.url == '/installation.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/installation.html">Installation</a>
         <a class="side-nav-item{% if page.url == '/get_started.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/get_started.html">Get started</a>
+        {% endif %}
         <a class="side-nav-item{% if page.url == '/reactions.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/reactions.html">Reactions</a>
         {% if page.url == '/reactions.html' %}
             {% assign sorted_reactions = site.reactions | sort: 'position' %}
@@ -52,6 +56,9 @@
                 </a>
             {% endfor %}
         {% endif %}
+
+
+        {% if false %}currently excluded
         <div class="nav-supergroup-delimiter">
             <b>TUTORIALS</b>
         </div>
@@ -64,9 +71,13 @@
                 </a>
             {% endfor %}
         {% endif %}
+        {% endif %}
+
+
         <div class="nav-supergroup-delimiter">
             <b>ADVANCED TOPICS</b>
         </div>
+        {% if false %}currently excluded
         <a class="side-nav-item{% if page.url == '/advanced_topics.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/advanced_topics.html">Advanced Topics</a>
         {% if page.url == '/advanced_topics.html' %}
             {% assign sorted_topics = site.advanced_topics | sort: 'position' %}
@@ -75,6 +86,7 @@
                     {{ topic.title | markdownify | remove: '<p>' | remove: '</p>' }}
                 </a>
             {% endfor %}
+        {% endif %}
         {% endif %}
         <a class="side-nav-item{% if page.url == '/development.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/development.html">Development</a>
         {% if page.url == '/development.html' %}
@@ -95,6 +107,15 @@
                 </a>
             {% endfor %}
         {% endif %}
+
+
+        <div class="nav-supergroup-delimiter">
+            <b>SUMMER WORKSHOP 2017</b>
+        </div>
+        <a class="side-nav-item{% if page.url == '/workshop_info.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/workshop_info.html">General info</a>
+        <a class="side-nav-item{% if page.url == '/workshop_sessions.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/workshop_sessions.html">Practical sessions</a>
+        <a class="side-nav-item{% if page.url == '/workshop_install.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/workshop_install.html">Install readdy</a>
+
     </nav>
 
     <div class="github-wrapper">
