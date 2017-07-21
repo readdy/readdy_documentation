@@ -273,6 +273,7 @@ a.side-nav-sub-sub-item {
   margin-right: auto;
   background-color: $main-background;
   line-height: 1.5;
+  table { margin: auto; }
 }
 
 @media (min-width: 48em) {
