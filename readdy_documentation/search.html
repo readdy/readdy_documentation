@@ -11,24 +11,21 @@ title: Search results
 
 <script>
     window.store = {
-        {% for docpage in site.docpages %}
-            {% assign currentcontent = docpage.content %}
-            {% for pageentry in docpage.entries %}
-                {% for entry in site.docentries %}
-                    {% assign entrypath = pageentry | prepend: "_docentries/" | append: ".md" %}
-                    {% if entry.path == entrypath %}
-                        {% assign temp = currentcontent %}
-                        {% assign currentcontent = temp | append: entry.content %}
-                    {% endif %}
-                {% endfor %}
+        {% assign outerloop = false %}
+        {% for collection in site.collections %}
+            {% for document in collection.docs %}
+                "{{ document.url | slugify }}": {
+                    "title": "{{ document.title | xml_escape }}",
+                    "content": {{ document.content | strip_html | strip_newlines | jsonify }},
+                    "url": "{{ site.baseurl }}/{{ collection.label | xml_escape }}.html#{{ document.sectionName }}"
+                },
             {% endfor %}
-            "{{ docpage.url | slugify }}": {
-                "title": "{{ docpage.title | xml_escape }}",
-                "content": {{ currentcontent | strip_html | strip_newlines | jsonify }},
-                "url": "{{ site.baseurl }}{{ docpage.url | xml_escape }}"
-            }
-            {% unless forloop.last %},{% endunless %}
         {% endfor %}
+        "blub": {
+            "title": "",
+            "content": "",
+            "url": ""
+        }
     };
 </script>
 <script src="{{ site.url }}{{ site.baseurl }}/js/lunr.min.js"></script>
