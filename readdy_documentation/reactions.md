@@ -3,10 +3,8 @@ layout: page
 title: Reactions
 ---
 
-These are the reactions ...
-- a
-- b
-- c
+Reactions remove particles from, and add particles to the system. They typically have a microscopic/intrinsic rate $k$.
+This rate has units of inverse time and can be understood as the probability per unit time of the reaction occuring. Given a small integration step $\tau$ we will evaluate the probability of a reaction event as $p\approx k \tau$
 
 {% assign sorted_reactions = site.reactions | sort: 'position' %}
 {% for reaction in sorted_reactions %}

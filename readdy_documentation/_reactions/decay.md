@@ -4,4 +4,4 @@ sectionName: decay
 position: 2
 ---
 
-DDDDecay
+$$ A \overset{k}{\rightarrow} \emptyset $$

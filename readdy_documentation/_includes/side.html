@@ -77,17 +77,6 @@
         <div class="nav-supergroup-delimiter">
             <b>ADVANCED TOPICS</b>
         </div>
-        {% if false %}currently excluded
-        <a class="side-nav-item{% if page.url == '/advanced_topics.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/advanced_topics.html">Advanced Topics</a>
-        {% if page.url == '/advanced_topics.html' %}
-            {% assign sorted_topics = site.advanced_topics | sort: 'position' %}
-            {% for topic in sorted_topics %}
-                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/advanced_topics.html#{{ topic.sectionName }}">
-                    {{ topic.title | markdownify | remove: '<p>' | remove: '</p>' }}
-                </a>
-            {% endfor %}
-        {% endif %}
-        {% endif %}
         <a class="side-nav-item{% if page.url == '/development.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/development.html">Development</a>
         {% if page.url == '/development.html' %}
             {% assign sorted_development = site.development | sort: 'position' %}

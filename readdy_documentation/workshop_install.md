@@ -31,6 +31,8 @@ conda install -f -c readdy/label/dev readdy
 ```
 Check if it worked, start a python interpreter and do
 ```python
->>> import readdy
+>>> import readdy._internal as api
+>>> sim = api.Simulation()
+>>> sim.set_kernel("CPU")
 ```
 If this does not return an error, you are readdy (HA!).

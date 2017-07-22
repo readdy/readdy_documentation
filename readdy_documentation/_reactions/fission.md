@@ -4,4 +4,4 @@ sectionName: fission
 position: 4
 ---
 
-Description of fission reaction
+$$ C \overset{k}{\rightarrow} A + B $$
