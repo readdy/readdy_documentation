@@ -21,8 +21,6 @@ collections:
     output: false
   development:
     output: false
-  advanced_topics:
-    output: false
   faq:
     output: false
   tutorials:

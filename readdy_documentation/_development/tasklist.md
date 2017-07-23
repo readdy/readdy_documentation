@@ -5,7 +5,7 @@ position: 3
 ---
 
 ### Which functional features are we still lacking?
-* Reversible reaction integrator
+* Reversible reaction integrator, detailed balance
 * Topologies [high],
     Topologies are superstructures grouping particles to e.g. molecules. Required features:
     - ~~potentials between specific particles (bonds, angles, dihedrals)~~
@@ -14,7 +14,7 @@ position: 3
 * Membranes [high],
     Mohsen's membrane model includes special particle types and special dynamics. Should be somehow integrated into ReaDDy.
     - Treat these particles like other particles? Treat the membrane as a topology? Or are membranes different from standard particles?
-    - Interactions and reactions between standard particles and membrane particles should be possible 
+    - Interactions and reactions between standard particles and membrane particles should be possible
     (e.g. binding of a membrane-associated protein to a membrane that deforms the membrane locally)
 * Special programs,
     Plan/design how to integrate special programs such as compartment-based reactions with minimal user-side C++ programming overhead. [see issue #48]
@@ -28,7 +28,7 @@ position: 3
 * Windows binaries
 
 ### Next Todos
-* Planning / conceptual / software design: 
+* Planning / conceptual / software design:
     - How do we build topologies [partly solved]
     - Can we integrate membranes in this concept? [probably not]
     - Consistency of membrane model with the remaining particle/topology concept? How can we integrate these concepts with minimal additional effort?

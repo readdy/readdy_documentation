@@ -4,4 +4,4 @@ sectionName: enzymatic
 position: 5
 ---
 
-Description of enzymatic reaction
+$$ A + C \overset{k}{\rightarrow} B + C $$
