@@ -5,8 +5,19 @@ title: Practical sessions
 
 ## Monday - Setup & get started
 
+__Task 0)__
+
 We go through the installation and the basic features of readdy step by step.
 
+__Task 1)__
+
+Register a piecewise harmonic potential. Perform a simulation on a 2D membrane. From the radial distribution, estimate how this potential looks like, assuming
+
+$$ g(r) \propto e^{-U(r)}$$
+
+What could be a source of error? Did you really find the true potential or rather an effective potential?
+
+{% if false %}
 ## Tuesday - Rhodopsin activation toy model
 
 {: .centered}
@@ -48,4 +59,5 @@ Find the analytic expression for the time-dependent GA concentration. No computa
 State the law of mass action for the concentrations of G and GA under the given enzymatic
 reaction (with some rate $\kappa$) and make use of the conservation of particles.
 
-Plot your analytic solution for some suitable parameters together with the results of the previous tasks. 
+Plot your analytic solution for some suitable parameters together with the results of the previous tasks.
+{% endif %}
