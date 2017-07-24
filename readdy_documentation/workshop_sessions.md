@@ -20,6 +20,32 @@ $$ g(r) \propto e^{-U(r)}$$
 
 What could be a source of error? Did you really find the true potential or rather an effective potential?
 
+Hint: your run loop should look like
+```python
+# define observables and run
+traj_handle = sim.register_observable_flat_trajectory(stride=10)
+
+rdf_data = []
+def get_rdf(x):
+    global rdf_data
+    rdf_data.append(x)
+
+rdf_handle = sim.register_observable_radial_distribution(
+    stride=100, bin_borders=np.arange(0.,7.,0.05), type_count_from=["A"],
+    type_count_to=["A"], particle_to_density=1., callback=get_rdf
+)
+with cl.closing(api.File("./obs.h5", api.FileAction.CREATE, api.FileFlag.OVERWRITE)) as f:
+    traj_handle.enable_write_to_file(file=f, data_set_name="traj", chunk_size=10000)
+    t1 = time.perf_counter()
+    sim.run_scheme_readdy(True) \
+        .write_config_to_file(f) \
+        .with_reaction_scheduler("UncontrolledApproximation") \
+        .with_skin_size(3.) \
+        .configure_and_run(50000, 0.005)
+    t2 = time.perf_counter()
+    print("Simulated", t2 - t1, "seconds")
+```
+
 {% if false %}
 ## Tuesday - Rhodopsin activation toy model
 
