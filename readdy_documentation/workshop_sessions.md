@@ -3,6 +3,9 @@ layout: page
 title: Practical sessions
 ---
 
+After each session you will find the solutions
+to the notebooks [here](https://github.com/chrisfroe/readdy-workshop-2017-solutions).
+
 ## Monday - Setup & get started
 
 __Task 0)__
