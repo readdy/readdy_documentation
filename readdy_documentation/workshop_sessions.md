@@ -153,6 +153,8 @@ print("Simulated", t2 - t1, "seconds")
 
 Plot the __mean__ (gather the results of multiple simulations and average) number of GA as a function of time.
 
+Hint: wrap the complete simulation procedure in a single function, that returns the numbers of GA as a function of time (i.e. an array of numbers). Then you can perform this function several times, gather the results and average them.
+
 How long does it take to activate the first 10 G-proteins? How long for the first 20 G-proteins?
 
 ### Task 3)
