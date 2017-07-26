@@ -103,6 +103,14 @@
         </div>
         <a class="side-nav-item{% if page.url == '/workshop_info.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/workshop_info.html">General info</a>
         <a class="side-nav-item{% if page.url == '/workshop_sessions.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/workshop_sessions.html">Practical sessions</a>
+        {% if page.url == '/workshop_sessions.html' %}
+            {% assign sorted_sessions = site.workshop_sessions | sort: 'position' %}
+            {% for entry in sorted_sessions %}
+                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/workshop_sessions.html#{{ entry.sectionName }}">
+                    {{ entry.title | markdownify | remove: '<p>' | remove: '</p>' }}
+                </a>
+            {% endfor %}
+        {% endif %}
         <a class="side-nav-item{% if page.url == '/workshop_install.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/workshop_install.html">Install readdy</a>
 
     </nav>

@@ -26,6 +26,8 @@ collections:
   tutorials:
     output: true
     permalink: /:collection/:path
+  workshop_sessions:
+    output: false
 defaults:
   -
     scope:
