@@ -21,14 +21,14 @@ Main topics will be:
 ## Program
 We will have two talks each morning and hands-on practical sessions in the afternoon. Friday will be all-day session.
 
-|              | Monday                 | Tuesday                   | Wednesday                | Thursday              | Friday |
-|:-------------|:-----------------------|:--------------------------|:-------------------------|:----------------------|:-------|
-| 9 - 10       | Biology by the numbers | Molecular simulation      | ReaDDy software overview | Membrane mechanics    | PS     |
-| 10 - 11      | Physics                | Reaction-diffusion models | Neighborlists            | Lotka-Volterra models | PS     |
-| coffee break |                        |                           |                          |                       |        |
-| 11 - 12      | Practical session (PS) | PS                        | PS                       | PS                    | PS     |
-| lunch        |                        |                           |                          |                       |        |
-| 13 - 15      | PS                     | PS                        | PS                       | PS                    | PS     |
+|              | Monday                 | Tuesday                   | Wednesday                                      | Thursday              | Friday |
+|:-------------|:-----------------------|:--------------------------|:-----------------------------------------------|:----------------------|:-------|
+| 9 - 10       | Biology by the numbers | Molecular simulation      | [ReaDDy software overview](assets/readdy.pdf)  | Membrane mechanics    | PS     |
+| 10 - 11      | Physics                | Reaction-diffusion models | [Neighborlists](assets/neighbor_list_talk.pdf) | Lotka-Volterra models | PS     |
+| coffee break |                        |                           |                                                |                       |        |
+| 11 - 12      | Practical session (PS) | PS                        | PS                                             | PS                    | PS     |
+| lunch        |                        |                           |                                                |                       |        |
+| 13 - 15      | PS                     | PS                        | PS                                             | PS                    | PS     |
 
 
 
