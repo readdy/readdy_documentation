@@ -36,12 +36,3 @@ Check if it worked, start a python interpreter and do
 >>> sim.set_kernel("CPU")
 ```
 If this does not return an error, you are readdy (HA!).
-
-## vmd
-
-```bash
-wget https://userpage.fu-berlin.de/chrisfr/vmd-1.9.3.tar.gz
-tar -xf vmd-1.9.3.tar.gz
-cd vmd-1.9.3
-./local-install.sh
-```
