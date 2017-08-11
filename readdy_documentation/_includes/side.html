@@ -10,15 +10,12 @@
             <input type="text" id="search-box" name="query" placeholder="Search ...">
         </form>
     </div>
-
     <nav class="side-nav">
-
-
         <div class="nav-supergroup-delimiter">
             <b>THE BASICS</b>
         </div>
-        {% if false %}currently excluded
         <a class="side-nav-item{% if page.url == '/installation.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/installation.html">Installation</a>
+        {% if false %} currently excluded
         <a class="side-nav-item{% if page.url == '/get_started.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/get_started.html">Get started</a>
         {% endif %}
         <a class="side-nav-item{% if page.url == '/reactions.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/reactions.html">Reactions</a>
@@ -58,19 +55,19 @@
         {% endif %}
 
 
-        {% if false %}currently excluded
         <div class="nav-supergroup-delimiter">
-            <b>TUTORIALS</b>
+            <b>EXAMPLES</b>
         </div>
-        <a class="side-nav-item{% if page.url == '/tutorials.html' or page.url contains '/tutorials/' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/tutorials.html">Tutorials</a>
-        {% if page.url == '/tutorials.html' or page.url contains '/tutorials/' %}
+        <a class="side-nav-item{% if page.url == '/demonstration.html' or page.url contains '/tutorials/' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/demonstration.html">Demonstration</a>
+        {% if page.url == '/demonstration.html' or page.url contains '/tutorials/' %}
             {% assign sorted_tutorials = site.tutorials | sort: 'position' %}
             {% for tutorial in sorted_tutorials %}
+            {% if tutorial.category == 'demonstration' %}
                 <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}{{ tutorial.url }}">
                     {{ tutorial.title | markdownify | remove: '<p>' | remove: '</p>' }}
                 </a>
+            {% endif %}
             {% endfor %}
-        {% endif %}
         {% endif %}
 
 
@@ -96,23 +93,6 @@
                 </a>
             {% endfor %}
         {% endif %}
-
-
-        <div class="nav-supergroup-delimiter">
-            <b>SUMMER WORKSHOP 2017</b>
-        </div>
-        <a class="side-nav-item{% if page.url == '/workshop_info.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/workshop_info.html">General info</a>
-        <a class="side-nav-item{% if page.url == '/workshop_sessions.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/workshop_sessions.html">Practical sessions</a>
-        {% if page.url == '/workshop_sessions.html' %}
-            {% assign sorted_sessions = site.workshop_sessions | sort: 'position' %}
-            {% for entry in sorted_sessions %}
-                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/workshop_sessions.html#{{ entry.sectionName }}">
-                    {{ entry.title | markdownify | remove: '<p>' | remove: '</p>' }}
-                </a>
-            {% endfor %}
-        {% endif %}
-        <a class="side-nav-item{% if page.url == '/workshop_install.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/workshop_install.html">Install readdy</a>
-
     </nav>
 
     <div class="github-wrapper">

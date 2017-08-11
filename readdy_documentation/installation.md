@@ -1,10 +1,30 @@
 ---
 layout: page
-title: Installation
+title: Install readdy
 ---
 
-There is currently no stable release of readdy __yet__. If you want to use the bleeding-edge development version, you can do so via our conda channel
-```sh
+Get [miniconda](https://conda.io/docs/install/quick.html)
+```bash
+wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+```
+Install miniconda.
+```bash
+bash Miniconda3-latest-Linux-x86_64.sh
+```
+Source your `~/.bashrc` or restart the terminal, and check if it worked
+```bash
+which conda
+```
+should give you the location where conda got installed
+
+Install readdy from our conda channel
+```bash
 conda install -f -c readdy/label/dev readdy
 ```
-Make sure that your current conda environment has h5py installed.
+Check if it worked, start a python interpreter and do
+```python
+>>> import readdy._internal as api
+>>> sim = api.Simulation()
+>>> sim.set_kernel("CPU")
+```
+If this does not return an error, you are readdy (HA!).
