@@ -262,7 +262,32 @@ a.side-nav-sub-sub-item {
   padding-right: 1rem;
 }
 
-// main window
+// container with a margin as large as the sidebar
+.main-container {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: $body-background;
+  line-height: 1.5;
+  table {
+    margin: auto;
+  }
+}
+
+@media (min-width: 48em) {
+  .main-container {
+    margin-left: 18rem;
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 64em) {
+  .main-container {
+    margin-left: 18rem;
+    margin-right: 0;
+  }
+}
+
+// main div floating inside main-container with auto margins left and right
 .main {
   max-width: 38rem;
   padding-top: 2rem;
@@ -273,21 +298,14 @@ a.side-nav-sub-sub-item {
   margin-right: auto;
   background-color: $main-background;
   line-height: 1.5;
-  table { margin: auto; }
+  table {
+    margin: auto;
+  }
 }
 
 @media (min-width: 48em) {
   .main {
     max-width: 60rem;
-    margin-left: 18rem;
-    margin-right: 0rem;
-  }
-}
-
-@media (min-width: 64em) {
-  .main {
-    margin-left: 18rem;
-    margin-right: 0rem;
   }
 }
 
@@ -355,7 +373,7 @@ iframe {
   text-align: center;
 }
 
-.main tr:nth-child(even){
+.main tr:nth-child(even) {
   background-color: #f2f2f2
 }
 
@@ -385,9 +403,9 @@ iframe {
 }
 
 .nav-supergroup-delimiter {
-    color: $nav-delimiter-color;
-    padding-left: 0.9rem;
-    padding-right: 0;
-    padding-top: 0.6rem;
-    padding-bottom: 0.6rem;
+  color: $nav-delimiter-color;
+  padding-left: 0.9rem;
+  padding-right: 0;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
 }
