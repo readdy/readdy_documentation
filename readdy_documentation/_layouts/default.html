@@ -8,13 +8,9 @@
     <div class="main">
         <article>
             {{ content
-            | replace: '
-            <li>[ ]', '
-            <li class="box task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>'
-                | replace: '
-            <li>[x]', '
-            <li class="box_done task-list-item"><input type="checkbox" class="task-list-item-checkbox" value="on" disabled checked>'
-                }}
+            | replace: '<li>[ ]', '<li class="box task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>'
+            | replace: '<li>[x]', '<li class="box_done task-list-item"><input type="checkbox" class="task-list-item-checkbox" value="on" disabled checked>'
+            }}
         </article>
         <div class="foot">
             {% include foot.html %}
