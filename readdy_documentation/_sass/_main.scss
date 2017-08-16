@@ -1,0 +1,165 @@
+// container with a margin as large as the sidebar
+.main-container {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: $body-background;
+  line-height: 1.5;
+  table {
+    margin: auto;
+  }
+}
+
+@media (min-width: $transition-to-side) {
+  .main-container {
+    margin-left: 18rem;
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 64em) {
+  .main-container {
+    margin-left: 18rem;
+    margin-right: 0;
+  }
+}
+
+// main div floating inside main-container with auto margins left and right
+.main {
+  max-width: 38rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 3rem;
+  padding-right: 4rem;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: $main-background;
+  line-height: 1.5;
+  table {
+    margin: auto;
+  }
+}
+
+@media (min-width: $transition-to-side) {
+  .main {
+    max-width: 55rem;
+  }
+}
+
+// headings
+.main h1, .main h2, .main h3, .main h4, .main h5 {
+  font-weight: normal;
+  color: $main-heading-coler;
+  font-family: $heading-font;
+  line-height: 1.5;
+}
+
+.main h1 {
+  font-size: 2.5rem;
+  a, a:visited {
+    text-decoration: none;
+  }
+}
+
+.main h2 {
+  margin-top: 2rem;
+  font-size: 2rem;
+}
+
+.main h3, .main h4, .main h5 {
+  margin-top: 0.5rem;
+  font-size: 1.5rem;
+}
+
+
+// main window for referance manual iframe
+.clip-to-side {
+  max-width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+@media (min-width: $transition-to-side) {
+  .clip-to-side {
+    margin-left: 18rem;
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 64em) {
+  .clip-to-side {
+    margin-left: 19rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+// iframe containing reference manual
+iframe {
+  width: 100%;
+  height: 50vh;
+  padding: 0.5rem;
+}
+
+@media (min-width: $transition-to-side) {
+  iframe {
+    // fix height to 90 % of the viewport height because
+    // "position: absolute" is incompatible with the current structure of the site
+    height: 90vh;
+  }
+}
+
+//.entry {
+//  padding-left: 1rem;
+//}
+
+.entry-heading h2 {
+  border-bottom: $main-heading-ruler-color solid 0.2rem;
+  padding-bottom: 0;
+}
+
+.entry-heading h1 {
+  font-size: 2.2rem;
+  border-bottom: $main-heading-ruler-color solid 0.2rem;
+}
+
+.docpage-heading h1 {
+  border-bottom: $main-heading-ruler-color solid 0.2rem;
+  padding-left: 0.5rem;
+  width: 100%;
+  padding-bottom: 0;
+}
+
+.centered {
+  text-align: center;
+}
+
+.main tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+
+.main th, .main td {
+  padding: 0.5rem;
+}
+
+.main th {
+  background-color: #CECCD2;
+  color: $main-font-color;
+}
+
+.foot {
+  color: $main-heading-ruler-color;
+  padding-top: 1rem;
+  border-top: $main-heading-ruler-color solid 0.1rem;
+  text-align: center;
+}
+
+.foot a, .foot a:visited {
+  color: $main-heading-ruler-color;
+  text-decoration: none;
+}
+
+.foot a:hover, .foot a:focus {
+  color: $link-hover-color;
+}
+

@@ -8,18 +8,18 @@ code {
   line-height: normal;
 }
 
-@media(min-width: 58em) {
+@media(min-width: $transition-to-large) {
   code {
     font-size: 13px;
   }
 }
 
 .highlight {
-  background: #EAECEE;
+  background: $code-background-color;
   position: relative;
   overflow-x: auto;
-  padding: 0.5rem;
-  border: #e4e6e8 solid 1px;
+  padding: 0.7rem;
+  border: $code-border-color solid 1px;
   line-height: 1;
 
   .c {
@@ -33,11 +33,16 @@ code {
   }
   // Error
   .k {
-    font-weight: bold
+    color: #aa84ab;
+    //font-weight: bold
   }
   // Keyword
+  .kn {
+    color: #aa84ab;
+  }
+  // also keyword (?)
   .o {
-    font-weight: bold
+    //font-weight: bold
   }
   // Operator
   .cm {
@@ -135,15 +140,15 @@ code {
   }
   // Keyword.Type
   .m {
-    color: #099
+    color: #0ba298
   }
   // Literal.Number
   .s {
-    color: #d14
+    color: #cd6e75
   }
   // Literal.String
   .na {
-    color: #008080
+    color: #82aaab
   }
   // Name.Attribute
   .nb {
@@ -174,15 +179,15 @@ code {
   }
   // Name.Function
   .nn {
-    color: #555
+    color: #3a3961
   }
   // Name.Namespace
   .nt {
-    color: #000080
+    color: #3a3961
   }
   // Name.Tag
   .nv {
-    color: #008080
+    color: #3a3961
   }
   // Name.Variable
   .ow {
@@ -254,7 +259,7 @@ code {
   }
   // Literal.String.Symbol
   .bp {
-    color: #999
+    color: #23877f;
   }
   // Name.Builtin.Pseudo
   .vc {

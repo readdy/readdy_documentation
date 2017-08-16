@@ -19,8 +19,58 @@ $main-font-color: #262626;
 $side-font-color: #EFF0F4;
 $subitem-font-color: #7b7374;
 $active-page-color: #605C69;
-$entry-heading-color: #eee7f9;
+$main-heading-coler: #37353D;
+$main-heading-ruler-color: #75727b;
 $nav-delimiter-color: #6b6771;
+$code-background-color: #f3f3f3;
+$code-border-color: #f3f3f3;
+
+// min-widths at which layout transitions to accomodate different viewport widths
+$transition-to-side: 48em;
+$transition-to-large: 61em;
+
+// html and body
+html {
+  font-family: $font-style;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+}
+
+@media (min-width: $transition-to-side) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: $transition-to-large) {
+  html {
+    font-size: 15px;
+  }
+}
+
+body {
+  color: $main-font-color;
+  background-color: $body-background;
+  margin: 0;
+}
+
+
+// links
+a, a:visited {
+  color: $link-color;
+  font-weight: normal;
+  text-decoration: underline;
+}
+
+a:hover, a:focus {
+  color: $link-hover-color;
+}
+
+input {
+  font-family: $font-style;
+}
 
 *,
 *::before,
@@ -29,3 +79,4 @@ $nav-delimiter-color: #6b6771;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
