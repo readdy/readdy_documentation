@@ -15,6 +15,7 @@ code {
 }
 
 .highlight {
+  color: #282828;
   background: $code-background-color;
   position: relative;
   overflow-x: auto;
@@ -259,7 +260,7 @@ code {
   }
   // Literal.String.Symbol
   .bp {
-    color: #23877f;
+    color: #096e65;
   }
   // Name.Builtin.Pseudo
   .vc {

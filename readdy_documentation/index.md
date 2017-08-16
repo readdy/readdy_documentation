@@ -1,6 +1,6 @@
 ---
 layout: homepage
-title: ReaDDy - Reaction Diffusion Dynamics
+title: "ReaDDy <br><b>Rea</b>ction <b>D</b>iffusion <b>Dy</b>namics"
 ---
 
 

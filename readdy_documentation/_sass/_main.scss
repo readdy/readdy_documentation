@@ -114,17 +114,17 @@ iframe {
 //}
 
 .entry-heading h2 {
-  border-bottom: $main-heading-ruler-color solid 0.2rem;
+  border-bottom: $main-heading-ruler-color solid 2px;
   padding-bottom: 0;
 }
 
 .entry-heading h1 {
   font-size: 2.2rem;
-  border-bottom: $main-heading-ruler-color solid 0.2rem;
+  border-bottom: $main-heading-ruler-color solid 2px;
 }
 
 .docpage-heading h1 {
-  border-bottom: $main-heading-ruler-color solid 0.2rem;
+  border-bottom: $main-heading-ruler-color solid 2px;
   padding-left: 0.5rem;
   width: 100%;
   padding-bottom: 0;
@@ -150,7 +150,7 @@ iframe {
 .foot {
   color: $main-heading-ruler-color;
   padding-top: 1rem;
-  border-top: $main-heading-ruler-color solid 0.1rem;
+  border-top: $main-heading-ruler-color solid 2px;
   text-align: center;
 }
 
