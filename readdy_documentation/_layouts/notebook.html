@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+{% include head.html %}
+
+<body>
+{% include side.html %}
+<div class="main-container">
+    <div class="main notebook">
+        <article>
+            <div class="docpage-heading"><h1>{{ page.title }}</h1></div>
+
+            {{ content
+            | replace: '<li>[ ]', '<li class="box task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>'
+            | replace: '<li>[x]', '<li class="box_done task-list-item"><input type="checkbox" class="task-list-item-checkbox" value="on" disabled checked>'
+            }}
+        </article>
+        <div class="foot">
+            {% include foot.html %}
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

@@ -27,9 +27,9 @@ collections:
     output: true
     permalink: /:collection/:path
 defaults:
-  -
-    scope:
+  - scope:
+      path: ""
       type: "tutorials"
     values:
-      layout: "page"
+      layout: "notebook"
       title: "defaulttitle"

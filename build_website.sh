@@ -51,12 +51,12 @@ function convert_tutorials {
   rm README.md || true
 
   for x in *.ipynb; do
-    jupyter-nbconvert --to markdown $x
+    jupyter-nbconvert --to html --template basic $x
     rm $x
   done
-  # remove any empty lines in the beginning of the markdown files
+  # remove any empty lines in the beginning of the converted files
   # otherwise the yaml front-matter is not on line 1 and jekyll will not parse the file
-  for x in *.md; do
+  for x in *.html; do
     sed -i '/./,$!d' $x
   done
   cd -
