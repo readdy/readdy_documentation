@@ -1,70 +1,3 @@
-// html and body
-html {
-  font-family: $font-style;
-  margin: 0;
-  padding: 0;
-  -webkit-font-smoothing: antialiased;
-  font-size: 14px;
-}
-
-@media (min-width: 48em) {
-  html {
-    font-size: 14px;
-  }
-}
-
-@media (min-width: 58em) {
-  html {
-    font-size: 15px;
-  }
-}
-
-body {
-  color: $main-font-color;
-  background-color: $body-background;
-  margin: 0;
-}
-
-// headings
-h1, h2, h3, h4, h5 {
-  font-weight: normal;
-  color: $main-font-color;
-  font-family: $heading-font;
-  line-height: 1.5;
-}
-
-h1 {
-  font-size: 2.5rem;
-  a, a:visited {
-    text-decoration: none;
-  }
-}
-
-h2 {
-  margin-top: 2rem;
-  font-size: 2rem;
-}
-
-h3, h4, h5 {
-  margin-top: 0.5rem;
-  font-size: 1.5rem;
-}
-
-// links
-a, a:visited {
-  color: $link-color;
-  font-weight: normal;
-  text-decoration: underline;
-}
-
-a:hover, a:focus {
-  color: $link-hover-color;
-}
-
-input {
-  font-family: $font-style;
-}
-
 // the side bar wrapper has the actual size of the side bar,
 // while "side" is a bit larger and always has a scrollbar,
 // which is hidden by the "side-wrapper"
@@ -72,7 +5,7 @@ input {
   background-color: $side-background;
 }
 
-@media (min-width: 48em) {
+@media (min-width: $transition-to-side) {
   .side-wrapper {
     overflow: hidden;
     position: fixed; // this keeps side and main "side to side"
@@ -99,7 +32,7 @@ input {
   color: $link-hover-color;
 }
 
-@media (min-width: 48em) {
+@media (min-width: $transition-to-side) {
   .side {
     width: 20rem;
     height: 100vh;
@@ -121,7 +54,7 @@ input {
 }
 
 .side-searchbar-wrapper input#search-box {
-  //width: 100%;
+  width: 100%;
   border: none;
   background-color: #f1f0f7;
   font-size: smaller;
@@ -178,8 +111,17 @@ a.side-nav-sub-sub-item {
   background-color: $active-page-color;
 }
 
+.nav-supergroup-delimiter {
+  font-family: $heading-font;
+  color: $nav-delimiter-color;
+  padding-left: 0.9rem;
+  padding-right: 0;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
 // generic side logo
-@media (min-width: 48em) {
+@media (min-width: $transition-to-side) {
   .side-logo {
     background-position: center;
     background-repeat: no-repeat;
@@ -203,7 +145,7 @@ a.side-nav-sub-sub-item {
 }
 
 // specific logos, namely cmb, readdy and github
-@media (min-width: 48em) {
+@media (min-width: $transition-to-side) {
   .logo-cmb {
     margin-top: 2rem;
     background-image: url($baseurl + "/assets/cmb_white_100px.png");
@@ -211,14 +153,14 @@ a.side-nav-sub-sub-item {
   }
 }
 
-@media (min-width: 58em) {
+@media (min-width: $transition-to-large) {
   .logo-cmb {
     background-image: url($baseurl + "/assets/cmb_white_120px.png");
     height: 95px;
   }
 }
 
-@media (min-width: 48em) {
+@media (min-width: $transition-to-side) {
   .logo-readdy {
     background-image: url($baseurl + "/assets/readdy_white_150px.png");
     height: 42px;
@@ -226,7 +168,7 @@ a.side-nav-sub-sub-item {
   }
 }
 
-@media (min-width: 58em) {
+@media (min-width: $transition-to-large) {
   .logo-readdy {
     background-image: url($baseurl + "/assets/readdy_white_180px.png");
     height: 50px;
@@ -260,134 +202,4 @@ a.side-nav-sub-sub-item {
   margin-top: 0.9rem;
   padding-left: 2rem;
   padding-right: 1rem;
-}
-
-// main window
-.main {
-  max-width: 38rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  padding-left: 3rem;
-  padding-right: 4rem;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: $main-background;
-  line-height: 1.5;
-  table { margin: auto; }
-}
-
-@media (min-width: 48em) {
-  .main {
-    max-width: 60rem;
-    margin-left: 18rem;
-    margin-right: 0rem;
-  }
-}
-
-@media (min-width: 64em) {
-  .main {
-    margin-left: 18rem;
-    margin-right: 0rem;
-  }
-}
-
-// main window for referance manual iframe
-.clip_to_side {
-  max-width: 100%;
-  height: 100%;
-  padding: 0;
-}
-
-@media (min-width: 48em) {
-  .clip_to_side {
-    margin-left: 18rem;
-    margin-right: 0;
-  }
-}
-
-@media (min-width: 64em) {
-  .clip_to_side {
-    margin-left: 19rem;
-    margin-right: 1rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-}
-
-// iframe containing reference manual
-iframe {
-  width: 100%;
-  height: 50vh;
-  padding: 0.5rem;
-}
-
-@media (min-width: 48em) {
-  iframe {
-    // fix height to 90 % of the viewport height because
-    // "position: absolute" is incompatible with the current structure of the site
-    height: 90vh;
-  }
-}
-
-.entry {
-  padding-left: 1rem;
-}
-
-.entry-heading h2 {
-  border-bottom: $active-page-color solid 0.2rem;
-  width: 100%;
-  padding-bottom: 0;
-}
-
-.entry-heading h1 {
-  font-size: 2.2rem;
-  border-bottom: $active-page-color solid 0.2rem;
-}
-
-.docpage-heading h1 {
-  border-bottom: $active-page-color solid 0.2rem;
-  padding-left: 0.5rem;
-  width: 100%;
-  padding-bottom: 0;
-}
-
-.centered {
-  text-align: center;
-}
-
-.main tr:nth-child(even){
-  background-color: #f2f2f2
-}
-
-.main th, .main td {
-  padding: 0.5rem;
-}
-
-.main th {
-  background-color: #CECCD2;
-  color: $main-font-color;
-}
-
-.foot {
-  color: #BDBDBD;
-  padding-top: 1rem;
-  border-top: #BDBDBD solid 0.1rem;
-  text-align: center;
-}
-
-.foot a, .foot a:visited {
-  color: #BDBDBD;
-  text-decoration: none;
-}
-
-.foot a:hover, .foot a:focus {
-  color: $link-hover-color;
-}
-
-.nav-supergroup-delimiter {
-    color: $nav-delimiter-color;
-    padding-left: 0.9rem;
-    padding-right: 0;
-    padding-top: 0.6rem;
-    padding-bottom: 0.6rem;
 }

@@ -3,6 +3,8 @@ layout: page
 title: Install readdy
 ---
 
+## Linux
+
 Get [miniconda](https://conda.io/docs/install/quick.html)
 ```bash
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
