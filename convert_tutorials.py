@@ -45,8 +45,8 @@ if __name__ == "__main__":
             category = notebook.metadata.readdy.category
             position = notebook.metadata.readdy.position
             front_matter = "---\ntitle: " + title + "\ncategory: " + category + "\nposition: " + position + "\n---\n"
-            print("prepending the following front matter", front_matter)
-            filename_as_html = os.path.splitext(filename)[0]+'.html'
+            print("prepending the following front matter\n", front_matter)
+            filename_as_html = os.path.splitext(filename)[0] + ".html"
             with open(filename_as_html, "r") as content_file:
                 origin = content_file.read()
 

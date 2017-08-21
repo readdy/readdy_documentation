@@ -49,16 +49,12 @@ function convert_tutorials {
   # remove the github repo utils so they don't end up in the website output
   rm .gitignore || true
   rm README.md || true
+  rm -r .git/ || true
 
-  for x in *.ipynb; do
-    jupyter-nbconvert --to html --template basic $x
-    rm $x
-  done
-  # remove any empty lines in the beginning of the converted files
-  # otherwise the yaml front-matter is not on line 1 and jekyll will not parse the file
-  for x in *.html; do
-    sed -i '/./,$!d' $x
-  done
+  ./convert_tutorials.py "."
+
+  rm *.ipynb
+
   cd -
 }
 
