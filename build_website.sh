@@ -51,6 +51,7 @@ function convert_tutorials {
   rm README.md || true
   rm -rf .git/ || true
 
+  cp $TRAVIS_BUILD_DIR/convert_tutorials.py "."
   ./convert_tutorials.py "."
 
   rm *.ipynb
