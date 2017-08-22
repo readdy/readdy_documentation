@@ -45,6 +45,24 @@
   }
 }
 
+// when the page is a notebook, make it wider to contain the input prompts
+
+.notebook {
+  max-width: 40rem;
+}
+
+@media (min-width: $transition-to-side) {
+  .notebook {
+    max-width: 60rem;
+  }
+}
+
+@media (min-width: $transition-to-large) {
+  .notebook {
+    max-width: 60rem;
+  }
+}
+
 // headings
 .main h1, .main h2, .main h3, .main h4, .main h5 {
   font-weight: normal;

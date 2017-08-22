@@ -1,4 +1,50 @@
 /**
+ * Define styles for html-converted notebooks
+ */
+
+.cell {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.input {
+  overflow: hidden;
+  width: auto;
+}
+
+.input_prompt {
+  float: left;
+  margin-top: 0.7rem;
+  font-family: $mono-font;
+  font-size: 12px;
+  color: #0086B3;
+}
+
+.inner_cell {
+  overflow: hidden;
+  margin-left: 4rem;
+}
+
+.output_prompt {
+  color: #cd6e75;
+  float: left;
+  font-family: $mono-font;
+  font-size: 12px;
+}
+
+.output_subarea {
+  margin-left: 4rem;
+  margin-top: 0.7rem;
+  font-family: $mono-font;
+  font-size: 12px;
+}
+
+pre {
+  font-family: $mono-font;
+  margin: 0;
+}
+
+/**
  * Syntax highlighting styles
  */
 
@@ -15,13 +61,16 @@ code {
 }
 
 .highlight {
+  font-family: $mono-font;
+  font-size: 12px;
+
   color: #282828;
   background: $code-background-color;
   position: relative;
   overflow-x: auto;
   padding: 0.7rem;
   border: $code-border-color solid 1px;
-  line-height: 1;
+  line-height: normal;
 
   .c {
     color: #998;
@@ -120,19 +169,19 @@ code {
   }
   // Generic.Traceback
   .kc {
-    font-weight: bold
+    color: #096e65;
   }
   // Keyword.Constant
   .kd {
-    font-weight: bold
+    //font-weight: bold
   }
   // Keyword.Declaration
   .kp {
-    font-weight: bold
+    //font-weight: bold
   }
   // Keyword.Pseudo
   .kr {
-    font-weight: bold
+    //font-weight: bold
   }
   // Keyword.Reserved
   .kt {
@@ -176,7 +225,7 @@ code {
   // Name.Exception
   .nf {
     color: #900;
-    font-weight: bold
+    //font-weight: bold
   }
   // Name.Function
   .nn {
@@ -216,35 +265,35 @@ code {
   }
   // Literal.Number.Oct
   .sb {
-    color: #d14
+    color: #cd6e75
   }
   // Literal.String.Backtick
   .sc {
-    color: #d14
+    color: #cd6e75
   }
   // Literal.String.Char
   .sd {
-    color: #d14
+    color: #cd6e75
   }
   // Literal.String.Doc
   .s2 {
-    color: #d14
+    color: #cd6e75
   }
   // Literal.String.Double
   .se {
-    color: #d14
+    color: #cd6e75
   }
   // Literal.String.Escape
   .sh {
-    color: #d14
+    color: #cd6e75
   }
   // Literal.String.Heredoc
   .si {
-    color: #d14
+    color: #cd6e75
   }
   // Literal.String.Interpol
   .sx {
-    color: #d14
+    color: #cd6e75
   }
   // Literal.String.Other
   .sr {
@@ -252,7 +301,7 @@ code {
   }
   // Literal.String.Regex
   .s1 {
-    color: #d14
+    color: #cd6e75
   }
   // Literal.String.Single
   .ss {
@@ -279,4 +328,10 @@ code {
     color: #099
   }
   // Literal.Number.Integer.Long
+}
+
+@media(min-width: $transition-to-large) {
+  .highlight {
+    font-size: 13px;
+  }
 }
