@@ -49,7 +49,7 @@ function convert_tutorials {
   # remove the github repo utils so they don't end up in the website output
   rm .gitignore || true
   rm README.md || true
-  rm -r .git/ || true
+  rm -rf .git/ || true
 
   ./convert_tutorials.py "."
 
