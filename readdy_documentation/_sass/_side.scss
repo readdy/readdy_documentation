@@ -1,26 +1,19 @@
-// the side bar wrapper has the actual size of the side bar,
-// while "side" is a bit larger and always has a scrollbar,
-// which is hidden by the "side-wrapper"
 .side-wrapper {
   background-color: $side-background;
 }
 
 @media (min-width: $transition-to-side) {
   .side-wrapper {
-    overflow: hidden;
-    position: fixed; // this keeps side and main "side to side"
-    top: 0;
-    left: 0;
-    bottom: 0;
+    position: relative; // required for perfect-scrollbar
     width: 18rem;
+    float: left; // to have main and side next to each other
   }
 }
 
-// sidebar
+// actual sidebar
 .side {
   padding: 2rem 0rem;
   color: $side-font-color;
-  //text-align: center;
 }
 
 .side a, .side a:visited {
@@ -34,10 +27,7 @@
 
 @media (min-width: $transition-to-side) {
   .side {
-    width: 20rem;
     height: 100vh;
-    //text-align: center;
-    overflow-y: scroll;
   }
 }
 

@@ -5,9 +5,10 @@
 
     <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
 
-    <link rel="stylesheet" href="{{ "/assets/css/readdy_documentation.css" | prepend: site.baseurl }}">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/readdy_documentation.css">
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
     <link href="https://fonts.googleapis.com/css?family=Inconsolata|Roboto+Mono|Lora|Lato|Source+Sans+Pro|Roboto+Slab|Merriweather" rel="stylesheet">
+    <link rel="stylesheet" href="{{ site.url }}{{ site.baseurl }}/libraries/perfect-scrollbar/css/perfect-scrollbar.min.css"/>
 
     <!-- mathjax config similar to math.stackexchange -->
     <script type="text/x-mathjax-config">
@@ -23,8 +24,7 @@
       "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
     });
     </script>
-    <script type="text/javascript" async
-            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML">
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML">
     </script>
 
     <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/icon_black_32px.png">
