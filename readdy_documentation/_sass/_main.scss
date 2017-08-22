@@ -1,25 +1,15 @@
-// container with a margin as large as the sidebar
 .main-container {
-  margin-left: auto;
-  margin-right: auto;
   background-color: $body-background;
   line-height: 1.5;
   table {
     margin: auto;
   }
+  position: relative; // for perfect-scrollbar
 }
 
 @media (min-width: $transition-to-side) {
   .main-container {
-    margin-left: 18rem;
-    margin-right: 0;
-  }
-}
-
-@media (min-width: 64em) {
-  .main-container {
-    margin-left: 18rem;
-    margin-right: 0;
+    height: 100vh; // restrict the height to viewport such that perfect-scrollbar is used instead of native scrollbar
   }
 }
 
