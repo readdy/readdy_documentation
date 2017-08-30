@@ -53,31 +53,49 @@
   }
 }
 
+.main p {
+  margin-bottom: 1.8rem;
+}
+
+.main ul {
+  margin-bottom: 1.8rem;
+}
+
 // headings
 .main h1, .main h2, .main h3, .main h4, .main h5 {
-  font-weight: normal;
+  font-weight: bold;
   color: $main-heading-color;
   font-family: $heading-font;
   line-height: 1.5;
 }
 
 .main h1 {
-  font-size: 2.5rem;
-  a, a:visited {
-    text-decoration: none;
-  }
+  font-size: 2rem;
+  font-weight: normal;
+  border-bottom: $main-heading-ruler-color solid 2px;
 }
 
 .main h2 {
-  margin-top: 2rem;
-  font-size: 2rem;
-}
-
-.main h3, .main h4, .main h5 {
-  margin-top: 0.5rem;
   font-size: 1.5rem;
+  margin-bottom: 1.2rem;
+  margin-top: 0;
 }
 
+.main h3 {
+  font-size: 1.2rem;
+  line-height: 1.2;
+  margin-bottom: 0.7rem;
+  margin-top: 0;
+}
+
+.main h4, .main h5 {
+  font-size: 1.0rem;
+  line-height: 1.2;
+  margin-top: 0;
+}
+
+.docpage-heading {
+}
 
 // main window for referance manual iframe
 .clip-to-side {
@@ -115,27 +133,6 @@ iframe {
     // "position: absolute" is incompatible with the current structure of the site
     height: 90vh;
   }
-}
-
-//.entry {
-//  padding-left: 1rem;
-//}
-
-.entry-heading h2 {
-  border-bottom: $main-heading-ruler-color solid 2px;
-  padding-bottom: 0;
-}
-
-.entry-heading h1 {
-  font-size: 2.2rem;
-  border-bottom: $main-heading-ruler-color solid 2px;
-}
-
-.docpage-heading h1 {
-  border-bottom: $main-heading-ruler-color solid 2px;
-  padding-left: 0.5rem;
-  width: 100%;
-  padding-bottom: 0;
 }
 
 .centered {

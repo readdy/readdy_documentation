@@ -20,7 +20,7 @@ The [topology]({{ site.baseurl }}/topologies.html) functionality also provides h
 {% assign sorted_potentials_o1 = site.potentials_order1 | sort: 'position' %}
 {% for potential in sorted_potentials_o1 %}
 <section id="{{ potential.sectionName }}">
-<div class="entry-heading"><h2>{{ potential.title | markdownify | remove: '<p>' | remove: '</p>'}}</h2></div>
+<h1>{{ potential.title | markdownify | remove: '<p>' | remove: '</p>'}}</h1>
 {{ potential.content | markdownify }}
 </section>
 {% endfor %}
@@ -32,7 +32,7 @@ The [topology]({{ site.baseurl }}/topologies.html) functionality also provides h
 {% assign sorted_potentials_o2 = site.potentials_order2 | sort: 'position' %}
 {% for potential in sorted_potentials_o2 %}
 <section id="{{ potential.sectionName }}">
-<div class="entry-heading"><h2>{{ potential.title | markdownify | remove: '<p>' | remove: '</p>'}}</h2></div>
+<h1>{{ potential.title | markdownify | remove: '<p>' | remove: '</p>'}}</h1>
 {{ potential.content | markdownify }}
 </section>
 {% endfor %}
