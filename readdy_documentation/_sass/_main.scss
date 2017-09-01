@@ -16,10 +16,7 @@
 // main div floating inside main-container with auto margins left and right
 .main {
   max-width: 38rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  padding-left: 3rem;
-  padding-right: 4rem;
+  padding: 2rem 4rem 2rem 3rem;
   margin-left: auto;
   margin-right: auto;
   background-color: $main-background;
