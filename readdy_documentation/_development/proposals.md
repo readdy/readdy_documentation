@@ -1,7 +1,8 @@
+
 ---
 title: Proposals
 sectionName: proposals
-position: 4
+position: -1
 ---
 
 ### File specification
@@ -76,7 +77,6 @@ simulation.run(10)
 
 ### General suggestions
 
-- [ ] Cancel python2 support. Less overhead writing 2/3 compatible python modules. E.g. string-handling, dictionary iterating. No `from __future__ import`s.
 - [ ] suggestion: Allow geometry files as input for a box potential such that more complicated shapes can be realized with external tools
 - [ ] implement CUDA kernel
     - meet up with Felix to discuss HALMD integration
@@ -89,7 +89,6 @@ simulation.run(10)
 - [ ] improve neighbor lists to gain more performance
     - verlet lists
 - [ ] snapshotting
-    - this point belongs together with the IO point
     - implement snapshotting using the observables framework
 - [x] implement IO (de-/serialization, dumping of trajectories into hdf5 files)
     - implement VMD plugin (see, e.g., lammps plugin on how to hide particles)

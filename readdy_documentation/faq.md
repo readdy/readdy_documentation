@@ -9,7 +9,7 @@ If you have an issue that is not covered here, just post it on our
 {% assign sorted_faqs = site.faq | sort: 'position' %}
 {% for entry in sorted_faqs %}
 <section id="{{ entry.sectionName }}">
-<div class="entry-heading"><h2>{{ entry.title | markdownify | remove: '<p>' | remove: '</p>'}}</h2></div>
+<h1>{{ entry.title | markdownify | remove: '<p>' | remove: '</p>'}}</h1>
 {{ entry.content | markdownify }}
 </section>
 {% endfor %}

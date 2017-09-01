@@ -4,7 +4,7 @@ sectionName: architecture
 position: 2
 ---
 
-### Source tree structure
+### Source tree
 ```
 readdy/
 ├── README.md
