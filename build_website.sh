@@ -92,7 +92,7 @@ function setup_output_repo {
   git init
   git config user.name "Christoph Froehner"
   git config user.email "chrisfroe@users.noreply.github.com"
-  git remote add upstream "https://$GH_TOKEN@github.com/readdy/readdy_documentation.git" > /dev/null 2>&1
+  git remote add upstream "https://$GH_TOKEN@github.com/readdy/readdy.github.io.git" > /dev/null 2>&1
   git fetch upstream
   git checkout --orphan workbranch
   git reset --hard
@@ -104,7 +104,7 @@ function deploy {
   touch .
   git add -A .
   git commit -m "github pages"
-  git push -q -f upstream workbranch:gh-pages > /dev/null 2>&1
+  git push -q -f upstream workbranch:master > /dev/null 2>&1
 }
 
 set_this_up
