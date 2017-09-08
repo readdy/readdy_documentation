@@ -10,6 +10,16 @@ readdy/
 ├── README.md
 │   ...
 │
+├── cmake/
+│   │
+│   ├── Modules/
+│   │   ├── (cmake modules)
+│   └── sources/
+│       └── (readdy source file lists)
+│
+├── docs/
+│   └── (internal docs, doxygen configuration)
+│
 ├── kernels/
 │   │
 │   ├── cpu/
@@ -30,11 +40,16 @@ readdy/
 │   │
 │   ├── main/
 │   │   └── (core library sources)
-│   └── test/
-│       └── (core library tests)
+│   ├── test/
+│   │   └── (core library tests)
+│   └── examples/
+│       └── (cpp examples)
+│
+├── readdy_testing/
+│   └── (unit testing relevant tools)
 │
 ├── libraries/
-│   └── (pybind11, spdlog)
+│   └── (c-blosc, h5rd, pybind11, spdlog)
 │
 └── wrappers/
     └── python/
@@ -43,6 +58,6 @@ readdy/
             │   └── (c++ code for the python module)
             │
             └── python/
-                └── (python top-level api)
+                └── (python api and tests)
 
 ```

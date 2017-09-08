@@ -10,7 +10,7 @@ position: -1
 * Topologies [high],
     Topologies are superstructures grouping particles to e.g. molecules. Required features:
     - ~~potentials between specific particles (bonds, angles, dihedrals)~~
-    - consistent handling of reactions, i.e. particles involved in topologies can undergo reactions and topologies are correctly updated [wip]
+    - ~~consistent handling of reactions, i.e. particles involved in topologies can undergo reactions and topologies are correctly updated~~
     - may include different handling of particle motion. Particles moving together in a topology may obey different dynamics (e.g. anisotropic diffusion)
 * Membranes [high],
     Mohsen's membrane model includes special particle types and special dynamics. Should be somehow integrated into ReaDDy.
@@ -30,7 +30,7 @@ position: -1
 
 ### Next Todos
 * Planning / conceptual / software design:
-    - How do we build topologies [partly solved]
+    - How do we build topologies [solved]
     - Can we integrate membranes in this concept? [probably not]
     - Consistency of membrane model with the remaining particle/topology concept? How can we integrate these concepts with minimal additional effort?
     - Relation to GPU Kernel: What part of topology handling can be done on the GPU? What on the CPU?
