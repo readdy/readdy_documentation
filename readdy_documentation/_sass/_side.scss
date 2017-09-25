@@ -16,6 +16,12 @@
   color: $side-font-color;
 }
 
+@media (min-width: $transition-to-large) {
+  .side {
+    font-size: 15px;
+  }
+}
+
 .side a, .side a:visited {
   color: $side-font-color;
   text-decoration: none;

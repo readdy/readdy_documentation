@@ -28,7 +28,7 @@
 
 @media (min-width: $transition-to-side) {
   .main {
-    max-width: 55rem;
+    max-width: 50rem;
   }
 }
 
@@ -48,10 +48,6 @@
   .notebook {
     max-width: 60rem;
   }
-}
-
-.main ul {
-  margin-bottom: 1.8rem;
 }
 
 // headings
@@ -133,7 +129,11 @@ iframe {
 }
 
 .main tr:nth-child(even) {
-  background-color: #f2f2f2
+  background-color: #f3f3f3
+}
+
+.main tr:nth-child(odd) {
+  background-color: #f8f8f8
 }
 
 .main th, .main td {
@@ -141,8 +141,9 @@ iframe {
 }
 
 .main th {
-  background-color: #CECCD2;
+  background-color: #d3dbe6;
   color: $main-font-color;
+  font-weight: normal;
 }
 
 .foot {

@@ -52,8 +52,8 @@ code {
   font-family: $mono-font;
   font-size: 12px;
   line-height: normal;
-  background-color: #f1f1f1;
-  color: #512a28;
+  background-color: $code-background-color;
+  color: #b26c42;
 }
 
 @media(min-width: $transition-to-large) {
@@ -66,11 +66,12 @@ code {
   font-family: $mono-font;
   font-size: 12px;
 
-  color: #282828;
+  color: #333333;
   background: $code-background-color;
   code {
     background-color: $code-background-color;
-    color: #282828;
+    color: #333333;
+    font-size: 12px;
   }
   position: relative;
   overflow-x: auto;
@@ -340,4 +341,8 @@ code {
   .highlight {
     font-size: 13px;
   }
+}
+
+.hl-ipython3 {
+  font-size: 12px;
 }
