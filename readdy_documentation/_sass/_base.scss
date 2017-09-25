@@ -12,17 +12,22 @@ $link-hover-color: #CAC0F0;
 $light: #E7EDF4;
 $side-background: #37353D;
 $nav-background: #48454E;
-$main-background: #fbfdff;
-$body-background: #fbfdff;
-$main-font-color: #262626;
+$main-background: #fcfcfc;
+$body-background: #fcfcfc;
+$main-font-color: #494949;
 $side-font-color: #EFF0F4;
 $subitem-font-color: #7b7374;
 $active-page-color: #605C69;
-$main-heading-color: #4b4853;
+$main-heading-color: #404040;
 $main-heading-ruler-color: #4b4853;
 $nav-delimiter-color: #6b6771;
-$code-background-color: #f3f3f3;
-$code-border-color: #f3f3f3;
+$code-background-color: #f5f5f6;
+$code-border-color: #d3dbe6;
+
+$orange-highlight-color: #b26c42;
+$orange-background-color: #dbaca0;
+$blue-highlight-color: #5074b2;
+$blue-background-color: #d3dbe6;
 
 // min-widths at which layout transitions to accomodate different viewport widths
 $transition-to-side: 48em;
@@ -45,7 +50,7 @@ html {
 
 @media (min-width: $transition-to-large) {
   html {
-    font-size: 15px;
+    font-size: 16px;
   }
 }
 
