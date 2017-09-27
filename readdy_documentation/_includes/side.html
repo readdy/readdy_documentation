@@ -15,9 +15,7 @@
             <b>THE BASICS</b>
         </div>
         <a class="side-nav-item{% if page.url == '/installation.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/installation.html">Install readdy</a>
-        {% if false %} currently excluded
         <a class="side-nav-item{% if page.url == '/get_started.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/get_started.html">Get started</a>
-        {% endif %}
         <a class="side-nav-item{% if page.url == '/reactions.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/reactions.html">Reactions</a>
         {% if page.url == '/reactions.html' %}
             {% assign sorted_reactions = site.reactions | sort: 'position' %}
