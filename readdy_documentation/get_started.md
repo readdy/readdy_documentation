@@ -11,7 +11,7 @@ system = readdy.ReactionDiffusionSystem()
 system.box_size = [10, 10, 10]
 system.add_species("A", 2.0)
 system.reactions.add("mydecay: A ->", rate=1.)
-system.reactions.add("myfission: A -> A + A", rate=3.)
+system.reactions.add("myfission: A -> A +(1) A", rate=3.)
 
 simulation = system.simulation(kernel="CPU")
 

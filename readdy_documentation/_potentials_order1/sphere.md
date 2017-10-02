@@ -1,7 +1,7 @@
 ---
 title: Sphere
 sectionName: sphere
-position: 1
+position: 2
 ---
 
 {: .centered}

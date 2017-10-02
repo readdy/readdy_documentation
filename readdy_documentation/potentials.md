@@ -13,6 +13,12 @@ second-order potentials/__pair potentials__, i.e. those that depend on the relat
 position of two particles. 
 The [topology]({{site.baseurl}}/topologies.html) functionality also provides higher order potentials like angles and dihedrals.
 
+All potentials are added to the potential registry, which is part of the `ReactionDiffusionSystem`
+```python
+system = readdy.ReactionDiffusionSystem()
+system.potentials.add(...)
+```
+
 <section id="firstorderpotentials">
 <div class="entry-heading"><h1>External potentials</h1></div>
 </section>

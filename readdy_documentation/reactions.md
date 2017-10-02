@@ -4,7 +4,16 @@ title: Reactions
 ---
 
 Reactions remove particles from, and add particles to the system. They typically have a microscopic/intrinsic rate $k$.
-This rate has units of inverse time and can be understood as the probability per unit time of the reaction occuring. Given a small integration step $\tau$ we will evaluate the probability of a reaction event as $p\approx k \tau$
+This rate has units of inverse time and can be understood as the probability per unit time of the reaction occuring. Given a small integration 
+step $\tau$ we will evaluate the probability of a reaction event as $p\approx k \tau$.
+
+Additionally `Fusion` or `Enzymatic` reactions can only occur when particles are closer than a certain distance $R$.
+
+All reactions are added to the reaction registry, which is part of the `ReactionDiffusionSystem`
+```python
+system = readdy.ReactionDiffusionSystem()
+system.reactions.add(...)
+```
 
 {% assign sorted_reactions = site.reactions | sort: 'position' %}
 {% for reaction in sorted_reactions %}
