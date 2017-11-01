@@ -21,7 +21,14 @@ should give you the location where conda got installed
 
 Add the conda-forge channel and install readdy
 ```bash
+# add conda-forge channel
 conda config --add channels conda-forge
+
+# optional: create environment for readdy, switch to that environment
+conda create -n readdy python=3
+source activate readdy
+
+# install readdy
 conda install -c readdy/label/dev readdy
 ```
 Check if it worked, start a python interpreter and do
