@@ -19,9 +19,10 @@ which conda
 ```
 should give you the location where conda got installed
 
-Install readdy from our conda channel
+Add the conda-forge channel and install readdy
 ```bash
-conda install -f -c readdy/label/dev readdy
+conda config --add channels conda-forge
+conda install -c readdy/label/dev readdy
 ```
 Check if it worked, start a python interpreter and do
 ```python
@@ -29,4 +30,4 @@ Check if it worked, start a python interpreter and do
 >>> sim = api.Simulation()
 >>> sim.set_kernel("CPU")
 ```
-If this does not return an error, you are readdy (HA!).
+If this does not return an error, you are ready to readdy.
