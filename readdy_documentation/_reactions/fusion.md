@@ -10,7 +10,7 @@ $R$ (`educt_distance`).
 
 $$ A \overset{R}{+} B \overset{k}{\rightarrow} C$$
 
-Add a fusion reaction to the `system`
+Example of adding a fusion reaction to the `system`:
 
 ```python
 system.reactions.add("fus: A +(2) B-> C", rate=0.1)

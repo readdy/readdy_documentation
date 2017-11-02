@@ -7,7 +7,7 @@ In a conversion reaction, a particle of type $A$ will convert into type $B$ with
 
 $$ A \overset{k}{\rightarrow} B $$
 
-Add a conversion reaction to the `system`
+Adding a conversion reaction to the `system` amounts to
 
 ```python
 system.reactions.add_conversion(name="conv", type_from="A", type_to="B", rate=0.1)

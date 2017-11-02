@@ -7,7 +7,7 @@ In a decay reaction, a particle of type $A$ will disappear with the rate constan
 
 $$ A \overset{k}{\rightarrow} \emptyset $$
 
-Add a decay reaction to the `system`
+Example of adding a decay reaction to the `system`:
 
 ```python
 system.reactions.add_decay(name="decay of A", particle_type="A", rate=0.1)
