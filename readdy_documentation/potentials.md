@@ -19,8 +19,12 @@ system = readdy.ReactionDiffusionSystem()
 system.potentials.add(...)
 ```
 
+
 <section id="firstorderpotentials">
 <div class="entry-heading"><h1>External potentials</h1></div>
+External potentials or first-order potentials only depend on the position of a single particle.
+They are registered with respect to one particle type. The potential will
+then exert a force on each particle (with the given type) individually for its particular position.
 </section>
 
 {% assign sorted_potentials_o1 = site.potentials_order1 | sort: 'position' %}
