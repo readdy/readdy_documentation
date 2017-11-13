@@ -29,7 +29,7 @@ function install_miniconda_with_jupyter {
   conda config --set always_yes yes --set changeps1 no
   conda update -q conda
   conda info -a
-  conda install jupyter
+  conda install -q jupyter
   cd -
 }
 
