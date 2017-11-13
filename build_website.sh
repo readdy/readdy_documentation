@@ -50,11 +50,16 @@ function convert_tutorials {
   rm .gitignore || true
   rm README.md || true
   rm -rf .git/ || true
+  rm -rf utils/ || true
 
   cp $TRAVIS_BUILD_DIR/convert_tutorials.py "."
-  ./convert_tutorials.py "."
+  ./convert_tutorials.py "./demonstration"
+  ./convert_tutorials.py "./validation"
+  ./convert_tutorials.py "./benchmark"
 
-  rm *.ipynb
+  rm ./demonstration/*.ipynb
+  rm ./validation/*.ipynb
+  rm ./benchmark/*.ipynb
 
   cd -
 }
@@ -77,8 +82,12 @@ function make_website {
   # insert the reference documentation
   cp -r $HOME/reference/docs/html/* reference_manual/
   # insert the converted tutorials
-  mkdir _tutorials || true
-  cp -r $HOME/readdy_tutorials/* _tutorials/
+  mkdir _demonstration || true
+  mkdir _validation || true
+  mkdir _benchmark || true
+  cp -r $HOME/readdy_tutorials/demonstration/* _demonstration/
+  cp -r $HOME/readdy_tutorials/validation/* _validation/
+  cp -r $HOME/readdy_tutorials/benchmark/* _benchmark/
   # build
   bundle exec jekyll build
   cd _site

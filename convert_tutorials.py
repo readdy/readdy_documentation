@@ -17,7 +17,6 @@ Metadata of the notebook should look like:
 "metadata": {
     "readdy" : {
          "title": "Internal API",
-         "category": "demonstration",
          "position": "1"
     },
     ...
@@ -42,9 +41,8 @@ if __name__ == "__main__":
             notebook = nbformat.reads(json_string, as_version=4)
             subprocess.run("jupyter-nbconvert --to html --template basic " + filename, shell=True)
             title = notebook.metadata.readdy.title
-            category = notebook.metadata.readdy.category
             position = notebook.metadata.readdy.position
-            front_matter = "---\ntitle: " + title + "\ncategory: " + category + "\nposition: " + position + "\n---\n"
+            front_matter = "---\ntitle: " + title + "\nposition: " + position + "\n---\n"
             print("prepending the following front matter\n", front_matter)
             filename_as_html = os.path.splitext(filename)[0] + ".html"
             with open(filename_as_html, "r") as content_file:

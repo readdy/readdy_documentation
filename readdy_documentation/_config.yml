@@ -23,13 +23,31 @@ collections:
     output: false
   faq:
     output: false
-  tutorials:
+  demonstration:
+    output: true
+    permalink: /:collection/:path
+  validation:
+    output: true
+    permalink: /:collection/:path
+  benchmark:
     output: true
     permalink: /:collection/:path
 defaults:
   - scope:
       path: ""
-      type: "tutorials"
+      type: "demonstration"
+    values:
+      layout: "notebook"
+      title: "defaulttitle"
+  - scope:
+      path: ""
+      type: "validation"
+    values:
+      layout: "notebook"
+      title: "defaulttitle"
+  - scope:
+      path: ""
+      type: "benchmark"
     values:
       layout: "notebook"
       title: "defaulttitle"

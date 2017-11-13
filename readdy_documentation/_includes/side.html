@@ -57,39 +57,33 @@
         <div class="nav-supergroup-delimiter">
             <b>EXAMPLES</b>
         </div>
-        <a class="side-nav-item{% if page.url == '/demonstration.html' or page.url contains '/tutorials/' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/demonstration.html">Demonstration</a>
-        {% if page.url == '/demonstration.html' or page.url contains '/tutorials/' %}
-            {% assign sorted_tutorials = site.tutorials | sort: 'position' %}
+        <a class="side-nav-item{% if page.url == '/demonstration.html' or page.url contains '/demonstration/' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/demonstration.html">Demonstration</a>
+        {% if page.url == '/demonstration.html' or page.url contains '/demonstration/' %}
+            {% assign sorted_tutorials = site.demonstration | sort: 'position' %}
             {% for tutorial in sorted_tutorials %}
-            {% if tutorial.category == 'demonstration' %}
                 <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}{{ tutorial.url }}">
                     {{ tutorial.title | markdownify | remove: '<p>' | remove: '</p>' }}
                 </a>
-            {% endif %}
             {% endfor %}
         {% endif %}
 
-        <a class="side-nav-item{% if page.url == '/validation.html' or page.url contains '/tutorials/' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/validation.html">Validation</a>
-        {% if page.url == '/validation.html' or page.url contains '/tutorials/' %}
-        {% assign sorted_tutorials = site.tutorials | sort: 'position' %}
+        <a class="side-nav-item{% if page.url == '/validation.html' or page.url contains '/validation/' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/validation.html">Validation</a>
+        {% if page.url == '/validation.html' or page.url contains '/validation/' %}
+        {% assign sorted_tutorials = site.validation | sort: 'position' %}
         {% for tutorial in sorted_tutorials %}
-        {% if tutorial.category == 'validation' %}
         <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}{{ tutorial.url }}">
             {{ tutorial.title | markdownify | remove: '<p>' | remove: '</p>' }}
         </a>
-        {% endif %}
         {% endfor %}
         {% endif %}
 
-        <a class="side-nav-item{% if page.url == '/benchmark.html' or page.url contains '/tutorials/' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/benchmark.html">Benchmark</a>
-        {% if page.url == '/benchmark.html' or page.url contains '/tutorials/' %}
-        {% assign sorted_tutorials = site.tutorials | sort: 'position' %}
+        <a class="side-nav-item{% if page.url == '/benchmark.html' or page.url contains '/benchmark/' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/benchmark.html">Benchmark</a>
+        {% if page.url == '/benchmark.html' or page.url contains '/benchmark/' %}
+        {% assign sorted_tutorials = site.benchmark | sort: 'position' %}
         {% for tutorial in sorted_tutorials %}
-        {% if tutorial.category == 'benchmark' %}
         <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}{{ tutorial.url }}">
             {{ tutorial.title | markdownify | remove: '<p>' | remove: '</p>' }}
         </a>
-        {% endif %}
         {% endfor %}
         {% endif %}
 
