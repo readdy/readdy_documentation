@@ -109,18 +109,22 @@
   }
 }
 
-// iframe containing reference manual
-iframe {
-  width: 100%;
-  height: 50vh;
-  padding: 0.5rem;
+#reference-manual {
+  // iframe containing reference manual
+  iframe {
+    width: 100%;
+    height: 50vh;
+    padding: 0.5rem;
+  }
 }
 
 @media (min-width: $transition-to-side) {
-  iframe {
-    // fix height to 90 % of the viewport height because
-    // "position: absolute" is incompatible with the current structure of the site
-    height: 90vh;
+  #reference-manual {
+    iframe {
+      // fix height to 90 % of the viewport height because
+      // "position: absolute" is incompatible with the current structure of the site
+      height: 90vh;
+    }
   }
 }
 
