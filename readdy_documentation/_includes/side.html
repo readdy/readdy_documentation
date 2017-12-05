@@ -16,6 +16,14 @@
         </div>
         <a class="side-nav-item{% if page.url == '/installation.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/installation.html">Install readdy</a>
         <a class="side-nav-item{% if page.url == '/get_started.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/get_started.html">Get started</a>
+	{% if page.url == '/get_started.html' %}
+            {% assign get_started = site.get_started | sort: 'position' %}
+            {% for section in get_started %}
+                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/get_started.html#{{ section.sectionName }}">
+                    {{ section.title | remove: '<p>' | remove: '</p>' }}
+                </a>
+            {% endfor %}
+        {% endif %}
         <a class="side-nav-item{% if page.url == '/reactions.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/reactions.html">Reactions</a>
         {% if page.url == '/reactions.html' %}
             {% assign sorted_reactions = site.reactions | sort: 'position' %}

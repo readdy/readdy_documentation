@@ -34,18 +34,12 @@ simulation.run(100, 0.01)
 ```
 
 The above snippet performs a ReaDDy simulation, which consists of three steps:
-- configure the system
-- configure the simulation
-- run the simulation 
 
-At first create a `ReactionDiffusionSystem`, which determines _what_ to simulate.
-This includes the size and periodicity of
-the simulation-box, particle species, [reactions]({{site.baseurl}}/reactions.html), 
-[potentials]({{site.baseurl}}/potentials.html) and [topologies]({{site.baseurl}}/topologies.html).
-These are set via properties and methods of the `system` object.
+{% assign get_started = site.get_started | sort: 'position' %}
+{% for section in get_started %}
+<section id="{{ section.sectionName }}">
+<h1>{{ section.title | remove: '<p>' | remove: '</p>'}}</h1>
+{{ section.content | markdownify }}
+</section>
+{% endfor %}
 
-The `system` object generates a `simulation` object, which determines _how_ to simulate the `system`.
-This includes the diffusion integrator, the reaction handler, [observables]({{site.baseurl}}/observables.html).
-The initial positions of particles are also set on the `simulation` object.
-
-Finally `run` the simulation for the given number of steps and time step. 

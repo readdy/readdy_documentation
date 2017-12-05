@@ -15,6 +15,10 @@ system = readdy.ReactionDiffusionSystem()
 system.reactions.add(...)
 ```
 
+Each of the below listed reaction types can be registered in two ways: 
+- Either with the generic `reactions.add(...)` method which accepts a descriptor string,
+- or by calling `reactions.add_xxx(...)`, where `xxx` is to be replaced with one of `conversion`, `decay`, `fusion`, `fission`, or `enzymatic`.
+
 {% assign sorted_reactions = site.reactions | sort: 'position' %}
 {% for reaction in sorted_reactions %}
 <section id="{{ reaction.sectionName }}">
