@@ -17,6 +17,8 @@ collections:
     output: false
   potentials_order2:
     output: false
+  get_started:
+    output: false
   observables:
     output: false
   development:
