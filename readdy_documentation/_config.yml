@@ -11,6 +11,8 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 collections:
+  home:
+    output: false
   reactions:
     output: false
   potentials_order1:

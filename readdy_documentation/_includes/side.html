@@ -12,6 +12,14 @@
     </div>
     <nav class="side-nav">
         <a class="side-nav-item{% if page.url == '/' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/index.html">Home</a>
+        {% if page.url == '/' %}
+            {% assign home_sections = site.home| sort: 'position' %}
+            {% for section in home_sections %}
+                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/index.html#{{ section.sectionName }}">
+                    {{ section.title | remove: '<p>' | remove: '</p>' }}
+                </a>
+            {% endfor %}
+        {% endif %}
         <a class="side-nav-item{% if page.url == '/installation.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/installation.html">Install readdy</a>
         <div class="nav-supergroup-delimiter{% if page.url == '/1_system_conf.html' %} active{% endif %}">
             <a href="{{ site.url }}{{ site.baseurl }}/1_system_conf.html"><b>1 System configuration</b></a>
