@@ -11,19 +11,11 @@
         </form>
     </div>
     <nav class="side-nav">
-        <div class="nav-supergroup-delimiter">
-            <b>THE BASICS</b>
-        </div>
+        <a class="side-nav-item{% if page.url == '/' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/index.html">Home</a>
         <a class="side-nav-item{% if page.url == '/installation.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/installation.html">Install readdy</a>
-        <a class="side-nav-item{% if page.url == '/get_started.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/get_started.html">Get started</a>
-	{% if page.url == '/get_started.html' %}
-            {% assign get_started = site.get_started | sort: 'position' %}
-            {% for section in get_started %}
-                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/get_started.html#{{ section.sectionName }}">
-                    {{ section.title | remove: '<p>' | remove: '</p>' }}
-                </a>
-            {% endfor %}
-        {% endif %}
+        <div class="nav-supergroup-delimiter">
+            <b>1 SYSTEM CONFIGURATION</b>
+        </div>
         <a class="side-nav-item{% if page.url == '/reactions.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/reactions.html">Reactions</a>
         {% if page.url == '/reactions.html' %}
             {% assign sorted_reactions = site.reactions | sort: 'position' %}
@@ -50,6 +42,10 @@
                 </a>
             {% endfor %}
         {% endif %}
+        <a class="side-nav-item{% if page.url == '/topologies.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/topologies.html">Topologies</a>
+        <div class="nav-supergroup-delimiter">
+            <b>2 SIMULATION SETUP</b>
+        </div>
         <a class="side-nav-item{% if page.url == '/observables.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/observables.html">Observables</a>
         {% if page.url == '/observables.html' %}
             {% assign sorted_observables = site.observables | sort: 'position' %}
@@ -59,7 +55,9 @@
                 </a>
             {% endfor %}
         {% endif %}
-        <a class="side-nav-item{% if page.url == '/topologies.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/topologies.html">Topologies</a>
+        <div class="nav-supergroup-delimiter">
+            <b>3 EXECUTION AND RESULTS</b>
+        </div>
 
 
         <div class="nav-supergroup-delimiter">
@@ -109,15 +107,6 @@
             {% endfor %}
         {% endif %}
         <a class="side-nav-item{% if page.url == '/reference_manual.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/reference_manual.html">Reference Manual</a>
-        <a class="side-nav-item{% if page.url == '/faq.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/faq.html">FAQ</a>
-        {% if page.url == '/faq.html' %}
-            {% assign sorted_faqs = site.faq | sort: 'position' %}
-            {% for entry in sorted_faqs %}
-                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/faq.html#{{ entry.sectionName }}">
-                    {{ entry.title | markdownify | remove: '<p>' | remove: '</p>' }}
-                </a>
-            {% endfor %}
-        {% endif %}
     </nav>
 
     <div class="github-wrapper">
