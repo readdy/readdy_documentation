@@ -13,8 +13,8 @@
     <nav class="side-nav">
         <a class="side-nav-item{% if page.url == '/' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/index.html">Home</a>
         <a class="side-nav-item{% if page.url == '/installation.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/installation.html">Install readdy</a>
-        <div class="nav-supergroup-delimiter">
-            <b>1 SYSTEM CONFIGURATION</b>
+        <div class="nav-supergroup-delimiter{% if page.url == '/1_system_conf.html' %} active{% endif %}">
+            <a href="{{ site.url }}{{ site.baseurl }}/1_system_conf.html"><b>1 System configuration</b></a>
         </div>
         <a class="side-nav-item{% if page.url == '/reactions.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/reactions.html">Reactions</a>
         {% if page.url == '/reactions.html' %}
@@ -43,8 +43,8 @@
             {% endfor %}
         {% endif %}
         <a class="side-nav-item{% if page.url == '/topologies.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/topologies.html">Topologies</a>
-        <div class="nav-supergroup-delimiter">
-            <b>2 SIMULATION SETUP</b>
+        <div class="nav-supergroup-delimiter{% if page.url == '/2_simulation_setup.html' %} active{% endif %}">
+            <a href="{{ site.url }}{{ site.baseurl }}/2_simulation_setup.html"><b>2 Simulation setup</b></a>
         </div>
         <a class="side-nav-item{% if page.url == '/observables.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/observables.html">Observables</a>
         {% if page.url == '/observables.html' %}
@@ -55,13 +55,12 @@
                 </a>
             {% endfor %}
         {% endif %}
-        <div class="nav-supergroup-delimiter">
-            <b>3 EXECUTION AND RESULTS</b>
+        <div class="nav-supergroup-delimiter{% if page.url == '/3_run_and_results.html' %} active{% endif %}">
+            <a href="{{ site.url }}{{ site.baseurl }}/3_run_and_results.html"><b>3 Run and results</b></a>
         </div>
 
-
         <div class="nav-supergroup-delimiter">
-            <b>EXAMPLES</b>
+            <b>Examples</b>
         </div>
         <a class="side-nav-item{% if page.url == '/demonstration.html' or page.url contains '/demonstration/' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/demonstration.html">Demonstration</a>
         {% if page.url == '/demonstration.html' or page.url contains '/demonstration/' %}
@@ -95,7 +94,7 @@
 
 
         <div class="nav-supergroup-delimiter">
-            <b>ADVANCED TOPICS</b>
+            <b>Advanced topics</b>
         </div>
         <a class="side-nav-item{% if page.url == '/development.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/development.html">Development</a>
         {% if page.url == '/development.html' %}

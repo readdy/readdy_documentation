@@ -84,7 +84,7 @@ a.side-nav-item {
   display: block;
   line-height: 1.5;
   padding: 0.3rem;
-  padding-left: 1.3rem;
+  padding-left: 1.8rem;
 }
 
 a.side-nav-sub-item {
@@ -93,7 +93,7 @@ a.side-nav-sub-item {
   display: block;
   font-size: small;
   line-height: 1.3;
-  padding-left: 2rem;
+  padding-left: 2.4rem;
   padding-right: 2rem;
   padding-bottom: 0.4rem;
   padding-top: 0rem;
@@ -107,6 +107,10 @@ a.side-nav-sub-sub-item {
   background-color: $active-page-color;
 }
 
+.nav-supergroup-delimiter.active {
+  background-color: $active-page-color;
+}
+
 .nav-supergroup-delimiter {
   font-family: $heading-font;
   color: $nav-delimiter-color;
@@ -114,6 +118,13 @@ a.side-nav-sub-sub-item {
   padding-right: 0;
   padding-top: 0.6rem;
   padding-bottom: 0.6rem;
+  a, a:visited {
+    font-weight: normal;
+    color: $nav-delimiter-color;
+  }
+  a:hover, a:focus {
+    color: $link-hover-color;
+  }
 }
 
 // generic side logo

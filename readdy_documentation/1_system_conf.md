@@ -1,15 +1,13 @@
 ---
 layout: page
 title: 1. Configure the system
-position: 1
-sectionName: configure
 ---
 
 At first create a `ReactionDiffusionSystem`, which determines _what_ to simulate.
 This includes setting a unit system, the size and periodicity of
-the simulation-box, particle species, [reactions]({{site.baseurl}}/reactions.html), 
+the simulation-box, particle species, [reactions]({{site.baseurl}}/reactions.html),
 [potentials]({{site.baseurl}}/potentials.html) and [topologies]({{site.baseurl}}/topologies.html).
-These are set via properties and methods of the `system` object. 
+These are set via properties and methods of the `system` object.
 
 ### Physical units
 The physical units default to
@@ -19,8 +17,8 @@ The physical units default to
 
 Should a different set of units be desired, it can be provided as constructor argument, e.g.,
 ```python
-custom_units = {'length_unit':'kilometer', 
-                'time_unit': 'hour', 
+custom_units = {'length_unit':'kilometer',
+                'time_unit': 'hour',
                 'energy_unit': 'kilocal/mol'}
 system = readdy.ReactionDiffusionSystem([10, 10, 10] * readdy.units.meters,
                                         unit_system=custom_units)
