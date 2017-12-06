@@ -3,9 +3,9 @@ layout: page
 title: Reactions
 ---
 
-Reactions remove particles from, and add particles to the system. They typically have a microscopic/intrinsic rate $k$.
-This rate has units of inverse time and can be understood as the probability per unit time of the reaction occurring. Given a small integration 
-step $\tau$ the probability of a reaction event is evaluated as $p\approx k \tau$.
+Reactions remove particles from, and add particles to the system. They typically have a microscopic/intrinsic rate $\lambda$.
+This rate has units of inverse time and can be understood as the probability per unit time of the reaction occurring. Given an integration
+step $\tau$ the probability of a reaction event is evaluated as $p = 1 - e^{-\lambda \tau}$.
 
 Additionally `Fusion` and `Enzymatic` reactions can only occur when particles are closer than a certain distance $R$.
 

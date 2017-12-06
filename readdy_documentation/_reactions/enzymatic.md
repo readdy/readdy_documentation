@@ -5,10 +5,10 @@ position: 5
 ---
 
 In an enzymatic reaction, a particle of type $A$ convert into type $B$ in the presence of a particle of type $C$.
-This will occur with the rate constant $k$, if the particles $A$ and $C$ are closer than the reaction radius
+This will occur with the rate constant $\lambda$, if the particles $A$ and $C$ are closer than the reaction radius
 $R$ (`educt_distance`).
 
-$$ A \overset{R}{+} C \overset{k}{\rightarrow} B + C$$
+$$ A \overset{R}{+} C \overset{\lambda}{\rightarrow} B + C$$
 
 Add an enzymatic reaction to the `system`
 ```python

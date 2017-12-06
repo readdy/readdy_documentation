@@ -5,10 +5,10 @@ position: 3
 ---
 
 In a fusion reaction, a particle of type $A$ will associate with type $B$ to form a particle of type $C$.
-This will occur with the rate constant $k$, if the particles $A$ and $B$ are closer than the reaction radius
+This will occur with the rate constant $\lambda$, if the particles $A$ and $B$ are closer than the reaction radius
 $R$ (`educt_distance`). 
 
-$$ A \overset{R}{+} B \overset{k}{\rightarrow} C$$
+$$ A \overset{R}{+} B \overset{\lambda}{\rightarrow} C$$
 
 Example of adding a fusion reaction to the `system`:
 

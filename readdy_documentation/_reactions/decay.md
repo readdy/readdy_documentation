@@ -3,9 +3,9 @@ title: Decay
 sectionName: decay
 position: 2
 ---
-In a decay reaction, a particle of type $A$ will disappear with the rate constant $k$
+In a decay reaction, a particle of type $A$ will disappear with the rate constant $\lambda$
 
-$$ A \overset{k}{\rightarrow} \emptyset $$
+$$ A \overset{\lambda}{\rightarrow} \emptyset $$
 
 Example of adding a decay reaction to the `system`:
 

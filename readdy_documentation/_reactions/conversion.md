@@ -3,9 +3,9 @@ title: Conversion
 sectionName: conversion
 position: 1
 ---
-In a conversion reaction, a particle of type $A$ will convert into type $B$ with the rate constant $k$
+In a conversion reaction, a particle of type $A$ will convert into type $B$ with the rate constant $\lambda$
 
-$$ A \overset{k}{\rightarrow} B $$
+$$ A \overset{\lambda}{\rightarrow} B $$
 
 Adding a conversion reaction to the `system` amounts to
 
