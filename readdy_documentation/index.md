@@ -42,3 +42,12 @@ simulation.run(100, 0.01)
 ```
 
 The above snippet performs a ReaDDy simulation, which consists of three steps:
+1. Configure the system (link)
+2. Setup the simulation (link)
+3. Run and analyze results (link)
+
+(Link to a notebook on all basics)
+
+(Youtube Video)
+
+(stuff from Joh's page)

@@ -5,10 +5,10 @@ position: 4
 ---
 
 In a fission reaction, a particle of type $C$ will dissociate into two particles of type $B$ and $A$.
-This will occur with the rate constant $k$. The two products will be placed at a distance smaller than
+This will occur with the rate constant $\lambda$. The two products will be placed at a distance smaller than
 the reaction radius $R$ (`product_distance`).
 
-$$ C \overset{k}{\rightarrow} A \overset{R}{+} B $$
+$$ C \overset{\lambda}{\rightarrow} A \overset{R}{+} B $$
 
 Add a fission reaction to the `system`
 
