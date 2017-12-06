@@ -127,6 +127,10 @@ a.side-nav-sub-sub-item {
   }
 }
 
+.nav-supergroup-delimiter.nopage {
+  color: $nav-delimiter-color-no-page;
+}
+
 // generic side logo
 @media (min-width: $transition-to-side) {
   .side-logo {

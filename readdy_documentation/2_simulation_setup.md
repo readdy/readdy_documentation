@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 2. Configure the simulation
+title: 2. Setup the simulation
 ---
 
 The `system` object generates a `simulation` object, which determines _how_ to simulate the `system`.
