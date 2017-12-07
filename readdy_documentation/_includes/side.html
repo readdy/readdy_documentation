@@ -12,62 +12,31 @@
     </div>
     <nav class="side-nav">
         <a class="side-nav-item{% if page.url == '/' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/index.html">Home</a>
-        {% if page.url == '/' %}
-            {% assign home_sections = site.home| sort: 'position' %}
-            {% for section in home_sections %}
-                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/index.html#{{ section.sectionName }}">
-                    {{ section.title | remove: '<p>' | remove: '</p>' }}
-                </a>
-            {% endfor %}
-        {% endif %}
         <a class="side-nav-item{% if page.url == '/installation.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/installation.html">Install readdy</a>
-        <div class="nav-supergroup-delimiter{% if page.url == '/1_system_conf.html' %} active{% endif %}">
-            <a href="{{ site.url }}{{ site.baseurl }}/1_system_conf.html"><b>1 System configuration</b></a>
+        <div class="nav-supergroup-delimiter">
+            <b>API</b>
         </div>
-        <a class="side-nav-item{% if page.url == '/reactions.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/reactions.html">Reactions</a>
-        {% if page.url == '/reactions.html' %}
-            {% assign sorted_reactions = site.reactions | sort: 'position' %}
-            {% for reaction in sorted_reactions %}
-                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/reactions.html#{{ reaction.sectionName }}">
-                    {{ reaction.title | markdownify | remove: '<p>' | remove: '</p>' }}
+        <a class="side-nav-item{% if page.url == '/system.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/system.html">System configuration</a>
+        {% if page.url == '/system.html' %}
+            {% assign sections = site.system | sort: 'position' %}
+            {% for section in sections %}
+                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/system.html#{{ section.sectionName }}">
+                    {{ section.title | markdownify | remove: '<p>' | remove: '</p>' }}
                 </a>
             {% endfor %}
         {% endif %}
-        <a class="side-nav-item{% if page.url == '/potentials.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/potentials.html">Potentials</a>
-        {% if page.url == '/potentials.html' %}
-            <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/potentials.html#firstorderpotentials">External potentials</a>
-            {% assign sorted_potentials_o1 = site.potentials_order1 | sort: 'position' %}
-            {% for potential in sorted_potentials_o1 %}
-                <a class="side-nav-sub-item side-nav-sub-sub-item" href="{{ site.url }}{{ site.baseurl }}/potentials.html#{{ potential.sectionName }}">
-                    {{ potential.title | markdownify | remove: '<p>' | remove: '</p>'}}
-                </a>
-            {% endfor %}
-            <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/potentials.html#secondorderpotentials">Pair potentials</a>
-            {% assign sorted_potentials_o2 = site.potentials_order2 | sort: 'position' %}
-            {% for potential in sorted_potentials_o2 %}
-                <a class="side-nav-sub-item side-nav-sub-sub-item" href="{{ site.url }}{{ site.baseurl }}/potentials.html#{{ potential.sectionName }}">
-                    {{ potential.title | markdownify | remove: '<p>' | remove: '</p>'}}
+        <a class="side-nav-item{% if page.url == '/simulation.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/simulation.html">Simulation</a>
+        {% if page.url == '/simulation.html' %}
+            {% assign sections = site.simulation | sort: 'position' %}
+            {% for section in sections %}
+                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/simulation.html#{{ section.sectionName }}">
+                    {{ section.title | markdownify | remove: '<p>' | remove: '</p>' }}
                 </a>
             {% endfor %}
         {% endif %}
-        <a class="side-nav-item{% if page.url == '/topologies.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/topologies.html">Topologies</a>
-        <div class="nav-supergroup-delimiter{% if page.url == '/2_simulation_setup.html' %} active{% endif %}">
-            <a href="{{ site.url }}{{ site.baseurl }}/2_simulation_setup.html"><b>2 Simulation setup</b></a>
-        </div>
-        <a class="side-nav-item{% if page.url == '/observables.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/observables.html">Observables</a>
-        {% if page.url == '/observables.html' %}
-            {% assign sorted_observables = site.observables | sort: 'position' %}
-            {% for observable in sorted_observables %}
-                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/observables.html#{{ observable.sectionName }}">
-                    {{ observable.title | markdownify | remove: '<p>' | remove: '</p>' }}
-                </a>
-            {% endfor %}
-        {% endif %}
-        <div class="nav-supergroup-delimiter{% if page.url == '/3_run_and_results.html' %} active{% endif %}">
-            <a href="{{ site.url }}{{ site.baseurl }}/3_run_and_results.html"><b>3 Run and results</b></a>
-        </div>
+        <a class="side-nav-item{% if page.url == '/results.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/results.html">Post-processing</a>
 
-        <div class="nav-supergroup-delimiter nopage">
+        <div class="nav-supergroup-delimiter">
             <b>Examples</b>
         </div>
         <a class="side-nav-item{% if page.url == '/demonstration.html' or page.url contains '/demonstration/' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/demonstration.html">Demonstration</a>
@@ -101,7 +70,7 @@
         {% endif %}
 
 
-        <div class="nav-supergroup-delimiter nopage">
+        <div class="nav-supergroup-delimiter">
             <b>Advanced topics</b>
         </div>
         <a class="side-nav-item{% if page.url == '/development.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/development.html">Development</a>

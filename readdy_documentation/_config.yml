@@ -13,13 +13,11 @@ kramdown:
 collections:
   home:
     output: false
-  reactions:
+  system:
     output: false
-  potentials_order1:
+  simulation:
     output: false
-  potentials_order2:
-    output: false
-  observables:
+  results:
     output: false
   development:
     output: false
