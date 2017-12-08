@@ -20,9 +20,15 @@
         {% if page.url == '/system.html' %}
             {% assign sections = site.system | sort: 'position' %}
             {% for section in sections %}
+            {% if section.subsection == true %}
+                <a class="side-nav-sub-item side-nav-sub-sub-item" href="{{ site.url }}{{ site.baseurl }}/system.html#{{ section.sectionName }}">
+                    {{ section.title | markdownify | remove: '<p>' | remove: '</p>' }}
+                </a>
+            {% else %}
                 <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/system.html#{{ section.sectionName }}">
                     {{ section.title | markdownify | remove: '<p>' | remove: '</p>' }}
                 </a>
+            {% endif %}
             {% endfor %}
         {% endif %}
         <a class="side-nav-item{% if page.url == '/simulation.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/simulation.html">Simulation</a>

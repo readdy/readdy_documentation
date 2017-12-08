@@ -2,6 +2,7 @@
 title: Reactions
 sectionName: reactions
 position: 1
+subsection: false
 ---
 
 Reactions remove particles from, and add particles to the system. They typically have a microscopic/intrinsic rate $\lambda$.
