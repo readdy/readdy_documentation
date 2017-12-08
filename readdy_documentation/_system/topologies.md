@@ -1,7 +1,8 @@
 ---
 title: Topologies
 sectionName: topologies
-position: 3
+position: 5
+subsection: false
 ---
 
 Topologies are a way to include molecular structure in a reaction-diffusion simulation. 
