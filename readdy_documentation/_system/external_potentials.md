@@ -137,3 +137,4 @@ system.potentials.add_spherical_barrier(
     particle_type="A", height=-1.0, width=0.1, origin=[0, 0, 0], radius=1.
 )
 ```
+which will cause particles to be trapped inside or outside of the spherical barrier in the first case or will make them stick onto the surface of the sphere in the second case.
