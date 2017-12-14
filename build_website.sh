@@ -82,7 +82,7 @@ function make_website {
   cd $TRAVIS_BUILD_DIR/readdy_documentation
   bundle install
   # insert the reference documentation
-  cp -r $HOME/reference/docs/html/* reference_manual/
+  # cp -r $HOME/reference/docs/html/* reference_manual/
   # insert the converted tutorials
   mkdir _demonstration || true
   mkdir _validation || true
@@ -123,7 +123,7 @@ install_miniconda_with_jupyter
 get_tutorials
 convert_tutorials
 get_readdy
-make_reference_doc
+# make_reference_doc
 make_website
 setup_output_repo
 deploy
