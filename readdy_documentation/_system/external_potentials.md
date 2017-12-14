@@ -9,7 +9,11 @@ External potentials or first-order potentials are potentials that solely depend 
 They are registered with respect to a certain particle type. The potential will
 then exert a force on each particle of that type individually.
 
-## Box
+Currently available external potentials are:
+* TOC
+{:toc}
+
+## Box potential
 
 {: .centered}
 ![](assets/potentials/box_potential.png)
@@ -56,7 +60,7 @@ In ReaDDy one can find three different types of spherical potentials:
 
 All these potentials are harmonic, i.e., particles can potentially penetrate.
 
-### Spherical exclusion (`sphere_out`)
+### Spherical exclusion
 
 Adds a spherical potential that keeps particles of a certain type excluded from the inside of the specified sphere. Its energy term is given by 
 
@@ -81,7 +85,7 @@ system.potentials.add_sphere_out(
 ```
 yielding a spherical region of radius `1` in the center of the simulation box which keeps particles of type `A` from entering that region with a harmonic repulsion potential. Due to the harmonic nature of the potential and dependent on the force constant, particles are allowed to penetrate the sphere for a short period of time.
 
-### Spherical inclusion (`sphere_in`)
+### Spherical inclusion
 
 Adds a spherical potential that keeps particles of a certain type restrained to the inside of the specified sphere. Its energy term is given by
 
@@ -106,7 +110,7 @@ system.potentials.add_sphere_in(
 ```
 which will cause all particles of type `A` to be contained in a sphere of radius `1` centered in the origin with a harmonic repulsion potential. Due to the harmonic nature of the potential and dependent on the force constant, particles are allowed to penetrate the sphere for a short period of time.
 
-### Spherical barrier (`spherical_barrier`)
+### Spherical barrier
 
 A potential that forms a concentric barrier at a certain radius around a given origin. It is given a height (in terms of energy) and a width. Note that the height can also be negative, then this potential acts as a  'sticky' sphere. The potential consists of harmonic snippets, such that the energy landscape is continuous and differentiable, the force is only continuous and not differentiable. Its energy term is given by
 
