@@ -71,7 +71,9 @@ function make_reference_doc {
   # therefore fix this value.
   CPU_COUNT=2
   cmake $HOME/readdy -DREADDY_GENERATE_DOCUMENTATION_TARGET_ONLY:BOOL=ON
-  make doc > /dev/null
+  echo "making doc"
+  2>/dev/null 1>/dev/null make doc &
+  echo "done with exit code $?"
   cd -
 }
 
