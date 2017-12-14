@@ -7,9 +7,11 @@ url: https://readdy.github.io
 github_username: readdy
 sass:
   sass_dir: _sass
+markdown: kramdown
 kramdown:
   input: GFM
   syntax_highlighter: rouge
+  parse_block_html: true
 collections:
   home:
     output: false
