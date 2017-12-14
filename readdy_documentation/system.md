@@ -81,8 +81,7 @@ system.add_species("B", diffusion_constant=2. * readdy.units.km**2 / readdy.unit
 ```
 where the latter diffusion constant is internally expressed in terms of the default units.
 
-In case of particle types that take part in complexes (topologies), the `add_topology_species` method needs to be invoked, see the section about [topologies]({{site.baseurl}}/topologies.html) for details.
-
+In case of particle types that take part in complexes (topologies), the `add_topology_species` method needs to be invoked, see the section about [topologies](#topologies) for details.
 
 {% assign sections = site.system| sort: 'position' %}
 {% for section in sections %}
