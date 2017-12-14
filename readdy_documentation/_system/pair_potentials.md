@@ -103,7 +103,7 @@ yielding a truncated 12-6 Lennard-Jones potential between particles of type A an
 The "screened electrostatics" (also: Yukawa or Debye-Hückel) potential is a potential that represents electrostatic interaction (both repulsive or attractive), which is screened with a certain screening depth. This kind of potential becomes important when dealing with particles representing proteins that have a net-charge. However, it is usually more expensive to evaluate than, e.g., [harmonic repulsion](#harmonic-repulsion), as it requires a larger cutoff and smaller time step. If the electrostatic term is attractive, a core repulsion term is added. The potential term reads
 
 $$
-V((\|\mathbf{x_1}-\mathbf{x_2}\|_2) = V(r) = \begin{cases}
+V(\|\mathbf{x_1}-\mathbf{x_2}\|_2) = V(r) = \begin{cases}
 C\frac{\exp(-\kappa r)}{r} + D\left( \frac{\sigma}{r} \right)^n &\text{, if } r \leq r_c,\\
 0 &\text{, otherwise,}
 \end{cases}
