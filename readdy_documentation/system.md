@@ -11,7 +11,7 @@ These are set via properties and methods of the `system` object.
 
 
 ## Physical units
-The for a ReaDDy relevant units are units of length, time, and energy. An instance of a `ReactionDiffusionSystem` is equipped with a particular set of these units, internally expressing everything in terms of that set. Per default it is given by
+The for ReaDDy relevant units are units of length, time, and energy. An instance of a `ReactionDiffusionSystem` is equipped with a particular set of these units, internally expressing everything in terms of that set. Per default it is given by
 - length in nanometers,
 - time in nanoseconds,
 - energy in kilojoule per mol.
@@ -28,7 +28,7 @@ print(system.box_size)
 print(system.kbt)
 >>> 0.5824569789674953 kilocalorie / mole
 ```
-When setting the `unit_system` constructor argument to `None`, i.e., one wants to perform a simulation without units, the thermal energy will be defaulted to `kbt=1` and one cannot set a temperature anymore but has to set `kbt` directly.
+When setting the `unit_system` constructor argument to `None`, one sets up a unitless system. In such a case the thermal energy will be defaulted to `kbt=1` and one cannot set a temperature anymore but has to set `kbt` directly.
 ```python
 system = readdy.ReactionDiffusionSystem(box_size=(10, 10, 10), unit_system=None)
 print(system.kbt)

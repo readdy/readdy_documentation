@@ -30,7 +30,7 @@ simulation.run(100, 0.01)
 
 The above snippet performs a ReaDDy simulation, which consists of three steps:
 1. [Configure the system]({{site.baseurl}}/system.html)
-2. [Setup the simulation]({{site.baseurl}}/simulation.html)
-3. [Run and analyze results]({{site.baseurl}}/results.html)
+2. [Setup and run the simulation]({{site.baseurl}}/simulation.html)
+3. [Analyze results]({{site.baseurl}}/results.html)
 
 See [this ipython notebook]({{site.baseurl}}/demonstration/api) for an example of the basic features
