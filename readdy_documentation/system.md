@@ -11,7 +11,7 @@ These are set via properties and methods of the `system` object.
 
 
 ## Physical units
-The physical units default to
+The for a ReaDDy relevant units are units of length, time, and energy. An instance of a `ReactionDiffusionSystem` is equipped with a particular set of these units, internally expressing everything in terms of that set. Per default it is given by
 - length in nanometers,
 - time in nanoseconds,
 - energy in kilojoule per mol.
