@@ -13,11 +13,15 @@ title: Search results
     window.store = {
         {% assign outerloop = false %}
         {% for collection in site.collections %}
+            {% assign label = collection.label %}
+            {% if label=="home" %}
+                {% assign label = "index" %}
+            {% endif %}
             {% for document in collection.docs %}
                 "{{ document.url | slugify }}": {
                     "title": "{{ document.title | xml_escape }}",
                     "content": {{ document.content | strip_html | strip_newlines | jsonify }},
-                    "url": "{{ site.baseurl }}/{{ collection.label | xml_escape }}.html#{{ document.sectionName }}"
+                    "url": "{{ site.baseurl }}/{{ label | xml_escape }}.html#{{ document.sectionName }}"
                 },
             {% endfor %}
         {% endfor %}
