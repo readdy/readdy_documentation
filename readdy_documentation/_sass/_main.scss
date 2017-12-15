@@ -4,12 +4,13 @@
   table {
     margin: auto;
   }
-  position: relative; // for perfect-scrollbar
 }
 
 @media (min-width: $transition-to-side) {
   .main-container {
-    height: 100vh; // restrict the height to viewport such that perfect-scrollbar is used instead of native scrollbar
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100vh; // restrict the height to viewport such that scrollbar is used
   }
 }
 
