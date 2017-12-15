@@ -14,12 +14,14 @@
                 var termEnd = termBegin + searchTerm.length;
                 var displayBegin = termBegin - 75;
                 var displayEnd = termBegin + 75;
+                appendString += '<p>';
                 if (displayBegin < 0) {
                     displayEnd += -1 * displayBegin;
                     displayBegin = 0;
+                } else {
+                    appendString += '...'
                 }
-                appendString += '<p>'
-                    + item.content.substring(displayBegin, termBegin)
+                appendString += item.content.substring(displayBegin, termBegin)
                     + "<span style='background-color: #fff085'>"
                     + item.content.substring(termBegin, termEnd)
                     + "</span>"
