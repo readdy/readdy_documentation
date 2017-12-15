@@ -14,23 +14,31 @@ kramdown:
 collections:
   home:
     output: false
+    display-name: Home
   system:
     output: false
+    display-name: System configuration
   simulation:
     output: false
+    display-name: Simulation
   results:
     output: false
+    display-name: Post-processing
   development:
     output: false
+    display-name: Development
   demonstration:
     output: true
     permalink: /:collection/:path
+    display-name: Demonstration
   validation:
     output: true
     permalink: /:collection/:path
+    display-name: Validation
   benchmark:
     output: true
     permalink: /:collection/:path
+    display-name: Benchmark
 defaults:
   - scope:
       path: ""

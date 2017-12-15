@@ -17,9 +17,13 @@ title: Search results
             {% if label=="home" %}
                 {% assign label = "index" %}
             {% endif %}
+            {% assign collectionname = "" %}
+            {% if collection.display-name %}
+                {% assign collectionname = collection.display-name | append: ' > ' %}
+            {% endif %}
             {% for document in collection.docs %}
                 "{{ document.url | slugify }}": {
-                    "title": "{{ document.title | xml_escape }}",
+                    "title": "{{ collectionname }}{{ document.title | xml_escape }}",
                     "content": {{ document.content | strip_html | strip_newlines | jsonify }},
                     "url": "{{ site.baseurl }}/{{ label | xml_escape }}.html#{{ document.sectionName }}"
                 },
