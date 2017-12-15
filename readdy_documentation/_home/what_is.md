@@ -4,7 +4,7 @@ sectionName: what_is
 position: 1
 ---
 
-{% include youtube_player.html id="7Rt09jWaZLU" %}
+{% include video.html fname="logo" %}
 
 The logo simulation mimicks a predator prey system, i.e., a population growth process that frequently occurs in biology. Sometimes, this growth process is subjected to spatial constraints. There are three different particle types, referring to that biological model:
 
