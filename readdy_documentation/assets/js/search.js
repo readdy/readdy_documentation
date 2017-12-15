@@ -2,15 +2,13 @@
 (function () {
     function displaySearchResults(searchTerm, results, store) {
         var searchResults = document.getElementById('search-results');
-
-        if (results.length) { // Are there any results?
+        if (results.length) {
             var appendString = '';
-
-            for (var i = 0; i < results.length; ++i) {  // Iterate over the results
+            for (var i = 0; i < results.length; ++i) {
                 var item = store[results[i].ref];
                 appendString += '<li><a href="' + item.url + '"><h3>' + item.title + '</h3></a>';
                 // find first occurence with str.search(), get substring around that and highlight
-                var termBegin = item.content.search(searchTerm);
+                var termBegin = item.content.toLowerCase().search(searchTerm.toLowerCase());
                 var termEnd = termBegin + searchTerm.length;
                 var displayBegin = termBegin - 75;
                 var displayEnd = termBegin + 75;
