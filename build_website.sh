@@ -44,6 +44,13 @@ function get_readdy {
   git clone "https://github.com/readdy/readdy.git"
 }
 
+function get_assets {
+  cd $TRAVIS_BUILD_DIR/readdy_documentation/assets
+  wget -P ./videos/ https://userpage.fu-berlin.de/chrisfr/readdy_website/assets/videos/logo.webm
+  wget -P ./videos/ https://userpage.fu-berlin.de/chrisfr/readdy_website/assets/videos/logo.mp4
+  cd -
+}
+
 function convert_tutorials {
   cd $HOME/readdy_tutorials
   # remove the github repo utils so they don't end up in the website output
@@ -123,6 +130,7 @@ install_miniconda_with_jupyter
 get_tutorials
 convert_tutorials
 get_readdy
+get_assets
 # make_reference_doc
 make_website
 setup_output_repo
