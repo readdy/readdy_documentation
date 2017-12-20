@@ -1,9 +1,6 @@
 .main-container {
   background-color: $body-background;
   line-height: 1.5;
-  table {
-    margin: auto;
-  }
 }
 
 @media (min-width: $transition-to-side) {
@@ -24,6 +21,9 @@
   line-height: 1.5;
   table {
     margin: auto;
+  }
+  img{
+    max-width: 37rem;
   }
 }
 

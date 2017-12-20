@@ -41,12 +41,13 @@ html {
   padding: 0;
   -webkit-font-smoothing: antialiased;
   font-size: 14px;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 @media (min-width: $transition-to-side) {
   html {
     font-size: 14px;
+    overflow: hidden;
   }
 }
 
