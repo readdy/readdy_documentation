@@ -8,6 +8,19 @@ subsection: true
 Topologies are defined by a set of particles that are connected with a graph and a lookup table that defines what connectivities between what particle types yield which potentials.
 This section deals with the latter, i.e., with the lookup table. The lookup table is independent of the topology type, so all potentials that are defined here will be applied to pairs/triples/quadruples of particles which are connected in the respective topologies connectivity graph.
 
+{: .centered}
+![](assets/topologies/topology_graph.png)
+
+In this picture the dashed lines denote the connectivity graph between the particles, the blue lines bond potentials, the green lines angle potentials, and the orange lines dihedral potentials. One can see that bonds are defined on pairs of particles, angles on triples, dihedrals on quadruples. In this particular case one has
+
+| Bonds                | Angles                                | Dihedrals                                               |
+| -------------------- | ------------------------------------- | ------------------------------------------------------- |
+| $A\leftrightarrow A$ | $C\leftrightarrow B\leftrightarrow A$ | $A\leftrightarrow A\leftrightarrow B \leftrightarrow A$ |
+| $A\leftrightarrow B$ |                                       |                                                         |
+| $A\leftrightarrow C$ |                                       |                                                         |
+
+In an actual instance of a topology one would also have to define a bond between particles of type $C\leftrightarrow C$ or remove that edge from the graph, otherwise it would not be considered valid.
+
 ReaDDy supports three types of potentials within topologies:
 
 * TOC
@@ -36,11 +49,14 @@ system.topologies.configure_harmonic_bond(
 ```
 which would have the effect of introducing for each topology a harmonic bond with force constant 10 and preferred distance 2 between each adjacent pair of particles with types "T1" and "T2", respectively.
 
-
 ## Harmonic angles
+
+Harmonic angles are potential terms that yield a preferred configuration for a triple of particles in terms of the spanned angle $\theta$.
 
 {: .centered}
 ![](assets/topologies/top_angle.png)
+
+
 
 ## Cosine dihedrals
 
