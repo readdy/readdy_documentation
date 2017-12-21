@@ -125,13 +125,24 @@ function deploy {
   git push -q -f upstream workbranch:master > /dev/null 2>&1
 }
 
+function get_videos {
+    cd $TRAVIS_BUILD_DIR/readdy_documentation/assets
+    mkdir videos
+    cd ./videos
+    wget http://clonker.userpage.fu-berlin.de/readdyvids/logo.mp4
+    wget http://clonker.userpage.fu-berlin.de/readdyvids/logo.webm
+    wget http://clonker.userpage.fu-berlin.de/readdyvids/logo.ogv
+    cd -
+}
+
 set_this_up
 install_miniconda_with_jupyter
 get_tutorials
 convert_tutorials
 get_readdy
-get_assets
+# get_assets
 # make_reference_doc
+get_videos
 make_website
 setup_output_repo
 deploy
