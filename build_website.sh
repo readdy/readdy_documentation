@@ -73,6 +73,13 @@ function convert_tutorials {
 
 function make_reference_doc {
   mkdir -p $HOME/reference || true
+  cd $HOME/readdy/docs/sphinx
+  pip install Sphinx
+  make html
+  mv build/html/* $HOME/reference
+}
+
+function make_doxygen_doc {
   cd $HOME/reference
   # cant reliably determine cpu count in a docker container,
   # therefore fix this value.
@@ -89,7 +96,7 @@ function make_website {
   cd $TRAVIS_BUILD_DIR/readdy_documentation
   bundle install
   # insert the reference documentation
-  # cp -r $HOME/reference/docs/html/* reference_manual/
+  cp -r $HOME/reference/docs/html/* reference_manual/
   # insert the converted tutorials
   mkdir _demonstration || true
   mkdir _validation || true
@@ -141,7 +148,7 @@ get_tutorials
 convert_tutorials
 get_readdy
 # get_assets
-# make_reference_doc
+make_reference_doc
 get_videos
 make_website
 setup_output_repo
