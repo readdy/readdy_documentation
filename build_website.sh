@@ -22,7 +22,7 @@ function install_miniconda_with_jupyter {
   # we need jupyter to convert the notebooks, therefore use miniconda
   mkdir -p $HOME/conda_dl || true
   cd $HOME/conda_dl
-  wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+  wget -nv https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
   bash miniconda.sh -b -p $HOME/miniconda
   export PATH="$HOME/miniconda/bin:$PATH"
   hash -r
@@ -46,8 +46,8 @@ function get_readdy {
 
 function get_assets {
   cd $TRAVIS_BUILD_DIR/readdy_documentation/assets
-  wget -P ./videos/ https://userpage.fu-berlin.de/chrisfr/readdy_website/assets/videos/logo.webm
-  wget -P ./videos/ https://userpage.fu-berlin.de/chrisfr/readdy_website/assets/videos/logo.mp4
+  wget -nv -P ./videos/ https://userpage.fu-berlin.de/chrisfr/readdy_website/assets/videos/logo.webm
+  wget -nv -P ./videos/ https://userpage.fu-berlin.de/chrisfr/readdy_website/assets/videos/logo.mp4
   cd -
 }
 
@@ -76,7 +76,6 @@ function make_reference_doc {
   cd $HOME/readdy/docs/sphinx
   pip install Sphinx
   make html
-  mv build/html/* $HOME/reference
 }
 
 function make_doxygen_doc {
@@ -96,7 +95,7 @@ function make_website {
   cd $TRAVIS_BUILD_DIR/readdy_documentation
   bundle install
   # insert the reference documentation
-  cp -r $HOME/reference/docs/html/* reference_manual/
+  cp -r $HOME/readdy/docs/sphinx/build/html/* reference_manual/
   # insert the converted tutorials
   mkdir _demonstration || true
   mkdir _validation || true
@@ -136,9 +135,9 @@ function get_videos {
     cd $TRAVIS_BUILD_DIR/readdy_documentation/assets
     mkdir videos
     cd ./videos
-    wget http://clonker.userpage.fu-berlin.de/readdyvids/logo.mp4
-    wget http://clonker.userpage.fu-berlin.de/readdyvids/logo.webm
-    wget http://clonker.userpage.fu-berlin.de/readdyvids/logo.ogv
+    wget -nv http://clonker.userpage.fu-berlin.de/readdyvids/logo.mp4
+    wget -nv http://clonker.userpage.fu-berlin.de/readdyvids/logo.webm
+    wget -nv http://clonker.userpage.fu-berlin.de/readdyvids/logo.ogv
     cd -
 }
 
