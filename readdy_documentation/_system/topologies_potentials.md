@@ -56,7 +56,24 @@ Harmonic angles are potential terms that yield a preferred configuration for a t
 {: .centered}
 ![](assets/topologies/top_angle.png)
 
+Should the spanned angle be different from the preferred angle $\theta_0$, a harmonic force acts on each of the particles toward the preferred angle. The potential energy term reads
 
+$$
+V(\theta_{i,j,k}) = k(\theta_{i,j,k} - \theta_0)^2,
+$$
+
+where $\theta_{i,j,k}$ corresponds to the angle spanned by three particle's positions $\mathbf{x}_i, \mathbf{x}_j, \mathbf{x}_k$ and $k$ is the force constant.
+
+Configuring such a potential for a system amounts to, e.g.,
+```python
+system.add_topology_species("T1", diffusion_constant=2.)
+system.add_topology_species("T2", diffusion_constant=4.)
+system.add_topology_species("T3", diffusion_constant=4.)
+system.topologies.configure_harmonic_angle(
+    "T1", "T2", "T3", force_constant=1., equilibrium_angle=3.141
+)
+```
+yielding harmonic angle potential terms for each triple of particles with types `(T1, T2, T3)` (or equivalently types `(T3, T2, T1)`) that are contained in a topology and have edges between the particles corresponding to types `(T1, T2)` and `(T2, T3)`, respectively.
 
 ## Cosine dihedrals
 
