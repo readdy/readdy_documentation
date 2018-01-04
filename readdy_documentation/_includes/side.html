@@ -89,6 +89,11 @@
             {% endfor %}
         {% endif %}
         <a class="side-nav-item{% if page.url == '/reference_manual.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/reference_manual.html">Reference Manual</a>
+        <div class="nav-supergroup-delimiter">
+            <b>Legal notices</b>
+        </div>
+        <a class="side-nav-item{% if page.url == '/imprint.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/imprint.html">Imprint</a>
+        <a class="side-nav-item{% if page.url == '/software_license.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/software_license.html">Software license</a>
     </nav>
 
     <div class="github-wrapper">
