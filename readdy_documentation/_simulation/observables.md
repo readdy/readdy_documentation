@@ -4,16 +4,22 @@ sectionName: observables
 position: 1
 ---
 
-Wanna observe something?
+The currently available observables are:
+* TOC
+{:toc}
+
+## Radial distribution function
+
+## Reactions
+
+## Particle positions
+
+## Particles
 
 ## Number of particles
 
-Description of number of particles
+## Energy
+
+## Forces
 
 ## Reaction counts
-
-Description of reaction counts
-
-## Trajectory
-
-Description of trajectory
