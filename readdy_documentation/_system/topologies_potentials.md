@@ -79,3 +79,31 @@ yielding harmonic angle potential terms for each triple of particles with types 
 
 {: .centered}
 ![](assets/topologies/top_dihedral.png)
+
+The sketch above depicts the definition of the proper dihedral angle $\phi$ spanned by four particles with corrdinates $\mathbf{x}_i$, $\mathbf{x}_j$, $\mathbf{x}_k$, and $\mathbf{x}_l$, respectively. The potential energy is given by
+
+$$
+V(\phi) = k(1+\cos (n\phi - \phi_0)),
+$$
+
+where $\phi_0$ represents the preferred particle configuration, $k$ the force constant in units of `energy/angle**2`, and $n\in\mathbb{N}_{>0}$ the multiplicity, indicating the number of minima encountered when rotating the bond through $360^\circ$.
+
+Configuring such a potential for a system amounts to, e.g.,
+```python
+system.add_topology_species("T1", diffusion_constant=2.)
+system.add_topology_species("T2", diffusion_constant=4.)
+system.add_topology_species("T3", diffusion_constant=4.)
+system.add_topology_species("T4", diffusion_constant=4.)
+system.topologies.configure_cosine_dihedral(
+    "T1", "T2", "T3", "T4", force_constant=10, multiplicity=1., phi0=0.
+)
+```
+yielding cosine dihedral potentials for each path of length 4 with vertices corresponding to particles of types `(T1, T2, T3, T4)` in the connectivity graph of a topology instance. The sequence in which the types are given can be reversed, i.e.,
+ ```python
+ system.topologies.configure_cosine_dihedral(
+    "T4", "T3", "T2", "T1", force_constant=10, multiplicity=1., phi0=0.
+)
+ ```
+ results in the same potential terms.
+ 
+ Angles are internally always expressed in radians.
