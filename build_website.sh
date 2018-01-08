@@ -106,7 +106,7 @@ function make_website {
   # build
   bundle exec jekyll build
   cd _site
-  rm Gemfile Gemfile.lock
+  rm -f Gemfile Gemfile.lock
 }
 
 function setup_output_repo {
