@@ -8,9 +8,7 @@ github_username: readdy
 sass:
   sass_dir: _sass
 markdown: kramdown
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
+highlighter: rouge
 collections:
   home:
     output: false
