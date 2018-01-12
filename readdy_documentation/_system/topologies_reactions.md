@@ -97,4 +97,72 @@ system.topologies.add_structural_reaction(
 ```
 adding a structural reaction to all topologies of type `TType` with the provided reaction and rate functions. The first option `raise_if_invalid` raises, if set to `True`, an error if the outcome of the reaction function is invalid, otherwise it will just roll back to the state of before the reaction and print a warning into the log. The second option `expect_connected` can trigger depending on the value of `raise_if_invalid` a raise if set to `True` and the topology's connectivity graph decayed into two or more independent components.
 
-## Spatial reactions 
+## Spatial reactions
+Spatial reactions are locally triggered by proximity of particles, therefore they are not only defined on topology types but also on particle types. In principle there are two kinds of spatial reactions: The kind that causes forming a bond between two particles and the kind that just changes a particle/topology type, corresponding to particle fusion and enzymatic reactions, respectively. Analogously spatial topology reactions also possess 
+- a rate determining how likely the reaction occurs per time step as well as 
+- a radius determining the volume which is scanned for potential reaction partners.
+
+To simplify the definition of these reactions a descriptor language is used, deciding about the nature of the reaction. It consists out of a label and a topology-particle-type reaction equation:
+
+$$
+\begin{array}{rl}
+\text{label_enzymatic: }& T_1(P_1)+T_2(P_2)\rightarrow T_3(P_3) + T_4(P_4)\\
+\text{label_fusion: } & T_1(P_1)+T_2(P_2)\rightarrow T_3(P_3\text{--}P_4)
+\end{array}
+$$
+
+where $T_i$ denote topology types, $P_i$ denote particle types. 
+- The first reaction is of "enzymatic" type, changing the types of particles corresponding to $P_1$ to $P_3$ and $P_2$ to $P_4$ if they are contained in topologies of type $T_1$ and $T_2$ which are also changed to $T_3$ and $T_4$, respectively.
+- The second reaction is of "fusion" type, merging two topologies of types $T_1$ and $T_2$ by forming a bond between a particle pair with types $P_1$ and $P_2$ in their respective topologies. The result is a topology of type $T_3$ and the particles between which the bond was formed are of types $P_3$ and $P_4$.
+
+Some of these reactions can also be performed with a topology and a free particle. In particular, the following types of reactions are possible:
+
+- `TT-Fusion: T1(p1)+T2(p2) -> T3(p3--p4)`: a fusion of a topology of type `T1` with a topology of type `T2` by forming a bond between a pair of particles with types `p1` and `p2`, where the product is a topology of type `T3` and the newly connected particles changed their types to `p3` and `p4`, respectively.
+- `TT-Fusion-self: T1(p1)+T1(p2) -> T3(p3--p4) [self=true]`: a fusion of two topologies of type `T1` similarly to the first type with the difference that now also particles within the same topology can be reaction partners.
+- `TP-Fusion: T1(p1)+(p2) -> T2(p3--p4)`: attaching a free particle of type `p2` to a topology of type `T1` if it is close to a particle of type `p1` in that topology, yielding a topology of type `T2` in which the newly connected particles are now of type `p3` and `p4`, respectively.
+- `TT-Enzymatic: T1(p1)+T2(p2) -> T3(p3)+T4(p4)`: not changing the structure of the graph of the reaction partners but changing particle types possibly locally influencing the force field and changing topology types possibly leading to different topology reactions.
+- `TP-Enzymatic: T1(p1)+(p2) -> T2(p3)+(p4)`: same as the `TT-Enzymatic` reaction just that here it is performed with one topology and one free particle.
+
+Adding such a reaction to a system amounts to, e.g.,
+```python
+system.topologies.add_spatial_reaction(
+  'TT-Fusion: T1(p1)+T2(p2) -> T3(p3--p4)', rate=1., radius=1.
+)
+```
+where the rate is in units of `1/time` and the radius is a length. The descriptor is always the first argument and can be of any of the above discussed types.
+
+It should be noted that while usually "normal" [particle-particle reactions]({{site.baseurl}}/reactions.html) are not possible with topology-typed particles, one can define enzymatic reactions where the catalyst is a topology type as this leaves the topology untouched and therefore can be evaluated in the normal reaction procedure.
+
+```python
+system.add_species("A", diffusion_constant=1.)
+system.add_species("B", diffusion_constant=1.)
+system.add_topology_species("P", diffusion_constant=.5)
+system.topologies.add_type("T")
+
+# OK, this attaches the particle A to the topology
+system.topologies.add_spatial_reaction('label1: T1(P)+(A)->T1(P--P)')
+# Fails, A is not a topology species type
+system.topologies.add_spatial_reaction('label1: T1(P)+(A)->T1(P--A)')
+# Fails, P is not a normal particle type
+system.topologies.add_spatial_reaction('label1: T1(P)+(P)->T1(P--P)')
+# OK, this is a normal fusion reaction
+system.reactions.add('A +(2.) A -> A', rate=.1)
+# Fails, P is not a normal particle type but a topology particle type
+system.reactions.add('A +(2.) P -> A', rate=.2)
+# OK, this is the special case where P is the catalyst
+system.reactions.add('A +(2.) P -> B + P', rate=.3)
+```
+
+## Predefined reactions
+
+For convenience there are predefined topology reactions that can be added to a certain topology type.
+
+### Topology dissociation
+
+This reaction causes a topology to break bonds with a rate of `n_edges*bond_breaking_rate`, causing it to dissociate. In this process it may decompose into multiple independent components of the same topology type. Consequently, each of these independent components again has a topology dissociation reaction.
+
+Adding such a reaction to a system amounts to
+```python
+system.topologies.add_type("T")
+system.topologies.add_topology_dissociation("T", bond_breaking_rate=10.)
+```
