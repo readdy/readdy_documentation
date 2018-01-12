@@ -1,7 +1,7 @@
 ---
 title: Observables
 sectionName: observables
-position: 1
+position: 2
 ---
 
 The currently available observables are:
