@@ -23,3 +23,7 @@ The currently available observables are:
 ## Forces
 
 ## Reaction counts
+
+## Virial
+
+## Pressure
