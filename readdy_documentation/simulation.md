@@ -24,7 +24,7 @@ simulation = system.simulation(
     skin=0
 )
 ```
-Except for the `kernel` argument, all of these arguments can also modified by setting properties on the
+Except for the `kernel` argument, all of these arguments can also be modified by setting properties on the
 simulation object. The configuration of the reaction diffusion `system` is copied into the simulation object,
 so subsequent changes to the reaction diffusion system will not propagate into the simulation.
 
