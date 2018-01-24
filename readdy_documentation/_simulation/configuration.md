@@ -30,6 +30,71 @@ in $[0,1)^3$.
 
 ## Adding topologies
 
+A topology can be added by invoking
+```python
+my_topology = simulation.add_topology(topology_type="My topology type", particle_types="T", 
+                                      positions=np.random.random((100, 3)))
+```
+which requires a "My topology type" topology type and a topology species "T" 
+[to be registered]({{site.baseurl}}/system.html#topologies) in the `ReactionDiffusionSystem`. In this example the 
+topology will contain 100 randomly placed topology particles of type "T" that are for now disconnected.
+If the topology should contain several different particle types one can pass a list of particle types to the `particle_types` argument
+that contains types for all the positions:
+```python
+my_topology = simulation.add_topology(
+    topology_type="My topology type",
+    particle_types=["T1", "T2", "T3", "T2", "T1"],
+    positions=np.random.random((5, 3))
+)
+```
+
+Unless the topology consists out of only one particle, one still needs to set up the connectivity graph before running 
+the simulation. The returned object `my_topology` is a topology object as the ones described in 
+[topology reactions]({{site.baseurl}}/system.html#the-reaction-function). Edges in the graph can be introduced like
+```python
+my_graph = my_topology.get_graph()
+for i in range(len(graph.get_vertices())-1):
+    my_graph.add_edge(i, i+1)
+```
+where the indices that go into `add_edge` correspond to the particle positions that were entered in `add_topology`.
+
+The simulation can only be executed if the graph of each topology is connected,
+- i.e., there are no independent
+  components (between each pair of vertices there is at least one path in the graph that connects them), 
+
+and for each edge there is a bond,
+- i.e., all particle type pairs that are contained in the graph have at least one entry in the 
+  [topology potential configuration]({{site.baseurl}}/system.html#topology_potentials).
+  
+Should one of these two conditions be not fulfilled, starting the simulation will raise an error.
+
 ## Kernel configuration
+
+In case of selecting the CPU kernel with a parallelized implementation of the ReaDDy model, one can change certain
+aspects of its behavior:
+
+- The number of threads to be used can be selected by
+  ```python
+  simulation.kernel_configuration.n_threads = 4
+  ```
+- Mainly due to pairwise interactions and bimolecular reactions there is a neighbor list to reduce the time needed for 
+  evaluating these. The neighbor list imposes a spatial discretization on the simulation box into cuboids. In the
+  default case, each of these cuboids has an edge length of at least the maximal cutoff radius / reaction radius.
+  This means that instead of naively looping over all particle pairs ($\mathcal{O}(N^2)$), one can assign each particle
+  to its cuboid and then loop over all particles in a cuboid and its 26 neighboring cuboids to find particle pairs.
+  
+  When collecting particle pairs in this fashion one effectively approximates a sphere with cuboids. The number of
+  potential interaction or reaction partners can be further reduced by using only a fraction of the edge length but
+  increasing the search radius of the neighboring boxes so that one still covers at least the cutoff radius in each
+  spatial dimension.
+  
+  Reducing the edge length usually comes with a price, at some point the bookkeeping of neighboring boxes dominates
+  the runtime.
+  
+  The edge length and therefore search radius can be controlled by
+  ```python
+  simulation.kernel_configuration.cell_linked_list_radius = 4
+  ```
+  which would yield cuboids with $\frac{1}{4}$ the edge lengths of the default case.
 
 ## Recording a trajectory
