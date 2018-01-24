@@ -98,3 +98,16 @@ aspects of its behavior:
   which would yield cuboids with $\frac{1}{4}$ the edge lengths of the default case.
 
 ## Recording a trajectory
+
+ReaDDy records trajectories and observable data in HDF5 files. For doing so one needs to set an output file
+```python
+simulation.output_file = "my_trajectory.h5"
+```
+and instruct the simulation to record a trajectory:
+```python
+simulation.record_trajectory(stride=1, name="", chunk_size=1000)
+```
+The `stride` arguments causes the trajectory to be recorded every `stride` time steps. If a `name` (other than
+the default one) is given, the trajectory data will be stored in a different data set. The `chunk_size` is mainly
+a performance parameter that has an effect on how large every chunk of data in the binary file is going to be,
+influencing the time needed for IO during the simulation and the resulting file size.
