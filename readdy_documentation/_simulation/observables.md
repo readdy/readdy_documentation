@@ -40,7 +40,7 @@ simulation.observe.rdf(
     callback=rdf_callback)
 ``` 
 which causes the observable to be evaluated in each time step (`stride=1`) and print the value (`callback=rdf_callback`).
-The RDF is determined by calculating evaluating the distance from all particles of a type contained in `types_count_from` to
+The RDF is determined by calculating the distance from all particles of a type contained in `types_count_from` to
 all particles of a type contained in `types_count_to` and then binning the distance into a histogram as given by `bin_borders`.
 The histogram is normalized with respect to $g(r) = 4\pi r^2\rho dr$, where $\rho$ is the number density of particles 
 with types contained in `types_count_to`, reflected by `particle_to_density`. 
