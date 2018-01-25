@@ -101,11 +101,73 @@ regardless of their types.
 
 ## Energy
 
+The system's current potential energy can be observed by
+```python
+simulation.observe.energy(
+    stride=123,
+    callback=lambda x: print("Potential energy is {}".format(x)),
+    save=False
+)
+```
+where `stride=123` indicates that the observable will be evaluated every 123rd time step. The argument of the callback
+function is a scalar value and the observable's output is not saved to a potentially configured trajectory file. 
+
 ## Forces
+
+The forces acting on particles can be observed by
+```python
+simulation.observe.forces(
+    stride=1,
+    types=["A"],
+    callback=lambda x: print(sum(x))
+)
+```
+yielding an observable that is evaluated every time step (`stride=1`) and collects the forces acting on all particles
+of type `A`. If `types=None`, all types are considered. The callback function takes a list of vectors as argument.
+Since `save` is not further specified, this observable would be recorded into the trajectory file.
 
 ## Reactions
 
+This observable records all occurred reactions in the system for a particular time step. It can be registered by invoking
+```python
+
+def reactions_callback(reactions):
+    for r in reactions:
+        print("{} reaction {} occurred: {} -> {}, position {}"
+              .format(r.type, r.reaction_label, r.educts, r.products, r.position))
+    print("----")
+
+simulation.observe.reactions(
+    stride=5,
+    callback=reactions_callback
+)   
+```
+where `stride=5` indicates that the observable is evaluated every fifth time step. The callback takes a list of
+reaction records as argument, where each reaction record stores information about the
+- type of reaction (`r.type`), i.e., one of conversion, fission, fusion, enzymatic, decay,
+- reaction name (`r.reaction_label`), i.e., the name under which the reaction was registered in the `system`,
+- educt unique particle ids (`r.educts`) as in the [particles observable]({{site.baseurl}}/simulation.html#particles),
+- product unique particle ids (`r.products`),
+- and position (`r.position`) of the reaction event which is evaluated to the midpoint between educts in case of a bimolecular reaction.
+
+Since the `save` argument was left out, it is defaulted and given a `simulation.output_file`, the observed reactions are 
+recorded.
+
 ## Reaction counts
+
+Instead of recording [all reaction events]({{site.baseurl}}/simulation.html#reactions) one can also record the number 
+of occurred reactions per registered reaction per time step. This can be achieved by
+```python
+simulation.observe.reaction_counts(
+    stride=2,
+    callback=lambda x: print(x),
+    save=False
+)
+```
+where `stride=2` causes the observable to be evaluated every second time step. The callback function takes
+a dictionary as argument where the keys are the reaction names as given in the 
+[system configuration]({{site.baseurl}}/system.html#reactions) and the values
+are the occurrences of the corresponding reaction in that time step.
 
 ## Virial
 
