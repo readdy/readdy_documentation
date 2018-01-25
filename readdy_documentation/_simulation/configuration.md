@@ -111,3 +111,5 @@ The `stride` arguments causes the trajectory to be recorded every `stride` time 
 the default one) is given, the trajectory data will be stored in a different data set. The `chunk_size` is mainly
 a performance parameter that has an effect on how large every chunk of data in the binary file is going to be,
 influencing the time needed for IO during the simulation and the resulting file size.
+
+For reading back the trajectory data, please refer to [post-processing]({{site.baseurl}}/results.html).
