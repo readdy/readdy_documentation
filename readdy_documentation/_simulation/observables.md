@@ -45,17 +45,65 @@ all particles of a type contained in `types_count_to` and then binning the dista
 The histogram is normalized with respect to $g(r) = 4\pi r^2\rho dr$, where $\rho$ is the number density of particles 
 with types contained in `types_count_to`, reflected by `particle_to_density`. 
 
-## Reactions
+## Particles
+
+This observable records all particles in the system, as in: Each particle's type, (unique) id, and position.
+It can be registered by
+```python
+def particles_callback(particles):
+    types, ids, positions = particles
+    print("Particle 5 has type {}, id {}, and position {}."
+          .format(types[5], ids[5], positions[5])
+
+simulation.observe.particles(
+    stride=5,
+    callback=particles_callback,
+    save=False
+)
+```
+where the argument of the callback function is a 3-tuple containing a list of types, unique ids, and positions
+corresponding to each particle in the system. In this example the callback function prints these properties of the
+fifth particle every fifth time step, the output of the observable is not saved into the trajectory file (`save=False`).
 
 ## Particle positions
 
-## Particles
+The particles' positions can be recorded by
+```python
+simulation.observe.particle_positions(
+    stride=200, 
+    types=None, 
+    callback=lambda x: print(x)
+)
+```
+which makes this observable very similar to the `particles` one, however one can select specific types of particles
+that are recorded. In case of `types=None`, all particle positions will be recorded, in case of `types=["A", "B"]`
+only positions of particles with type `A` or `B` are returned.
+In this case the callback will simply print `x` every 200 steps, where `x` is a list of three-dimensional vectors.
+Since `save` is not explicitly set to `False` or `None` the observed data will be recorded into the trajectory file
+if n `simulation.output_file` was configured.
 
 ## Number of particles
+
+When one is only interested in the sheer number of particles then one can use this observable. Depending on the input,
+it will either observe the total number of particles or the number of particles per selected type:
+```python
+simulation.observe.number_of_particles(
+    stride=1,
+    types=["A", "B", "C"],
+    callback=lambda x: print(x),
+    save=False
+)
+```
+This example records the numbers of particles with types `A`, `B`, `C` in each time step. The callback takes
+a list with three elements as argument where each element corresponds to a particle type as given in `types` and 
+contains the respective counts. If `types=None` was given, the observable would record the total number of particles,
+regardless of their types.
 
 ## Energy
 
 ## Forces
+
+## Reactions
 
 ## Reaction counts
 
