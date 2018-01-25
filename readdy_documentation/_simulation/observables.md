@@ -171,4 +171,64 @@ are the occurrences of the corresponding reaction in that time step.
 
 ## Virial
 
+This observable evaluates the pressure virial according to pair-wise forces by evaluating
+
+$$
+\mathbf{W}_t = \sum_{i > j} \mathbf{r}_{ij} \otimes\mathbf{f}_{ij},
+$$
+
+where $\mathbf{r}_{ij}$ is the vector difference between the positions of particle i and j, $\mathbf{f}$ the pair-wise force.
+
+It can be registered by
+```python
+simulation.observe.virial(
+    stride=5,
+    callback=lambda x: print(x)
+)
+```
+which causes it to be evaluated every fifth time step (`stride=5`). The callback function takes a numpy array of shape `(3,3)` as argument.
+
 ## Pressure
+
+The pressure of a system can be understood in terms of the trace of a pressure tensor
+
+$$
+P_t = \frac{1}{3}\,\mathrm{tr}(\mathbf{P}_t)
+$$
+
+which is defined via the [virial tensor]({{site.baseurl}}/simulation.html#virial)
+
+$$
+\mathbf{P}_tV = N_tk_BT + \mathbf{W}_t, 
+$$
+
+where $V$ is the system's volume, $N_t$ the number of (physical) particles that somehow partake in the dynamics of the system,
+and $k_BT$ the thermal energy.
+
+Observing the pressure in a simulation amounts to
+```python
+simulation.observe.pressure(
+    stride=1,
+    physical_particles=["A", "B", "C"],
+    callback=lambda p: print("current pressure: {}".format(p))
+)
+```
+where `stride=1` causes the pressure to be evaluated in every time step, `physical_particles` are set to be particles of
+type `A`, `B`, or `C` (`physical_particles=None` causes all particles to be considered physical), and the callback
+function takes a scalar value as argument.
+
+Internally, the pressure observable builds up on the [virial]({{site.baseurl}}/simulation.html#virial) observable
+and the [number_of_particles]({{site.baseurl}}/simulation.html#number-of-particles) observable and when writing it to file
+not the actual pressure is recorded but the output of these other two observables.
+In the HDF5 group hierarchy the observable's group is per default postfixed by `_pressure`, causing the virial
+to be stored under `virial_pressure` and the number of particles under `n_particles_pressure`.
+
+Changing the postfix amounts to providing a dictionary to the `save` argument with
+```python
+pressure_save_options = {
+    'name': "empty_or_other_postfix",
+    'chunk_size': 500
+}
+simulation.observe.pressure(1, ["A", "B", "C"], save=pressure_save_options)
+```
+where the `chunk_size` refers to the HDF5 chunk size of data sets.
