@@ -82,6 +82,12 @@ $$
 V_{\text{LJ}_\text{trunc}}(r) = \begin{cases} V_\text{LJ}(r)  - V_\text{LJ}(r_c) &\text{, if } r \leq r_c,\\ 0&\text{, otherwise.} \end{cases}
 $$
 
+The force constant $k$ is chosen such that the depth at the well is is $V(r_\min) = -\varepsilon$, i.e.,
+
+$$
+k = -\frac{\varepsilon}{\left( \frac{\sigma}{r_\min} \right)^m - \left( \frac{\sigma}{r_\min} \right)^n}.
+$$
+
 {: .centered}
 ![](assets/potentials/lennard_jones_12_6.png)
 
