@@ -14,7 +14,7 @@ Read metadata from ipynb and prepend to the html as yaml front matter.
 
 Metadata of the notebook should look like:
 
-"metadata": {
+{
     "readdy" : {
          "title": "Internal API",
          "position": "1"
