@@ -36,6 +36,7 @@ if __name__ == "__main__":
 
     for filename in os.listdir(os.getcwd()):
         if filename.endswith(".ipynb"):
+            print("Converting", filename)
             with open(filename, "r") as content_file:
                 json_string = content_file.read()
             notebook = nbformat.reads(json_string, as_version=4)
