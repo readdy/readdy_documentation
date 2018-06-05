@@ -35,10 +35,10 @@ __to be determined__
 
 ## Prerequisites
 There will be Linux PCs available. You are free to bring your own laptop, but note that we currently support Linux and
- Mac only.
-We will install required software in the first practical session.
+Mac only. If you bring your own laptop, make sure you have a working 
+installation of [VMD](http://www.ks.uiuc.edu/Research/vmd/). You should be able to run `vmd` from the commandline.
 
-The practical sessions are done in ipython notebooks. A bit of of python coding might come in handy, 
+The practical sessions are done in ipython notebooks. A bit of python coding might come in handy, 
 but is not required. You will learn the necessary.
 
 ## Information for non-resident applicants
