@@ -1,9 +1,10 @@
 ---
-title: Tuesday - Rhodopsin activation toy model
+title: Tuesday - tba
 sectionName: tuesday
 position: 2
 ---
 
+{% if false %}
 {: .centered}
 ![](assets/295-f1-RodCellSignaling-11.jpg)
 
@@ -96,3 +97,4 @@ State the law of mass action for the concentrations of G and GA under the given 
 reaction (with some rate $\kappa$) and make use of the conservation of particles.
 
 Plot your analytic solution for some suitable parameters together with the results of the previous tasks, and judge if the law of mass action is an appropriate model for this system.
+{% endif %}

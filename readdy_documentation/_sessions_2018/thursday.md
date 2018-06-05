@@ -1,9 +1,9 @@
 ---
-title: Thursday - Lotka-Volterra
+title: Thursday - tba
 sectionName: thursday
 position: 4
 ---
-
+{% if false %}
 {: .centered}
 [![](assets/wave.jpg)](https://www.youtube.com/watch?v=Kc2rN16f6xI)
 
@@ -78,3 +78,4 @@ feel free to adjust them.
 The goal of this task is to create spatial patterns as described in [this paper](http://dx.doi.org/10.1063/1.4729141).
 
 You can also try to perform these simulations in a 3D box or within a sphere, but start with a small volume.
+{% endif %}

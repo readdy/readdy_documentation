@@ -1,8 +1,9 @@
 ---
-title: Wednesday - Micellization
+title: Wednesday - tba
 sectionName: wednesday
 position: 3
 ---
+{% if false %}
 
 {: .centered}
 ![](assets/micell.jpg)
@@ -150,3 +151,4 @@ for i in range(50):
 Now use the simulation execution from task 1, and also the MSD calculation from task 1. Run the simulation, have a look at the VMD output. What do you observe and why?
 
 Look at the MSD and make an estimate at which timescale the lipids cluster together.
+{% endif %}

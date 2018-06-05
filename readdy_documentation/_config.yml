@@ -37,6 +37,9 @@ collections:
     output: true
     permalink: /:collection/:path
     display-name: Benchmark
+  sessions_2018:
+    output: false
+    display-name: Practical sessions
 defaults:
   - scope:
       path: ""

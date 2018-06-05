@@ -1,9 +1,9 @@
 ---
-title: Monday - Setup & get started
+title: Monday - tba
 sectionName: monday
 position: 1
 ---
-
+{% if false %}
 ### Task 0)
 
 We go through the installation and the basic features of readdy step by step.
@@ -80,3 +80,4 @@ From the radial distribution, estimate how the pair-potential looks like, assumi
 $$ g(r) \propto e^{-U(r)}$$
 
 What could be a source of error? Did you really find the true potential or rather an effective potential?
+{% endif %}
