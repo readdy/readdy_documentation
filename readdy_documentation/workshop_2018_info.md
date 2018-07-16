@@ -18,20 +18,17 @@ Main topics will be:
 - The Python/C++ based ReaDDy simulation package 
 
 ## Program
-We will have two talks each morning and hands-on practical sessions in the afternoon. Friday will be all-day session.
+We will have one talk each morning and hands-on practical sessions afterwards. Friday will be all-day session.
 
-__to be determined__
+PS=Practical session
 
-{% if false %}
-|              | Monday                                          | Tuesday                   | Wednesday                                      | Thursday              | Friday |
-|:-------------|:------------------------------------------------|:--------------------------|:-----------------------------------------------|:----------------------|:-------|
-| 9 - 10       | [Biology by the numbers](assets/intro_talk.pdf) | Molecular simulation      | [ReaDDy software overview](assets/readdy.pdf)  | Membrane mechanics    | PS     |
-| 10 - 11      | Physics                                         | Reaction-diffusion models | [Neighborlists](assets/neighbor_list_talk.pdf) | Lotka-Volterra models | PS     |
-| coffee break |                                                 |                           |                                                |                       |        |
-| 11 - 12      | Practical session (PS)                          | PS                        | PS                                             | PS                    | PS     |
-| lunch        |                                                 |                           |                                                |                       |        |
-| 13 - 15      | PS                                              | PS                        | PS                                             | PS                    | PS     |
-{% endif%}
+|              | Monday            | Tuesday                                | Wednesday               | Thursday             | Friday |
+|:-------------|:------------------|:---------------------------------------|:------------------------|:---------------------|:-------|
+| 9 - ~10      | Introduction      | Reaction diffusion methods             | MD and coarse graining  | ReaDDy Software      | PS     |
+| coffee break |                   |                                        |                         |                      |        |
+| ~10 - 12     | PS - readdy intro | PS - predator prey system              | PS - topologies         | PS - C++ potential   | PS     |
+| lunch        |                   |                                        |                         |                      |        |
+| 13 - 15      | PS - observables  | PS - reaction- vs diffusion-influenced | PS - topology reactions | PS - nuclear waffles | PS     |
 
 ## Prerequisites
 There will be Linux PCs available. You are free to bring your own laptop, but note that we currently support Linux and
