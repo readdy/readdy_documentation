@@ -22,13 +22,13 @@ We will have one talk each morning and hands-on practical sessions afterwards. F
 
 PS=Practical session
 
-|              | Monday            | Tuesday                                | Wednesday               | Thursday             | Friday |
-|:-------------|:------------------|:---------------------------------------|:------------------------|:---------------------|:-------|
-| 9 - ~10      | Introduction      | Reaction diffusion methods             | MD and coarse graining  | ReaDDy Software      | PS     |
-| coffee break |                   |                                        |                         |                      |        |
-| ~10 - 12     | PS - readdy intro | PS - predator prey system              | PS - topologies         | PS - C++ potential   | PS     |
-| lunch        |                   |                                        |                         |                      |        |
-| 13 - 15      | PS - observables  | PS - reaction- vs diffusion-influenced | PS - topology reactions | PS - nuclear waffles | PS     |
+|              | Monday           | Tuesday                    | Wednesday               | Thursday             | Friday |
+|:-------------|:-----------------|:---------------------------|:------------------------|:---------------------|:-------|
+| 9 - ~10      | Introduction     | Reaction diffusion methods | MD and coarse graining  | ReaDDy Software      | PS     |
+| coffee break |                  |                            |                         |                      |        |
+| ~10 - 12     | PS - ReaDDy      | PS - Predator prey         | PS - Topologies         | PS - C++ potential   | PS     |
+| lunch        |                  |                            |                         |                      |        |
+| 13 - 15      | PS - Observables | PS - Diffusion-influenced  | PS - Topology reactions | PS - Nuclear waffles | PS     |
 
 ## Prerequisites
 There will be Linux PCs available. You are free to bring your own laptop, but note that we currently support Linux and
