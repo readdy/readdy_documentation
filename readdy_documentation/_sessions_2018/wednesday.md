@@ -1,5 +1,5 @@
 ---
-title: Wednesday - tba
+title: Wednesday - Self assembly
 sectionName: wednesday
 position: 3
 ---

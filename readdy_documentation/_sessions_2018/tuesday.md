@@ -1,100 +1,66 @@
 ---
-title: Tuesday - tba
+title: Tuesday - Lotka Volterra
 sectionName: tuesday
 position: 2
 ---
-
 {% if false %}
-{: .centered}
-![](assets/295-f1-RodCellSignaling-11.jpg)
+### Task 1) well mixed
 
-(image from http://book.bionumbers.org/how-many-rhodopsin-molecules-are-in-a-rod-cell/)
+Simulate a Lotka-Volterra/predator-prey system for the given parameters and __determine the period of oscillation__.
 
-Consider the following system: On a cubic membrane (of edge __length 14__, __force constant 100__), Rhodopsin (R) and G-proteins (G) diffuse freely. There is one rhodopsin which has been activated (by absorbing light), we call it RA. This acivated rhodopsin can activate G-proteins, called GA. (This will cause a whole cascade of chemical signaling and eventually a neuronal signal, which we will not model here. The actual mechanism of activation and interaction between R and G can be modeled with much more detail.)
+There are two particle species `A` (prey) and `B` (predator) with the same diffusion coefficient $D=0.7$. Both particle species shall be confined to a quadratic 2D plane with an edge length of roughly 100, and non periodic boundaries, i.e. the 2D plane must be fully contained in the simulation box. Choose a very small thickness for the plane, e.g. 0.02, and a force constant of 50.
 
-{: .centered}
-![](assets/rhod-toy.jpg)
+Particles of the __same__ species interact via harmonic repulsion, with a force constant of 50, and an interaction distance of 2.
 
-Register the following species
+There are three reactions for the Lotka Volterra system: `birth`, `eat`, and `decay`.
 
-| species | diffusion | radius | initial numbers |
-|:--------|:----------|:-------|:----------------|
-| R       | 0.1       | 0.5    | 60              |
-| RA      | 0.1       | 0.5    | 1               |
-| G       | 0.1       | 0.5    | 60              |
-| GA      | 0.1       | 0.5    | 0               |
+$$
+\mathrm{birth}: \mathrm{A}\to \mathrm{A} +\mathrm{A}\quad\mathrm{with }~ \lambda=4\times 10^{-2}, R=2
+$$
 
-The activation process is modeled as an __enzymatic reaction__
+$$
+\mathrm{eat}: \mathrm{A}+\mathrm{B}\to \mathrm{B} +\mathrm{B}\quad\mathrm{with }~ \lambda=10^{-2}, R=2
+$$
 
-$$G + RA \rightarrow GA + RA$$
+$$
+\mathrm{decay}: \mathrm{B}\to \emptyset\quad\mathrm{with }~ \lambda=3\times 10^{-2}
+$$
 
-with __rate 5__ and __reaction radius 1__. You can register it like
-```python
-sim.register_reaction_enzymatic(
-    label="activation", catalyst_type="RA",
-    from_type="G", to_type="GA", rate=5., educt_distance=1.
-)
-```
+Initialize a system by randomly positioning 1000 particles of each species on the 2D plane. Run the simulation for 100,000 integration steps with a step size of 0.01. Observe the number of particles and the trajectory, with a stride of 100.
 
-### Task 1)
+From the observable, plot the number of particles for the two species as a function of time in the same plot. Make sure to label the lines accordingly. Additionally plot the phase space trajectory, i.e. plot the number of predator particles against the number of prey particles.
 
-Observe and plot the numbers of GA particles as a function of time.
-The time range shall be $t=[0,500]$. For an integration step of $\tau=0.005$, this
-corresponds to performing 100000 integration steps.
-Initially all particles are uniformly distributed on the membrane and a __single RA particle__ is placed in the center (0,0,0).
+### Task 2) diffusion influenced
+We simulate the same system as in Task 1) but now introduce a scaling parameter $\ell$. This scaling parameter is used to control the ratio of reaction rates $\lambda$ and the rate of diffusion encounter $D/R^2$.
 
-Make use of the observable `NParticles`. The execution of the simulation should look like:
-```python
-# define observables and run
-numbers_ga = []
-traj_handle = sim.register_observable_flat_trajectory(stride=10)
-sim.register_observable_n_particles(
-    stride=10, types=["GA"],
-    callback=lambda x: numbers_ga.append(x[0])
-)
-with cl.closing(api.File("./obs.h5", api.FileAction.CREATE, api.FileFlag.OVERWRITE)) as f:
-    traj_handle.enable_write_to_file(
-        file=f,
-        data_set_name="traj",
-        chunk_size=1000
-    )
-    t1 = time.perf_counter()
-    sim.run_scheme_readdy(True) \
-        .write_config_to_file(f) \
-        .with_reaction_scheduler("UncontrolledApproximation") \
-        .configure_and_run(100000, 0.005)
-    t2 = time.perf_counter()
-print("Simulated", t2 - t1, "seconds")
-```
+For a given parameter $\ell$
+- change all reaction rate constants $\tilde\lambda= \lambda\times\sqrt{\ell}$
+- change all diffusion coefficients $\tilde D= D/\sqrt{\ell}$
 
-### Task 2)
+where the tilde ($\tilde\,$) denotes the actually used value in the simulation and the value without tilde is the one from Task 1).
 
-Plot the __mean__ (gather the results of multiple simulations and average) number of GA as a function of time.
+This means that the ratio
 
-Hint: wrap the complete simulation procedure in a single function, that returns the numbers of GA as a function of time (i.e. an array of numbers). Then you can perform this function several times, gather the results and average them.
+$$
+\frac{\tilde\lambda}{\tilde D/R^2} = \ell\,\frac{\lambda}{D/R^2}=\ell\times\mathrm{const}
+$$
 
-How long does it take to activate the first 10 G-proteins? How long for the first 20 G-proteins?
+is controlled by $\ell$.
 
-### Task 3)
+Perform the same simulation as in Task 1) but for different scaling parameters $\ell$, each time saving the resulting plots to a file, use `plt.savefig(...)`. Run each simulation for $n$ number of integration steps, where
 
-Same as task 2, but now introduce a __harmonic repulsion__ with __force constant 100__ between all particles __except__ between G and RA.
+$$
+n(\ell) = 10^4 + \frac{10^6}{\sqrt{\ell}}
+$$
 
-```python
-force_const = 100.
-sim.register_potential_harmonic_repulsion("RA", "R", force_const)
-sim.register_potential_harmonic_repulsion("G", "R", force_const)
-sim.register_potential_harmonic_repulsion("GA", "R", force_const)
-sim.register_potential_harmonic_repulsion("G", "GA", force_const)
-sim.register_potential_harmonic_repulsion("GA", "RA", force_const)
-```
+Vary the scaling parameter from 1 to 400.
 
-How does the mean production of GA compare to before?
+__Question__: For which $\ell$ do you see a qualitative change of behavior in the system, both from looking at the plots and the VMD visualization? Which cases are reaction-limited and which cases are diffusion-limited?
 
 ### Bonus task)
+Starting from the parameters of a diffusion influenced system from Task 2), set up a simulation, where prey particles form a traveling wavefront, closely followed by predators. Therefore you might want to change the simulation box and box potential parameters to get a 2D rectangular plane.
 
-Find the analytic expression for the time-dependent GA concentration. No computation needed, only pen and paper. Hint:
-State the law of mass action for the concentrations of G and GA under the given enzymatic
-reaction (with some rate $\kappa$) and make use of the conservation of particles.
+[![](assets/wave.jpg)](https://www.youtube.com/watch?v=Kc2rN16f6xI)
 
-Plot your analytic solution for some suitable parameters together with the results of the previous tasks, and judge if the law of mass action is an appropriate model for this system.
+Feel free to adjust all parameters. You can experiment with other spatial patterns as well, have a look at [this paper](http://dx.doi.org/10.1063/1.4729141)
 {% endif %}

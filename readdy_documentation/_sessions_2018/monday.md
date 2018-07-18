@@ -1,5 +1,5 @@
 ---
-title: Monday - tba
+title: Monday - ReaDDy intro
 sectionName: monday
 position: 1
 ---

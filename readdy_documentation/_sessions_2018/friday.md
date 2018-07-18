@@ -1,5 +1,5 @@
 ---
-title: Friday - tba
+title: Friday - Your ideas
 sectionName: friday
 position: 5
 ---
