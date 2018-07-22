@@ -10,23 +10,23 @@ Get miniconda and install it
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
 ```
-If your `home` directory is limited in space, you might want to install it under `storage`, i.e. when prompted for install location, choose either `/home/mi/user/miniconda3` or `/storage/mi/user/miniconda3` (obviously replace `user` with your username). Your `~/.bashrc` should contain the line
+If your `home` directory is limited in space, you might want to install it under `storage`, i.e. when prompted for install location, choose either `/home/mi/user/miniconda3` or `/storage/mi/user/miniconda3` (replace `user` with your username). Your `~/.bashrc` should contain the line
 ```bash
 . /storage/mi/user/miniconda3/etc/profile.d/conda.sh
 ```
-to enable the `conda` command. If you try out `which conda`, you should see its' function definition, and you're good to go.
+to enable the `conda` command. If you try out `which conda`, you should see its function definition, and you're good to go.
 
-Add `conda-forge` as default channel.
+Create a conda environment `workshop`
 ```bash
-conda config --add channels conda-forge
+conda create -n workshop
 ```
-Create a conda environment `workshop` with Python 3
-```bash
-conda create -n workshop python=3
-```
-activate it
+and activate it.
 ```bash
 conda activate workshop
+```
+Add `conda-forge` as default channel
+```bash
+conda config --add channels conda-forge --env
 ```
 and install the latest `readdy` in it
 ```bash
@@ -35,6 +35,7 @@ and install the latest `readdy` in it
 Check if it worked, start a python interpreter and do
 ```python
 import readdy
+print(readdy.__version__)
 ```
 If this does not return an error, you are ready to readdy (almost).
 Make sure you also have `vmd` installed. It should be installed on the universities machines.
