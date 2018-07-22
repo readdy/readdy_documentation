@@ -85,7 +85,7 @@ $$
 
 __3b)__ Fit the function $a(t)$ to your counts data, to obtain the parameter $k$. For $a_0$ use `n_particles`. Make use of [scipy.optimize.curve_fit](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html). Can the function $a(t)$ describe the data well?
 
-__3c)__ Repeat the procedures a) and b) but change the diffusion coefficient to $D=0.1$ and change the microscopic reaction rate to $\lambda=1$. What happened to your fit?
+__3c)__ Repeat the procedures a) and b) but change the diffusion coefficient to $D=0.01$ and change the microscopic reaction rate to $\lambda=1$. What happened to your fit?
 
 ### Task 4) Crowded mixture, MSD
 The time dependent mean squared displacement (MSD) is defined as
