@@ -53,7 +53,8 @@ The reaction distance should be $R=1$.
 
 Set up a periodic box with dimensions $20\times20\times20$
 
-Add 1000 A particles with $D=1$. They should be uniformly distributed in the box, use
+Add 1000 A particles with $D=1$. The diffusion constant of B should be $D=1$. 
+They should be uniformly distributed in the box, use
 ```python
 n_particles = 1000
 init_pos = np.random.uniform(size=(n_particles,3)) * extent + origin
