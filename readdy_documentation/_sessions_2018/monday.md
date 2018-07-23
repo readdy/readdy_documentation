@@ -49,6 +49,8 @@ $$
 A + A\to B\quad\text{with rate: }\lambda=0.1
 $$
 
+The reaction distance should be $R=1$.
+
 Set up a periodic box with dimensions $20\times20\times20$
 
 Add 1000 A particles with $D=1$. They should be uniformly distributed in the box, use
