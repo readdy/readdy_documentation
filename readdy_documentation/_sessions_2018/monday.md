@@ -89,6 +89,8 @@ __3b)__ Fit the function $a(t)$ to your counts data, to obtain the parameter $k$
 
 __3c)__ Repeat the procedures a) and b) but change the diffusion coefficient to $D=0.01$ and change the microscopic reaction rate to $\lambda=1$. What happened to your fit?
 
+[__Solution__](https://github.com/chrisfroe/readdy-workshop-2018-session-notebooks/blob/master/1_monday/number_of_particles.ipynb)
+
 ### Task 4) Crowded mixture, MSD
 The time dependent mean squared displacement (MSD) is defined as
 
