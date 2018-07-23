@@ -4,6 +4,8 @@ sectionName: tuesday
 position: 2
 ---
 {% if false %}
+This session will cover a well studied reaction diffusion system, the Lotka Volterra system, that describes a predator prey dynamics. We will investigate how parameters in these system affect spatiotemporal correlations.
+
 ### Task 1) well mixed
 
 Simulate a Lotka-Volterra/predator-prey system for the given parameters and __determine the period of oscillation__.
@@ -30,8 +32,10 @@ Initialize a system by randomly positioning 1000 particles of each species on th
 
 From the observable, plot the number of particles for the two species as a function of time in the same plot. Make sure to label the lines accordingly. Additionally plot the phase space trajectory, i.e. plot the number of predator particles against the number of prey particles.
 
+__Question__: What is the period of oscillation?
+
 ### Task 2) diffusion influenced
-We simulate the same system as in Task 1) but now introduce a scaling parameter $\ell$. This scaling parameter is used to control the ratio of reaction rates $\lambda$ and the rate of diffusion encounter $D/R^2$.
+We simulate the same system as in Task 1) but now introduce a scaling parameter $\ell$. This scaling parameter is used to control the ratio of reaction rates $\lambda$ and the rate of diffusion $D$.
 
 For a given parameter $\ell$
 - change all reaction rate constants $\tilde\lambda= \lambda\times\sqrt{\ell}$
@@ -42,12 +46,12 @@ where the tilde ($\tilde\,$) denotes the actually used value in the simulation a
 This means that the ratio
 
 $$
-\frac{\tilde\lambda}{\tilde D/R^2} = \ell\,\frac{\lambda}{D/R^2}=\ell\times\mathrm{const}
+\frac{\tilde\lambda}{\tilde D} = \ell\,\frac{\lambda}{D}=\ell\times\mathrm{const}
 $$
 
 is controlled by $\ell$.
 
-Perform the same simulation as in Task 1) but for different scaling parameters $\ell$, each time saving the resulting plots to a file, use `plt.savefig(...)`. Run each simulation for $n$ number of integration steps, where
+Perform the same simulation as in Task 1) but for different scaling parameters $\ell$, each time saving the resulting plots (time series and phase plot) to a file, use `plt.savefig(...)`. Run each simulation for $n$ number of integration steps, where
 
 $$
 n(\ell) = 10^4 + \frac{10^6}{\sqrt{\ell}}
@@ -62,5 +66,5 @@ Starting from the parameters of a diffusion influenced system from Task 2), set 
 
 [![](assets/wave.jpg)](https://www.youtube.com/watch?v=Kc2rN16f6xI)
 
-Feel free to adjust all parameters. You can experiment with other spatial patterns as well, have a look at [this paper](http://dx.doi.org/10.1063/1.4729141)
+Feel free to adjust all parameters. You can experiment with other spatial patterns as well, have a look at [this paper](http://dx.doi.org/10.1063/1.4729141).
 {% endif %}

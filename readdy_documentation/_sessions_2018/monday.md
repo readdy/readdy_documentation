@@ -3,7 +3,6 @@ title: Monday - ReaDDy intro
 sectionName: monday
 position: 1
 ---
-{% if false %}
 ### Task 1) installation
 Get miniconda and install it
 ```bash
@@ -160,4 +159,3 @@ to obtain the observable. The `distribution` contains multiple $g(r)$, one for e
 __5a)__ Plot the RDF as a function of the distance (i.e. mean`distribution` as function of `bin_centers`)
 
 __5b)__ Perform the same procedure but for non-interacting particles, compare with the previous result, preferably in the same plot. What are your observations?
-{% endif %}
