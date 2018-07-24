@@ -3,7 +3,7 @@ title: Tuesday - Lotka Volterra
 sectionName: tuesday
 position: 2
 ---
-{% if false %}
+
 This session will cover a well studied reaction diffusion system, the Lotka Volterra system, that describes a predator prey dynamics. We will investigate how parameters in these system affect spatiotemporal correlations.
 
 ### Task 1) well mixed
@@ -61,10 +61,9 @@ Vary the scaling parameter from 1 to 400.
 
 __Question__: For which $\ell$ do you see a qualitative change of behavior in the system, both from looking at the plots and the VMD visualization? Which cases are reaction-limited and which cases are diffusion-limited?
 
-### Bonus task)
+### Task 3)
 Starting from the parameters of a diffusion influenced system from Task 2), set up a simulation, where prey particles form a traveling wavefront, closely followed by predators. Therefore you might want to change the simulation box and box potential parameters to get a 2D rectangular plane.
 
 [![](assets/wave.jpg)](https://www.youtube.com/watch?v=Kc2rN16f6xI)
 
 Feel free to adjust all parameters. You can experiment with other spatial patterns as well, have a look at [this paper](http://dx.doi.org/10.1063/1.4729141).
-{% endif %}
