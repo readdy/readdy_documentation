@@ -142,6 +142,8 @@ $$
 
 From your resulting plot identify "finite size saturation", "subdiffusion", "reduced normal diffusion", "ballistic/normal diffusion"
 
+[__Solution__](https://github.com/chrisfroe/readdy-workshop-2018-session-notebooks/blob/master/1_monday/crowded_msd.ipynb)
+
 ### Task 5) Crowded mixture, RDF
 The radial distribution function (RDF) $g(r)$ describes how likely it is to find two particles at distance $r$. Compare the  RDF of harmonically repelling particles and the RDF of non-repelling particles.
 
