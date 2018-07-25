@@ -42,6 +42,7 @@ simulation.observe.particle_positions(stride=1000)
 ```
 Now we need to set the initial positions of particles and set up the polymer connectivity, therefore we do a 3D random walk that generates us the initial positions of the chain of particles
 ```python
+n_particles = 50
 init_pos = [np.zeros(3)]
 for i in range(1, n_particles):
     displacement = np.random.normal(size=(3))
