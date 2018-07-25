@@ -3,152 +3,302 @@ title: Wednesday - Self assembly
 sectionName: wednesday
 position: 3
 ---
-{% if false %}
 
-{: .centered}
-![](assets/micell.jpg)
+This session will cover macromolecules and how they assemble into superstructures
+### Task 1) polymer and radius of gyration
+![](assets/polymer.png)
 
-Register a particle type A and a partially
-attractive potential.
+In this task we will calculate the [radius of gyration](https://en.wikipedia.org/wiki/Radius_of_gyration#Molecular_applications) of a polymer as a function of the stiffness of the polymer.
+
+We will only need one particle species `monomer` with diffusion constant $D=0.1$. Note that this will not be a _normal_ species but will be a __topology species__:
 ```python
-# register particle type
-particle_radius = 0.5
-sim.register_particle_type("A", diffusion_coefficient=0.2, radius=particle_radius)
+system.add_topology_species("monomer", 0.1)
+```
 
-# the pairwise interaction
-sim.register_potential_piecewise_weak_interaction(
-    "A", "A", force_constant=20.,
-    desired_particle_distance=2.*particle_radius,
-    depth=2.0, no_interaction_distance=4.*particle_radius
+The __simulation box__ shall have `box_size= [32.,32.,32.]`, and be __non-periodic__. This means that there has to be a __box potential__ registered for the type `monomer` with force constant 50, `origin=np.array([-15,-15,-15])` and `extent=np.array([30,30,30])`. 
+
+Between monomers there should be a harmonic repulsion potential with `force_constant=50` and `interaction_distance=1`
+
+In order to build a polymer we use [topologies](https://readdy.github.io/system.html#topologies). At first we need to register a type of toplogy
+```python
+system.topologies.add_type("polymer")
+```
+The monomers in a polymer must be held together by [harmonic bonds](https://readdy.github.io/system.html#harmonic-bonds), defined by pairs of particle types
+```python
+system.topologies.configure_harmonic_bond(
+    "monomer", "monomer", force_constant=100., length=1.)
+```
+For this example we also specify an [angular potential](https://readdy.github.io/system.html#harmonic-angles), that is defined for a triplet of particle types
+```python
+system.topologies.configure_harmonic_angle(
+    "monomer", "monomer", "monomer", force_constant=stiffness, 
+    equilibrium_angle=np.pi)
+```
+where an `equilibrium_angle`$=\pi$ means 180 degrees.
+The next step is creating the __simulation__. Then we specify the observables, the trajectory and the particle positions
+```python
+simulation.record_trajectory(stride=10000)
+simulation.observe.particle_positions(stride=1000)
+```
+Now we need to set the initial positions of particles and set up the polymer connectivity, therefore we do a 3D random walk that generates us the initial positions of the chain of particles
+```python
+init_pos = [np.zeros(3)]
+for i in range(1, n_particles):
+    displacement = np.random.normal(size=(3))
+    # normalize the random vetor
+    displacement /= np.sqrt(np.sum(displacement * displacement))
+    # append the new position to the chain
+    init_pos.append(init_pos[i-1]+displacement)
+init_pos = np.array(init_pos)
+```
+Now that we have generated the positions we have to add them to the simulation together with the actual topology instance
+```python
+top = sim.add_topology("polymer", len(init_pos)*["monomer"], init_pos)
+```
+The last step is to define the connectivity
+```python
+for i in range(1, n_particles):
+    top.get_graph().add_edge(i-1, i)
+```
+Now that we have defined the simulation object we can run the simulation
+```python
+if os.path.exists(sim.output_file):
+    os.remove(sim.output_file)
+sim.run(1000000, 2e-2)
+```
+
+__1a)__ Implement the simulation described above for `stiffness=0.1`. From the recorded trajectory, have a look at the VMD output. Does the structure of the polymer change in the initial phase?
+
+__1b)__ Do the same simulation as above, but now calculate the radius of gyration as a function of time. Given the positions observable, you can calculate the radius of gyration as follows (the assertion statements may help you understand how the arrays are shaped):
+```python
+times, positions = traj.read_observable_particle_positions()
+
+# convert to numpy array
+T = len(positions)
+N = len(positions[0])
+pos = np.zeros(shape=(T, N, 3))
+for t in range(T):
+    for n in range(N):
+        pos[t, n, 0] = positions[t][n][0]
+        pos[t, n, 1] = positions[t][n][1]
+        pos[t, n, 2] = positions[t][n][2]
+
+# calculate radius of gyration
+mean_pos = np.mean(pos, axis=1)
+
+difference = np.zeros_like(pos)
+for i in range(n_particles):
+    difference[:,i] = pos[:,i] - mean_pos
+
+assert difference.shape == (T,N,3)
+
+# square and sum over coordinates (axis=2)
+squared_radius_g = np.sum(difference * difference, axis=2)
+
+assert squared_radius_g.shape == (T,N)
+
+# average over particles (axis=1)
+squared_radius_g = np.mean(squared_radius_g, axis=1)
+
+radius_g = np.sqrt(squared_radius_g)
+
+assert radius_g.shape == times.shape == (T,)
+```
+Plot the radius of gyration as a function of time, is it equilibrated? Calculate its time average and standard deviation over the whole timeseries.
+
+__1c)__ Put all of the above into one function `simulate(stiffness)` that performs the whole simulation and analysis for a given stiffness parameter and returns the mean (one number only, not an array) and standard deviation of the radius of gyration. The function body should roughly consist of
+```python
+def simulate(stiffness):
+    system = readdy.ReactionDiffusionSystem(...)
+    ... # system configuration
+    simulation = system.simulation(...)
+    out_file = os.path.join(data_dir, "polymer_"+str(stiffness)+".h5")
+    ... # simulation setup
+    simulation.run(...)
+    ... # calculation of radius of gyration
+    return mean_radius_of_gyration, deviation_radius_of_gyration
+```
+Measure the mean radius of gyration with standard deviation as a function of the stiffness parameter for values `[0.1, 0.5, 1.0, 5.0, 10.]`. This might look like:
+```python
+values = [0.1, 0.5, 1., 5., 10.]
+rgs = []
+devs = []
+for stiffness in values:
+    rg, dev = simulate(stiffness)
+    rgs.append(rg)
+    devs.append(dev)
+```
+Plot the mean radius of gyration as a function of the stiffness. Explain your result by looking also at the VMD output.
+
+### Task 2) linear filament assembly
+In this task we will also look at a linear polymer chain, but this time we will not place it initially, but instead we will let it self-assemble from monomers in solution. The polymer that we will build will have the following structure
+```
+head--core--(...)--core--tail
+```
+where `(...)` means that there can be many core particles, but the structure is always linear.
+
+The simulation box is  __periodic__  with `box_size=[20., 20., 20.]`.
+
+We define three __topology particle species__ and one normal particle species
+```python
+system.add_species("substrate", 0.1)
+system.add_topology_species("head", 0.1)
+system.add_topology_species("core", 0.1)
+system.add_topology_species("tail", 0.1)
+```
+We also define one topology type
+```python
+system.topologies.add_type("filament")
+```
+There should be the following potentials for topology particles
+```python
+system.topologies.configure_harmonic_bond(
+    "head", "core", force_constant=100, length=1.)
+system.topologies.configure_harmonic_bond(
+    "core", "core", force_constant=100, length=1.)
+system.topologies.configure_harmonic_bond(
+    "core", "tail", force_constant=100, length=1.)
+```
+Like in task 1) the polymer should be stiff, we can compactly write this for all triplets of particle types:
+```python
+triplets = [
+    ("head", "core", "core"),
+    ("core", "core", "core"),
+    ("core", "core", "tail"),
+    ("head", "core", "tail")
+]
+for (t1, t2, t3) in triplets:
+    system.topologies.configure_harmonic_angle(
+        t1, t2, t3, force_constant=50., 
+        equilibrium_angle=np.pi)
+```
+We now introduce a [topology reaction](https://readdy.github.io/system.html#topology_reactions). They allow changes to the graph of a topology in form of a reaction. Here we will use the following definition.
+```python
+system.topologies.add_spatial_reaction(
+    "attach: filament(head) + (substrate) -> filament(core--head)",
+    rate=5.0, radius=1.5
 )
 ```
+Using the [documentation](https://readdy.github.io/system.html#spatial-reactions), familiarize yourself, what this means. Do not hesitate to ask, since topology reactions can become quite a tricky concept!
 
-As in the sessions before, consider a flat quadratic surface,
-that confines particles. The surface has an __edge length 54__
-and a __force constant 200__. You can use the code of the previous sessions to generate the box potential and to distribute particles uniformly, but make sure to use the correct lengths. Set the system temperature to __kbt = 0.8__.
-
-### Task 1)
-
-Distribute __200 A particles__ uniformly and simulate for 200000 timesteps of stepsize 0.005. Calculate the mean-squared-displacement (MSD) as a function of time. Therefore we will use the `Particles` observable and calculate the MSD from this ourselves.
-
-The execution of the simulation should look as follows
+Next create a simulation object. We want to observe the following
 ```python
-# define observables and run
-traj_handle = sim.register_observable_flat_trajectory(stride=10)
-
-particles_data = []
-def get_particles(x):
-    global particles_data
-    particles_data.append(x)
-
-handle = sim.register_observable_particles(stride=100, callback=get_particles)
-
-with cl.closing(api.File("./obs.h5", api.FileAction.CREATE, api.FileFlag.OVERWRITE)) as f:
-    traj_handle.enable_write_to_file(file=f, data_set_name="traj", chunk_size=10000)
-    t1 = time.perf_counter()
-    sim.run_scheme_readdy(True) \
-        .write_config_to_file(f) \
-        .with_reaction_scheduler("UncontrolledApproximation") \
-        .configure_and_run(200000, 0.005)
-    t2 = time.perf_counter()
-print("Simulated", t2 - t1, "seconds")
+simulation.record_trajectory(stride=100)
+simulation.observe.topologies(stride=100)
 ```
-
-To calculate the MSD from `particles_data` use the following function:
+Add one filament topology to the simulation
 ```python
-def get_msd(particles_data):
-    # obtain positions and ids as numpy arrays
-    positions = []
-    ids = []
-    for t in range(len(particles_data)):
-        positions.append(
-            np.array([[x[0], x[1], x[2]] for x in particles_data[t][2]])
-        )
-        ids.append(
-            np.array([x for x in particles_data[t][1]])
-        )
-    positions = np.array(positions)
-    ids = np.array(ids)
-
-    # sort the positions with respect to ids in each timestep,
-    # since they might have changed the index in the positions array
-    sorted_positions = np.zeros_like(positions)
-    for t in range(len(ids)):
-        sort_indices = np.argsort(ids[t])
-        sorted_positions[t] = positions[t][sort_indices]
-
-    # calculate the actual msd
-    difference = sorted_positions - sorted_positions[0]
-    squared = difference * difference
-    squared_deviation = np.sum(squared, axis=2)
-    n_particles = sorted_positions.shape[1]
-    mean_squared_deviation = np.sum(squared_deviation, axis=1) / n_particles
-    return mean_squared_deviation
+init_top_pos = np.array([
+    [ 1. ,0. ,0.],
+    [ 0. ,0. ,0.],
+    [-1. ,0. ,0.]
+])
+top = simulation.add_topology(
+  "filament", ["head", "core", "tail"], init_top_pos)
+top.get_graph().add_edge(0, 1)
+top.get_graph().add_edge(1, 2)
 ```
-
-From the MSD, give a rough estimate of the time it takes for the particles to cluster together.
-Hint: you might want to look at the MSD in a log-log plot.
-
-
-### Task 2)
-
-To actually observe micellization we need a lipid-like structure. E.g. one head-particle bound to one or multiple tail-particles. Therefore use the __topologies__ feature.
-To construct a topology you need to do an additional import at the top of your notebook
+Additionally we need substrate particles, that can attach themselves to the filament
 ```python
-import readdy._internal.readdybinding.api.top as top
+n_substrate = 300
+origin = np.array([-10., -10., -10.])
+extent = np.array([20., 20., 20.])
+init_pos = np.random.uniform(size=(n_substrate,3)) * extent + origin
+simulation.add_particles("substrate", positions=init_pos)
 ```
-
-Register two particle species that we need
-
-| species | diffusion | radius | flavor                            |
-|:--------|:----------|:-------|:----------------------------------|
-| head    | 0.5       | 1.0    | `api.ParticleTypeFlavor.TOPOLOGY` |
-| tail    | 0.5       | 0.5    | `api.ParticleTypeFlavor.TOPOLOGY` |
-
-Both of these types should be attached to the 2D surface as in the task before
+Then, run the simulation
 ```python
-# the potential that confines particles
-origin = np.array([-28.,-28.,-0.001])
-extent = np.array([54.,54.,0.002])
-sim.register_potential_box("head", 200., api.Vec(*origin), api.Vec(*extent), False)
-sim.register_potential_box("tail", 200., api.Vec(*origin), api.Vec(*extent), False)
+if os.path.exists(simulation.output_file):
+    os.remove(simulation.output_file)
+dt = 5e-3
+simulation.run(400000, dt)
 ```
-
-The two types `head` and `tail` shall also interact via potentials
+One important observable will be the length of the filament as a function of time. It can be obtained from the trajectory as follows:
 ```python
-# the pairwise interactions
-sim.register_potential_piecewise_weak_interaction(
-    "tail", "tail", force_constant=30., desired_particle_distance=2.*particle_radius,
-    depth=2.0, no_interaction_distance=4.*particle_radius
-)
-sim.register_potential_harmonic_repulsion("head", "head", force_constant=30.)
+times, topology_records = traj.read_observable_topologies()
+chain_length = [ len(tops[0].particles) for tops in topology_records ]
 ```
+The last line is a [list comprehension](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions). `tops` is a list of topologies for a given time step. Hence, `tops[0]` is the first (and in this case, the only) topology in the system. `tops[0].particles` is a list of particles belonging to this topology. Thus, its length yields the length of the filament.
 
-Now let's build a topology, i.e. a group of particles, bonded together.
-The first step is to configure how the particles within a topology interact
+__2a)__ Have a look at the VMD output. Describe what happens? Additionally plot the length of the filament as a function of time. __Note__ that you shall now plot the simulation time and not the time step indices, i.e. do the following
 ```python
-# topologies configuration
-sim.configure_topology_bond_potential("head", "tail", force_constant=50, length=1.)
-sim.configure_topology_bond_potential("tail", "tail", force_constant=50, length=1.)
+times = np.array(times) * dt
 ```
+where `dt` is the time step size.
 
-The final step is to add the topologies and their particles to the simulation. We will add
+__2b)__ Using your data of the filament-length, fit a function of the form
+
+$$
+f(t)=a(1-e^{-bt})+3
+$$
+
+to your data. You should use [scipy.optimize.curve_fit](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html) to do so
 ```python
-# adding the topologies
-rnd = np.random.uniform
-for i in range(50):
-    particles = []
-    pos = origin + rnd(size=3) * extent
-    particles.append(sim.create_topology_particle("head", api.Vec(*pos)))
-    tail_orientation = rnd(size=3)
-    particles.append(sim.create_topology_particle("tail", api.Vec(*(pos + tail_orientation))))
-    particles.append(sim.create_topology_particle("tail", api.Vec(*(pos + 2.*tail_orientation))))
-    topology = sim.add_topology(particles)
-    topology.get_graph().add_edge(0, 1)
-    topology.get_graph().add_edge(1, 2)
+import scipy.optimize as so
+
+def func(t, a, b):
+    return a*(1. - np.exp(-b * t)) + 3.
+
+popt, pcov = so.curve_fit(func, times, chain_length)
+
+print("popt", popt)
+print("pcov", pcov)
+
+f = lambda t: func(t, popt[0], popt[1])
+
+plt.plot(times, chain_length, label="data")
+plt.plot(times, f(times), label=r"fit $f(t)=a(1-e^{-bt})+3$")
+plt.xlabel("Time")
+plt.ylabel("Filament length")
+plt.legend()
+plt.show()
 ```
+__Question:__ Given the result of the fitting parameters
+- How large is the equilibration rate?
+- What will be the length of the filament for $t\to\infty$?
 
-Now use the simulation execution from task 1, and also the MSD calculation from task 1. Run the simulation, have a look at the VMD output. What do you observe and why?
+__2c)__ We now introduce a disassembly reaction for the `tail` particle. This is done by adding the following to your system configuration.
+```python
+def rate_function(topology):
+    """
+    if the topology has at least (head, core, tail)
+    the tail shall be removed with a fixed probability per time
+    """
+    vertices = topology.get_graph().get_vertices()
+    if len(vertices) > 3:
+        return 0.05
+    else:
+        return 0.
 
-Look at the MSD and make an estimate at which timescale the lipids cluster together.
-{% endif %}
+def reaction_function(topology):
+    """
+    find the tail and remove it,
+    and make the adjacent core particle the new tail
+    """
+    recipe = readdy.StructuralReactionRecipe(topology)
+    vertices = topology.get_graph().get_vertices()
+
+    tail_idx = None
+    adjacent_core_idx = None
+    for v in vertices:
+        if topology.particle_type_of_vertex(v) == "tail":
+            adjacent_core_idx = v.neighbors()[0].get().particle_index
+            tail_idx = v.particle_index
+
+    recipe.separate_vertex(tail_idx)
+    recipe.change_particle_type(tail_idx, "substrate")
+    recipe.change_particle_type(adjacent_core_idx, "tail")
+
+    return recipe
+
+
+system.topologies.add_structural_reaction(
+    "filament",
+    reaction_function=reaction_function, 
+    rate_function=rate_function)
+```
+Familiarize yourself with this kind of [structural topology reaction](https://readdy.github.io/system.html#structural-reactions)
+
+Repeat the same analysis as before, and also observe your VMD output. 
+- How large is the equilibration rate?
+- What will be the length of the filament for $t\to\infty$?
