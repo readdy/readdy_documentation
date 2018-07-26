@@ -24,7 +24,7 @@ PS=Practical session
 
 |              | Monday           | Tuesday                    | Wednesday               | Thursday             | Friday |
 |:-------------|:-----------------|:---------------------------|:------------------------|:---------------------|:-------|
-| 9 - ~10      | [Introduction](http://userpage.fu-berlin.de/chrisfr/readdy_website/assets/talks/2018-07-23-readdy-workshop-intro.pdf)     | [Reaction diffusion methods](http://userpage.fu-berlin.de/chrisfr/readdy_website/assets/talks/2018-07-24-readdy-workshop-rdmethods.pdf)| MD and coarse graining  | ReaDDy Software      | PS     |
+| 9 - ~10      | [Introduction](http://userpage.fu-berlin.de/chrisfr/readdy_website/assets/talks/2018-07-23-readdy-workshop-intro.pdf)     | [Reaction diffusion methods](http://userpage.fu-berlin.de/chrisfr/readdy_website/assets/talks/2018-07-24-readdy-workshop-rdmethods.pdf)| MD and coarse graining  | [ReaDDy Software](http://userpage.fu-berlin.de/chrisfr/readdy_website/assets/talks/2018-07-25-readdy_architecture.pdf)      | PS     |
 | coffee break |                  |                            |                         |                      |        |
 | ~10 - 12     | PS - ReaDDy      | PS - Predator prey         | PS - Topologies         | PS - C++ potential   | PS     |
 | lunch        |                  |                            |                         |                      |        |
