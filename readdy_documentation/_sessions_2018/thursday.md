@@ -156,7 +156,7 @@ Plot the histogram `hist` as a function of the x-coordinates `bin_centers`. What
 __1e)__ In statistical mechanics, the above histogram describes a probability distribution $\rho(x)$. When a system is closed, isolated and coupled to a heat bath with temperature $T$, one can assume that the distribution is related to the potential $U$ in the following way:
 
 $$
-\rho(x) \propto e^{U(x)/k_BT}
+\rho(x) \propto e^{-U(x)/k_BT}
 $$
 
 where $k_BT=1$ in our case. Using this assumption, try to recover your potential, i.e. solve the above equation for $U$, and calculate it as a function of x, given your histogram.
