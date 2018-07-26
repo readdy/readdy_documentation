@@ -195,9 +195,11 @@ The latter part of $V_{PP}$ is a screened electrostatic potential already availa
 The gaussian potentials however are not implemented in ReaDDy. This is your task.
 
 __2a)__ Implement the __pair__ potential
+
 $$
 U(r, A, L, r_0) = \left\{\begin{array}{rl}Ae^{-r^2/L}& \mathrm{if }~ r<r_0\\ 0&\mathrm{otherwise} \end{array}\right.
 $$
+
 as `MyPairPotential`. $A$ is the `prefactor` regulating the strength and the sign of interaction ($A>0$ repulsive, $A<0$ attractive). $L$ is the `variance`, that determines the width of the potential. $r_0$ is the `cutoff`. Use these names also in your `binding.cpp` for the constructor arguments.
 
 You might want to have a look at how this potential actually looks like.
@@ -207,10 +209,12 @@ __Note:__ From the potential $U(r)$ you first have to derive the analytical expr
 $$
 \mathbf{F}_i(\mathbf{x}_j-\mathbf{x}_i) = - \nabla_i U(r) = - \frac{\partial U}{\partial r} \frac{\partial r(\mathbf{x}_i, \mathbf{x}_j)}{\partial \mathbf{x}_i}
 $$
+
 $$
 r(\mathbf{x}_i, \mathbf{x}_j) = \| \mathbf{x}_j - \mathbf{x}_i \| =
 \|\mathbf{x}_{ij}\|
 $$
+
 $$
 \frac{\partial r(\mathbf{x}_i, \mathbf{x}_j)}{\partial \mathbf{x}_i} = -\frac{\mathbf{x}_{ij}}{\| \mathbf{x}_{ij} \|}
 $$
