@@ -5,7 +5,7 @@ position: 1
 ---
 
 In the following it will be explained how to [add particles](#adding-particles), [add topologies](#adding-topologies),
-[configure](#kernel-configuration) specifics of the selected kernel, and how to [record a trajectory](#recording-a-trajectory).
+[configure](#kernel-configuration) specifics of the selected kernel, how to [record a trajectory](#recording-a-trajectory), and how to perform [checkpointing](#checkpointing).
 
 ## Adding particles
 
@@ -113,3 +113,23 @@ a performance parameter that has an effect on how large every chunk of data in t
 influencing the time needed for IO during the simulation and the resulting file size.
 
 For reading back the trajectory data, please refer to [post-processing]({{site.baseurl}}/results.html).
+
+## Checkpointing
+
+Checkpoints in ReaDDy consist out of the particles' and topologies' configurations at specific points in simulation time. They can be enabled by calling
+```python
+simulation.make_checkpoints(stride=1000)
+```
+which causes checkpoints to be made every 1000 steps. For this purpose a `simulation.output_file` needs to be set as well.
+
+Once the simulation has run its course and checkpoints have been recorded, they can be listed by
+```python
+simulation.list_checkpoints('my_output_file.h5')
+```
+and a system's state can be restored by a call to
+```python
+simulation.load_particles_from_checkpoint('my_output_file.h5', n=17)
+```
+amounting to restoring the state of the 17th checkpoint at simulation step `17 * stride`.
+
+It should be noted that if the simulation should be continued, an `output_file` should be chosen that is different from the `output_file` of the original simulation.

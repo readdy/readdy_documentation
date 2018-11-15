@@ -11,7 +11,7 @@ the [java software](https://github.com/readdy/readdy_java) of the same name, by
 [Johannes Schöneberg](https://sites.google.com/a/schoeneberglab.org/johannes-schoeneberg/)
 and Frank Noé.
 
-ReaDDy v1.0.2 is released for Linux and Mac! See the [installation guide]({{site.baseurl}}/installation.html).
+ReaDDy v2.0.1 is released for Linux and Mac! See the [installation guide]({{site.baseurl}}/installation.html).
 
 [__Note our upcoming paper on ReaDDy__](https://www.biorxiv.org/content/early/2018/07/23/374942)
 
