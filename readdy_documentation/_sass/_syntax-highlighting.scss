@@ -48,12 +48,18 @@ pre {
  * Syntax highlighting styles
  */
 
+// General code, especially inline code
 code {
   font-family: $mono-font;
   font-size: 12px;
   line-height: normal;
-  background-color: $code-background-color;
-  color: #b26c42;
+  background-color: $lightest;
+  color: $blue;
+  border: $blue-lighter solid 1px;
+  border-radius: 2px;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-bottom: 2px;
 }
 
 @media(min-width: $transition-to-large) {
@@ -62,26 +68,32 @@ code {
   }
 }
 
+// Code listings
 div.highlight {
   font-family: $mono-font;
   font-size: 12px;
 
-  color: #333333;
-  background: $code-background-color;
+  //background: $lighter;
+  background: $orange-lightest;
   code {
-    background-color: $code-background-color;
-    color: #333333;
+    border: none;
+    //color: $blue-darker;
+    color: $darker;
+    background-color: inherit;
     font-size: 12px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
   }
   position: relative;
   overflow-x: auto;
   padding: 0.7rem;
-  border: $code-border-color solid 1px;
+  border: $blue-lighter solid 1px;
   line-height: normal;
 
   .c {
     color: #998;
-    font-style: italic
+    //font-style: italic
   }
   // Comment
   .err {
@@ -109,7 +121,7 @@ div.highlight {
   // Comment.Multiline
   .cp {
     color: #999;
-    font-weight: bold
+    //font-weight: bold
   }
   // Comment.Preproc
   .c1 {
@@ -119,7 +131,7 @@ div.highlight {
   // Comment.Single
   .cs {
     color: #999;
-    font-weight: bold;
+    //font-weight: bold;
     font-style: italic
   }
   // Comment.Special
@@ -164,7 +176,7 @@ div.highlight {
   }
   // Generic.Prompt
   .gs {
-    font-weight: bold
+    //font-weight: bold
   }
   // Generic.Strong
   .gu {
@@ -193,7 +205,7 @@ div.highlight {
   // Keyword.Reserved
   .kt {
     color: #458;
-    font-weight: bold
+    //font-weight: bold
   }
   // Keyword.Type
   .m {
@@ -214,7 +226,7 @@ div.highlight {
   // Name.Builtin
   .nc {
     color: #458;
-    font-weight: bold
+    //font-weight: bold
   }
   // Name.Class
   .no {
@@ -227,7 +239,7 @@ div.highlight {
   // Name.Entity
   .ne {
     color: #900;
-    font-weight: bold
+    //font-weight: bold
   }
   // Name.Exception
   .nf {
@@ -248,7 +260,7 @@ div.highlight {
   }
   // Name.Variable
   .ow {
-    font-weight: bold
+    //font-weight: bold
   }
   // Operator.Word
   .w {
