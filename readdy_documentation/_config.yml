@@ -37,7 +37,7 @@ collections:
     output: true
     permalink: /:collection/:path
     display-name: Benchmark
-  sessions_2018:
+  workshop_sessions:
     output: false
     display-name: Practical sessions
 defaults:

@@ -1,5 +1,5 @@
 ---
-title: Friday - Your ideas
+title: Friday
 sectionName: friday
 position: 5
 ---

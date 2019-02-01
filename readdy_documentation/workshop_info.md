@@ -1,16 +1,22 @@
 ---
 layout: page
-title: Summer workshop 2018
+title: Summer workshop 2019
 ---
 
-The workshop adresses young scientists at M.Sc. or Ph.D. student level with a background in physics, chemistry, bioinformatics or computer science. FU-students can receive the equivalent of a 2 SWS module (5 ECTS points) for a successful completion.
-The workshop is from Monday 23.07.2018 until Friday 27.07.2018, each day from 9h to 15h.
-It will be located in the basement of the computer-science building
+The workshop adresses young scientists at M.Sc. or Ph.D. student level with a background in physics, chemistry, bioinformatics or computer science. 
+FU-students can receive the equivalent of a 2 SWS module (5 ECTS points) for a successful completion.
+The workshop is from Monday 15.07.2019 until Friday 19.07.2019, each day from 9h to 15h.
+It will be located in __(to be determined, but certainly at FU Berlin)__ 
+
+{% if false %}
+the basement of the computer-science building
 ```
 Takustr. 9
 14195 Berlin
 Room K46
 ```
+{% endif %}
+
 Main topics will be:
 - Macromolecular diffusion and crowding
 - Simulation of signal transduction in cells
@@ -22,6 +28,10 @@ We will have one talk each morning and hands-on practical sessions afterwards. F
 
 PS=Practical session
 
+__(to be determined)__
+
+{% if false %}
+
 |              | Monday           | Tuesday                    | Wednesday               | Thursday             | Friday |
 |:-------------|:-----------------|:---------------------------|:------------------------|:---------------------|:-------|
 | 9 - ~10      | [Introduction](http://userpage.fu-berlin.de/chrisfr/readdy_website/assets/talks/2018-07-23-readdy-workshop-intro.pdf)     | [Reaction diffusion methods](http://userpage.fu-berlin.de/chrisfr/readdy_website/assets/talks/2018-07-24-readdy-workshop-rdmethods.pdf)| MD and coarse graining  | [ReaDDy Software](http://userpage.fu-berlin.de/chrisfr/readdy_website/assets/talks/2018-07-25-readdy_architecture.pdf)      | PS     |
@@ -29,6 +39,8 @@ PS=Practical session
 | ~10 - 12     | PS - ReaDDy      | PS - Predator prey         | PS - Topologies         | PS - C++ potential   | PS     |
 | lunch        |                  |                            |                         |                      |        |
 | 13 - 15      | PS - Observables | PS - Diffusion-influenced  | PS - Topology reactions | PS - Nuclear waffles | PS     |
+
+{% endif %}
 
 ## Prerequisites
 There will be Linux PCs available. You are free to bring your own laptop, but note that we currently support Linux and
@@ -67,8 +79,7 @@ For lunch please bring your own provisions or use one of the following options:
 - [FU Mensa](https://www.stw.berlin/en/dining-facilities/mensa-fu-ii.html), canteen, Otto-von-Simson-Str. 26, 
   [mensa card](https://www.stw.berlin/en/dining-facilities/themen/mensacard.html)
 - [Kantine Julius-Kühn-Institut](http://www.el-okle.de/), canteen
-- [Baci's Coffee](https://www.yelp.de/biz/bacis-coffee-berlin?utm_campaign=qype_de&utm_source=referrer), coffee shop,
-  Königin-Luise-Str. 39, soups bagel cakes
+- [Baci's Coffee](https://baciscoffee.eatbu.com/?lang=en), coffee shop, Königin-Luise-Str. 39, soups bagel cakes
 - [Asia Snack Dahlem](http://www.asiasnack-dahlem.de), vietnamese, Königin-Luise-Str. 38
 - [eßkultur in den Museen Dahlem](http://www.esskultur-berlin.de/catering/en/where/dahlem.php?lang=EN), 
   international, Takustr. 38-40 (via car park)

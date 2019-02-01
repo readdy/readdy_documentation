@@ -1,8 +1,10 @@
 ---
-title: Tuesday - Lotka Volterra
+title: Tuesday
 sectionName: tuesday
 position: 2
 ---
+
+{% if false %}
 
 This session will cover a well studied reaction diffusion system, the Lotka Volterra system, that describes a predator prey dynamics. We will investigate how parameters in these system affect spatiotemporal correlations.
 
@@ -67,3 +69,5 @@ Starting from the parameters of a diffusion influenced system from Task 2), set 
 [![](assets/wave.jpg)](https://www.youtube.com/watch?v=Kc2rN16f6xI)
 
 Feel free to adjust all parameters. You can experiment with other spatial patterns as well, have a look at [this paper](http://dx.doi.org/10.1063/1.4729141).
+
+{% endif %}

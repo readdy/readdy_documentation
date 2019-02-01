@@ -39,6 +39,8 @@ print(readdy.__version__)
 If this does not return an error, you are ready to readdy (almost).
 Make sure you also have `vmd` installed. It should be installed on the universities machines.
 
+{% if false %}
+
 ### Task 2) ReaDDy introduction presentation
 Follow along the [ReaDDy introduction](https://github.com/chrisfroe/readdy-workshop-2018-session-notebooks/blob/master/1_monday/intro.ipynb). You should be able to reproduce the presented usage in your own ipython notebook.
 
@@ -162,3 +164,5 @@ to obtain the observable. The `distribution` contains multiple $g(r)$, one for e
 __5a)__ Plot the RDF as a function of the distance (i.e. mean`distribution` as function of `bin_centers`)
 
 __5b)__ Perform the same procedure but for non-interacting particles, compare with the previous result, preferably in the same plot. What are your observations?
+
+{% endif %}

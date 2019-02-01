@@ -1,8 +1,10 @@
 ---
-title: Wednesday - Self assembly
+title: Wednesday
 sectionName: wednesday
 position: 3
 ---
+
+{% if false %}
 
 This session will cover macromolecules and how they assemble into superstructures
 ### Task 1) polymer and radius of gyration
@@ -303,3 +305,6 @@ Familiarize yourself with this kind of [structural topology reaction](https://re
 Repeat the same analysis as before, and also observe your VMD output. 
 - How large is the equilibration rate?
 - What will be the length of the filament for $t\to\infty$?
+
+
+{% endif %}

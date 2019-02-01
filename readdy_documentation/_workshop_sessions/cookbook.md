@@ -1,12 +1,11 @@
 ---
-layout: page
-title: Practical sessions
+title: Cookbook
+sectionName: cookbook
+position: 6
 ---
 
-Here we'll gather the material and tasks for the daily sessions. 
-Solutions to the tasks are found [here](https://github.com/chrisfroe/readdy-workshop-2018-session-notebooks)
+This section has some solutions to common problems you might run into.
 
-### Some tips for frequent problems
 - __The order__ in which you create and manipulate the `system` and `simulation` matters!
 
 Remember that the workflow should always be
@@ -112,11 +111,3 @@ Then in a bash shell do
 vmd -e myfile.h5.xyz.tcl
 ```
 or prefix with `!` in the jupyter notebook.
-
-{% assign sorted_sessions = site.sessions_2018 | sort: 'position' %}
-{% for entry in sorted_sessions %}
-<section id="{{ entry.sectionName }}">
-<h1>{{ entry.title | markdownify | remove: '<p>' | remove: '</p>'}}</h1>
-{{ entry.content | markdownify }}
-</section>
-{% endfor %}

@@ -1,8 +1,10 @@
 ---
-title: Thursday - Custom potentials
+title: Thursday
 sectionName: thursday
 position: 4
 ---
+
+{% if false %}
 
 ### Task 0) Implementing a C++ potential
 Make sure you are within a conda environment that has `readdy` installed, say `workshop`.
@@ -324,3 +326,4 @@ plt.plot(bin_centers, mean_distribution * bin_centers)
 
 __2d)__ Also observe your VMD output. Can you see waffles? What are the differences of how Schneider _et al_ in their paper simulated the system and what we did? Is ReaDDy an appropriate tool for such a system?
 
+{% endif %}
