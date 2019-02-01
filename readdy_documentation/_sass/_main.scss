@@ -30,6 +30,7 @@
 @media (min-width: $transition-to-side) {
   .main {
     max-width: 50rem;
+    box-shadow: 0 0 50px 18px $grey-lightest;
   }
 }
 
