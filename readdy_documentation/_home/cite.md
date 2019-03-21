@@ -6,6 +6,19 @@ position: 3
 When using ReaDDy in your work, please cite the following paper
 
 ```
+@article{hoffmann2019readdy,
+  title={ReaDDy 2: Fast and flexible software framework for interacting-particle reaction dynamics},
+  author={Hoffmann, Moritz and Fr{\"o}hner, Christoph and No{\'e}, Frank},
+  journal={PLoS computational biology},
+  volume={15},
+  number={2},
+  pages={e1006830},
+  year={2019},
+  publisher={Public Library of Science}
+}
+```
+{% if false %}
+```
 @article{schoeneberg_readdy_2013,
     author = {Schöneberg, Johannes AND Noé, Frank},
     journal = {PLOS ONE},
@@ -21,6 +34,7 @@ When using ReaDDy in your work, please cite the following paper
     doi = {10.1371/journal.pone.0074261}
 }
 ```
+{% endif %}
 
 Also note these further publications using ReaDDy:
 - J. Schöneberg, M. Lehmann, A. Ullrich, Y. Posor, W. Lo, G. Lichtner, J. Schmoranzer, V. Haucke, and F. Noé, _Lipid-mediated PX-BAR domain recruitment couples local membrane constriction to endocytic vesicle fission_, __Nat. Commun.__, vol. 8, no. May, p. 15873, 2017.
