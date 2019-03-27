@@ -115,3 +115,8 @@ input {
   box-sizing: border-box;
 }
 
+// horizontal scrollbar if equation is too wide
+.katex-display {
+  overflow-y: hidden;
+  overflow-x: auto;
+}
