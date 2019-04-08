@@ -114,20 +114,9 @@ partners. In order to solve this, one can chose between two different reaction h
   An example of conflicting reaction events with expected outcome might be
   
   $$
-    \require{cancel}
-  	\left\{
-  		\begin{array}{rcc}
-  			A + B &\xrightarrow{\lambda_1}& C\\
-  			A &\xrightarrow{\lambda_2}& D
-  		\end{array}
-  		\right.
-  		\xrightarrow{\lambda_1 \gg \lambda_2}
-  		\left\{
-  		\begin{array}{rcc}
-  			A + B &\xrightarrow{\lambda_1}& C\\
-  			A &\xrightarrow{\lambda_2}& D \llap{\cancel{\phantom{$A\quad\;\; \xrightarrow D$}}}
-  		\end{array}
-  		\right.
+   \left\{ \begin{array}{rcc} A + B &\xrightarrow{\lambda_1}& C\\ A &\xrightarrow{\lambda_2}& D \end{array} 
+   \right. \xrightarrow{\lambda_1 \gg \lambda_2} \left\{ \begin{array}{rcc} A + B &\xrightarrow{\lambda_1}& C\\
+   &\mathrm{ignored}  \end{array} \right.
   $$
   
   This reaction handler can be selected by invoking

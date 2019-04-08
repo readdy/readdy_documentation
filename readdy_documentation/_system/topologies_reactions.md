@@ -105,10 +105,10 @@ Spatial reactions are locally triggered by proximity of particles, therefore the
 To simplify the definition of these reactions a descriptor language is used, deciding about the nature of the reaction. It consists out of a label and a topology-particle-type reaction equation:
 
 $$
-\begin{array}{rl}
-\text{label_enzymatic: }& T_1(P_1)+T_2(P_2)\rightarrow T_3(P_3) + T_4(P_4)\\
-\text{label_fusion: } & T_1(P_1)+T_2(P_2)\rightarrow T_3(P_3\text{--}P_4)
-\end{array}
+\begin{aligned}
+  \mathrm{label\_enzymatic: }& T_1(P_1)+T_2(P_2)\rightarrow T_3(P_3) + T_4(P_4)\\
+  \mathrm{label\_fusion: } & T_1(P_1)+T_2(P_2)\rightarrow T_3(P_3\mathrm{--}P_4)
+\end{aligned}
 $$
 
 where $T_i$ denote topology types, $P_i$ denote particle types. 

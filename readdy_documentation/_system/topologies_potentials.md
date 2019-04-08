@@ -86,7 +86,8 @@ $$
 V(\phi) = k(1+\cos (n\phi - \phi_0)),
 $$
 
-where $\phi_0$ represents the preferred particle configuration, $k$ the force constant in units of `energy/angle**2`, and $n\in\mathbb{N}_{>0}$ the multiplicity, indicating the number of minima encountered when rotating the bond through $360^\circ$.
+where $\phi_0\in [ -\pi,\pi ]$ represents the offset angle, $k$ the force constant in units of `energy/angle**2`, and $n\in\mathbb{N}_{>0}$ the multiplicity, indicating the number of minima encountered when rotating the bond through $360^\circ$.
+The $i$-th preferred particle configuration, i.e. the $i$-th minimum of $V$ are $\phi_i = \frac{1}{n}\left( \frac{\pi}{2} - \phi_0 + i\pi \right)$
 
 Configuring such a potential for a system amounts to, e.g.,
 ```python
