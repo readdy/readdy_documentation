@@ -12,7 +12,7 @@ the [java software](https://github.com/readdy/readdy_java) of the same name, by
 and Frank Noé.
 
 - ReaDDy v2.0.1 is released for Linux and Mac! See the [installation guide]({{site.baseurl}}/installation.html).
-- Note our [upcoming paper](https://www.biorxiv.org/content/early/2018/07/23/374942) on ReaDDy 2
+- Note our [paper](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1006830) on ReaDDy 2
 - If you are interested in using ReaDDy, we are hosting a [hands-on workshop]({{site.baseurl}}/workshop_info.html) in summer 2019.   
 
 {% assign home_sections = site.home | sort: 'position' %}
