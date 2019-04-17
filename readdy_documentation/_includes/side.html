@@ -79,6 +79,7 @@
         <div class="nav-supergroup-delimiter">
             <b>Advanced topics</b>
         </div>
+        <a class="side-nav-item{% if page.url == '/cookbook.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/cookbook.html">Cookbook</a>
         <a class="side-nav-item{% if page.url == '/development.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/development.html">Development</a>
         {% if page.url == '/development.html' %}
             {% assign sorted_development = site.development | sort: 'position' %}
