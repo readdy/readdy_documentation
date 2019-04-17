@@ -11,6 +11,8 @@ markdown: kramdown
 kramdown:
   math_engine: {}
 highlighter: rouge
+plugins:
+  - jekyll-gist
 collections:
   home:
     output: false
