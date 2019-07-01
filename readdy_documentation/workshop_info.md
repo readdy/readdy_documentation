@@ -6,16 +6,13 @@ title: Summer workshop 2019
 The workshop adresses young scientists at M.Sc. or Ph.D. student level with a background in physics, chemistry, bioinformatics or computer science. 
 FU-students can receive the equivalent of a 2 SWS module (5 ECTS points) for a successful completion.
 The workshop is from Monday 15.07.2019 until Friday 19.07.2019, each day from 9h to 15h.
-It will be located in __(to be determined, but certainly at FU Berlin)__ 
-
-{% if false %}
-the basement of the computer-science building
+It will be located in the math department
 ```
-Takustr. 9
+Arnimallee. 6
 14195 Berlin
-Room K46
+Room 030
 ```
-{% endif %}
+
 
 Main topics will be:
 - Macromolecular diffusion and crowding
@@ -28,19 +25,13 @@ We will have one talk each morning and hands-on practical sessions afterwards. F
 
 PS=Practical session
 
-__(to be determined)__
-
-{% if false %}
-
-|              | Monday           | Tuesday                    | Wednesday               | Thursday             | Friday |
-|:-------------|:-----------------|:---------------------------|:------------------------|:---------------------|:-------|
-| 9 - ~10      | [Introduction](http://userpage.fu-berlin.de/chrisfr/readdy_website/assets/talks/2018-07-23-readdy-workshop-intro.pdf)     | [Reaction diffusion methods](http://userpage.fu-berlin.de/chrisfr/readdy_website/assets/talks/2018-07-24-readdy-workshop-rdmethods.pdf)| MD and coarse graining  | [ReaDDy Software](http://userpage.fu-berlin.de/chrisfr/readdy_website/assets/talks/2018-07-25-readdy_architecture.pdf)      | PS     |
-| coffee break |                  |                            |                         |                      |        |
-| ~10 - 12     | PS - ReaDDy      | PS - Predator prey         | PS - Topologies         | PS - C++ potential   | PS     |
-| lunch        |                  |                            |                         |                      |        |
-| 13 - 15      | PS - Observables | PS - Diffusion-influenced  | PS - Topology reactions | PS - Nuclear waffles | PS     |
-
-{% endif %}
+|              | Monday           | Tuesday                    | Wednesday              | Thursday                     | Friday |
+|:-------------| :--------------- | :------------------------- | :--------------------- | :--------------------------- |:-------|
+| 9 - ~10      | Introduction     | Reaction diffusion methods | MD and coarse graining | Self assembly                | PS     |
+| coffee break |                  |                            |                        |                              |        |
+| ~10 - 12     | PS - ReaDDy      | PS - Diffusion-influenced  | PS - Topologies        | PS - Topology reactions      | PS     |
+| lunch        |                  |                            |                        |                              |        |
+| 13 - 15      | PS - Observables | PS - Predator prey         | PS - DNA folding       | PS - Actin filaments         | PS     |
 
 ## Prerequisites
 There will be Linux PCs available. You are free to bring your own laptop, but note that we currently support Linux and
