@@ -10,13 +10,15 @@ ReaDDy has the following dependencies (__bold__ printed are expected to be prese
 - spdlog, included by git submodule
 - c-blosc, included by git submodule
 - h5rd, included by git submodule
+- catch2, for testing, included by git submodule
 - for python bindings
 	- pybind11, included by git submodule
 	- __python 3__ with __numpy__, __h5py__
-- googletest, for testing, downloaded during cmake configuration
+
 
 ### Build by using CMake
-This type of build is suggested if one is interested in development of the software. There are a number of CMake options that influence the type of build:
+This type of build is suggested if one is interested in development of the software. 
+There are a number of ReaDDy specific CMake options that influence the type of build:
 
 | CMake option = default                          | Description |
 | ----------------------------------------------- | --- |

@@ -43,7 +43,12 @@ print(system.temperature)
 Internally, ReaDDy uses [pint](https://pint.readthedocs.io/) for handling units, so in principle all unit arithmetics that are supported by pint can also be applied when setting up a ReaDDy simulation.
 
 ## The box size
-The system's only required argument is the simulation box size. The box itself is centered around the origin, so given a `ReactionDiffusionSystem(box_size=(a,b,c))`, it can be described by $$ [-\frac{a}{2}, \frac{a}{2} )\times [-\frac{b}{2}, \frac{b}{2} ) \times [-\frac{c}{2}, \frac{c}{2} ) \subset \mathbb{R}^3$$.
+The system's only required argument is the simulation box size. The box itself is centered around the origin, so 
+given a `ReactionDiffusionSystem(box_size=(lx,ly,lz))`, it can be described 
+by $ [-\frac{L_x}{2}, \frac{L_x}{2} )\times [-\frac{L_y}{2}, \frac{L_y}{2} ) \times [-\frac{L_z}{2}, \frac{L_z}{2} ) \subset \mathbb{R}^3$.
+
+{: .centered}
+![](assets/simulation_box.svg)
 
 ## Periodic boundary conditions
 The boundaries of the box can be either (partially) non-periodic or fully periodic. The degree of periodicity is set by either the `periodic_boundary_conditions` named constructor argument or property. A box that is periodic in y and z directions but not in x direction amounts to setting
