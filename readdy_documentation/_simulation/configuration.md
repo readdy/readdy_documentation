@@ -118,18 +118,33 @@ For reading back the trajectory data, please refer to [post-processing]({{site.b
 
 Checkpoints in ReaDDy consist out of the particles' and topologies' configurations at specific points in simulation time. They can be enabled by calling
 ```python
-simulation.make_checkpoints(stride=1000)
+simulation.make_checkpoints(stride=1000, output_directory="checkpoints/", max_n_saves=10)
 ```
-which causes checkpoints to be made every 1000 steps. For this purpose a `simulation.output_file` needs to be set as well.
+which causes checkpoints to be made every 1000 steps. Each checkpoint is a separate file and all checkpoint files will be
+saved to the directory specified by `output_directory`. The option `max_n_saves` decides how many checkpoint files
+are allowed to be saved to the directory, e.g. if `max_n_saves=10` then only the last 10 _most recent_ checkpoints
+are kept.
 
-Once the simulation has run its course and checkpoints have been recorded, they can be listed by
+Once the simulation has run its course and checkpoint files have been written, they can be listed by
 ```python
-simulation.list_checkpoints('my_output_file.h5')
+simulation.list_checkpoint_files('checkpoints/')
+```
+A particular checkpoint file can in principle also contain multiple checkpoints. They can be inspected by
+```python
+simulation.list_checkpoints('checkpoints/checkpoint_10000.h5')
 ```
 and a system's state can be restored by a call to
 ```python
-simulation.load_particles_from_checkpoint('my_output_file.h5', n=17)
+simulation.load_particles_from_checkpoint('checkpoints/checkpoint_10000.h5')
 ```
-amounting to restoring the state of the 17th checkpoint at simulation step `17 * stride`.
+amounting to restoring the latest checkpoint of that particular file. If the file contains multiple checkpoints, let's say 5, you can
+select the 5th checkpoint by supplying the optional argument `n=4` (enumeration starts at `n=0` per file).
 
-It should be noted that if the simulation should be continued, an `output_file` should be chosen that is different from the `output_file` of the original simulation.
+Oftentimes you just need the last checkpoint of all checkpoint files in a certain directory. This can be achieved by
+```python
+simulation.load_particles_from_latest_checkpoint('checkpoints/')
+``` 
+
+It should be noted that if the simulation should be continued and the `output_directory` for the new checkpoints is the 
+same as of the original simulation, the old checkpoint files will be overwritten. If you want to keep the checkpoints
+of the original simulation, specify another `outout_directory`.
