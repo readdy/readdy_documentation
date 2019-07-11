@@ -147,4 +147,4 @@ simulation.load_particles_from_latest_checkpoint('checkpoints/')
 
 It should be noted that if the simulation should be continued and the `output_directory` for the new checkpoints is the 
 same as of the original simulation, the old checkpoint files will be overwritten. If you want to keep the checkpoints
-of the original simulation, specify another `outout_directory`.
+of the original simulation, specify another `output_directory`.
