@@ -5,7 +5,7 @@ title: Summer workshop 2019
 
 The workshop adresses young scientists at M.Sc. or Ph.D. student level with a background in physics, chemistry, bioinformatics or computer science. 
 FU-students can receive the equivalent of a 2 SWS module (5 ECTS points) for a successful completion.
-The workshop is from Monday 15.07.2019 until Friday 19.07.2019, each day from 9h to 15h.
+The workshop is from Monday 15.07.2019 until Friday 19.07.2019, each day from 10h to 16h.
 It will be located in the math department
 ```
 Arnimallee. 6
@@ -27,11 +27,11 @@ PS=Practical session
 
 |              | Monday           | Tuesday                    | Wednesday              | Thursday                     | Friday |
 |:-------------| :--------------- | :------------------------- | :--------------------- | :--------------------------- |:-------|
-| 9 - ~10      | Introduction     | Reaction diffusion methods | MD and coarse graining | Self assembly                | PS     |
+| 10 - ~11      | Introduction     | Reaction diffusion methods | MD and coarse graining | Self assembly                | PS     |
 | coffee break |                  |                            |                        |                              |        |
-| ~10 - 12     | PS - ReaDDy      | PS - Diffusion-influenced  | PS - Topologies        | PS - Topology reactions      | PS     |
+| ~11 - 12     | PS - ReaDDy      | PS - Diffusion-influenced  | PS - Topologies        | PS - Topology reactions      | PS     |
 | lunch        |                  |                            |                        |                              |        |
-| 13 - 15      | PS - Observables | PS - Predator prey         | PS - DNA folding       | PS - Actin filaments         | PS     |
+| 13 - 16      | PS - Observables | PS - Predator prey         | PS - DNA folding       | PS - Actin filaments         | PS     |
 
 ## Prerequisites
 There will be Linux PCs available. You are free to bring your own laptop, but note that we currently support Linux and
