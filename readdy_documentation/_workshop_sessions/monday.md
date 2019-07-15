@@ -88,7 +88,6 @@ The notebook covers the following:
 - reading back the observable from trajectory file
 - using checkpoints to continue a simulation
 
-{% if false %}
 
 ### Task 4) Crowded mixture, MSD
 
@@ -172,4 +171,3 @@ __5a)__ Plot the RDF as a function of the distance (i.e. mean`distribution` as f
 
 __5b)__ Perform the same procedure but for non-interacting particles, compare with the previous result, preferably in the same plot. What are your observations?
 
-{% endif %}
