@@ -6,73 +6,146 @@ position: 3
 
 {% if false %}
 
-This session will cover macromolecules and how they assemble into superstructures
-### Task 1) polymer and radius of gyration
+{: .centered}
 ![](assets/polymer.png)
 
-In this task we will calculate the [radius of gyration](https://en.wikipedia.org/wiki/Radius_of_gyration#Molecular_applications) of a polymer as a function of the stiffness of the polymer.
+This session will cover macromolecules and their dynamics. In particular we want to model short RNA chains, represented by linear chains of beads.
+
+Assume $N$ beads of particles at positions $$\mathbf{x}_i$$, 
+the $i$th bead is connected with the $i+1$th bead by a spring which has a fixed length $l$. 
+Thus the whole chain of particles is linearly connected. 
+The vector $$\mathbf{r}_i=\mathbf{x}_{i+1}-\mathbf{x}_i$$ is the segment that connnects adjacent beads.
+
+{: .centered}
+![](assets/segments.svg)
+
+One can measure how strongly the $i$th and the $j$th segment correlate by considering the scalar product $$\mathbf{r}_i\cdot\mathbf{r}_j$$. 
+
+{: .centered}
+![](assets/segments_correlation.svg)
+
+Since this value alone is quite meaningless, one can consider its average over a whole ensemble of segments. This average can be taken over all segments, i.e. $\forall i,j$ in the linear chain, and also over many times if the linear chain evolves over time. For realistic polymers one typically observes that the $i$th segment strongly correlates with the $j=i+1$th segment. However for $j\gg i$ the correlation vanishes. Phenomenologically this is understood by an exponential decay of the correlation
+
+$$
+\langle \mathbf{r}_i\cdot\mathbf{r}_j \rangle=l^2\exp\left(-|j-i|\,l/l_p\right)
+$$
+
+where we have defined the __persistence length__ $l_p$. The value of $l_p$ is determined by the interaction of the beads. For example _structured_ RNA molecules typically show a persistence length of 72nm. Today we will instead model _unstructed_ RNA molecules, which show a persistence length of roughly 2nm. 
+
+We will consider two models for the polymer, namely
+
+- the _freely jointed chain_ (FJC), and
+- the _freely rotating chain_ (FRC).
+
+In the FJC, the beads are connected by segments of fixed length $l=0.48$. Other than that there is no interaction.
+
+In the FRC, the beads are also connected by segments of fixed length $l=0.48$. Additionally the angle between neighbouring segments is fixed to $\theta=35^\circ$.
+
+### Task 1) Equilibrate polymers
+
+In the first task you will 
+
+- __a)__ equilibrate a freely jointed chain (FJC) of $N=50$ beads. Equilibration is ensured by measuring the [radius of gyration](https://en.wikipedia.org/wiki/Radius_of_gyration#Molecular_applications) of a polymer over time.
+- __b)__ Once the polymer is equilibrated, you will measure the persistence length $l_p$.
+- __c)__ Repeat a) and b) for the freely rotating chain (FRC)
 
 We will only need one particle species `monomer` with diffusion constant $D=0.1$. Note that this will not be a _normal_ species but will be a __topology species__:
+
 ```python
 system.add_topology_species("monomer", 0.1)
 ```
 
-The __simulation box__ shall have `box_size= [32.,32.,32.]`, and be __non-periodic__. This means that there has to be a __box potential__ registered for the type `monomer` with force constant 50, `origin=np.array([-15,-15,-15])` and `extent=np.array([30,30,30])`. 
-
-Between monomers there should be a harmonic repulsion potential with `force_constant=50` and `interaction_distance=1`
+The __simulation box__ shall have `box_size= [102.,102.,102.]`, and be __non-periodic__. This means that there has to be a __box potential__ registered for the type `monomer` with force constant 50, `origin=np.array([-50,-50,-50])` and `extent=np.array([100,100,100])`. 
 
 In order to build a polymer we use [topologies](https://readdy.github.io/system.html#topologies). At first we need to register a type of toplogy
+
 ```python
 system.topologies.add_type("polymer")
 ```
+
 The monomers in a polymer must be held together by [harmonic bonds](https://readdy.github.io/system.html#harmonic-bonds), defined by pairs of particle types
+
 ```python
 system.topologies.configure_harmonic_bond(
-    "monomer", "monomer", force_constant=100., length=1.)
+    "monomer", "monomer", force_constant=50., length=0.48)
 ```
-For this example we also specify an [angular potential](https://readdy.github.io/system.html#harmonic-angles), that is defined for a triplet of particle types
+
+__Only in the case of a FRC__ we also specify an [angular potential](https://readdy.github.io/system.html#harmonic-angles), that is defined for a triplet of particle types
+
 ```python
 system.topologies.configure_harmonic_angle(
-    "monomer", "monomer", "monomer", force_constant=stiffness, 
-    equilibrium_angle=np.pi)
+    "monomer", "monomer", "monomer", force_constant=20., 
+    equilibrium_angle=(180.-35.)/180.*np.pi)
 ```
-where an `equilibrium_angle`$=\pi$ means 180 degrees.
+
+where an `equilibrium_angle` is given in radians (Note that the equilibrium angle here is not the same as the $\theta$ as defined above, thus the conversion by 180 degrees).
+
 The next step is creating the __simulation__. Then we specify the observables, the trajectory and the particle positions
+
 ```python
 simulation.record_trajectory(stride=10000)
 simulation.observe.particle_positions(stride=1000)
 ```
-Now we need to set the initial positions of particles and set up the polymer connectivity, therefore we do a 3D random walk that generates us the initial positions of the chain of particles
+
+We also want to make use of checkpointing to continue simulation for an already equilibrated polymer. If there are no checkpoints, we want to create new positions for the polymer. The new positions represent a random walk in three dimensions with fixed step length `bond_length`.
+
 ```python
-n_particles = 50
-init_pos = [np.zeros(3)]
-for i in range(1, n_particles):
-    displacement = np.random.normal(size=(3))
-    # normalize the random vetor
-    displacement /= np.sqrt(np.sum(displacement * displacement))
-    # append the new position to the chain
-    init_pos.append(init_pos[i-1]+displacement)
-init_pos = np.array(init_pos)
+if os.path.exists(checkpoint_dir):
+    # load checkpoint
+    simulation.load_particles_from_latest_checkpoint(checkpoint_dir)
+else:
+    # new positions
+    init_pos = [np.zeros(3)]
+    for i in range(1, chain_length):
+        displacement = np.random.normal(size=(3))
+        displacement /= np.sqrt(np.sum(displacement * displacement))
+        displacement *= bond_length
+        init_pos.append(init_pos[i - 1] + displacement)
+    init_pos = np.array(init_pos)
+
+    # subtract center of mass
+    init_pos -= np.mean(init_pos, axis=0)
+
+    # add all particles for the topology at once
+    top = simulation.add_topology("polymer", len(init_pos) * ["monomer"], init_pos)
+
+    # set up the linear connectivity
+    for i in range(1, chain_length):
+        top.get_graph().add_edge(i - 1, i)
+
+# this also creates the directory
+simulation.make_checkpoints(n_steps // 100, 
+  output_directory=checkpoint_dir, max_n_saves=10)
 ```
-Now that we have generated the positions we have to add them to the simulation together with the actual topology instance
+
+__Tip__: Keep two separate checkpoint directories output files and for the FJC and the FRC model. This means you may want to have the following defined in the beginning of your notebook
+
 ```python
-top = sim.add_topology("polymer", len(init_pos)*["monomer"], init_pos)
+chain_type = "fjc" # fjc or frc
+out_dir = "/some/place/on/your/drive"
+out_file = os.path.join(out_dir, f"polymer_{chain_type}.h5")
+checkpoint_dir = os.path.join(out_dir, f"ckpts_{chain_type}")
 ```
-The last step is to define the connectivity
-```python
-for i in range(1, n_particles):
-    top.get_graph().add_edge(i-1, i)
-```
+
 Now that we have defined the simulation object we can run the simulation
+
 ```python
-if os.path.exists(sim.output_file):
-    os.remove(sim.output_file)
-sim.run(1000000, 2e-2)
+if os.path.exists(simulation.output_file):
+    os.remove(simulation.output_file)
+simulation.run(n_steps, dt)
 ```
 
-__1a)__ Implement the simulation described above for `stiffness=0.1`. From the recorded trajectory, have a look at the VMD output. Does the structure of the polymer change in the initial phase?
+and also observe the output
 
-__1b)__ Do the same simulation as above, but now calculate the radius of gyration as a function of time. Given the positions observable, you can calculate the radius of gyration as follows (the assertion statements may help you understand how the arrays are shaped):
+```python
+traj = readdy.Trajectory(out_file)
+traj.convert_to_xyz(
+  particle_radii={"monomer": bond_length / 2.},
+  draw_box=True)
+```
+
+__1a)__ The radius of gyration is a measure of how 'extended' in space a polymer is. To calculate it, we must have observed the particle positions. As a first step we convert the readdy output to a numpy array
+
 ```python
 times, positions = traj.read_observable_particle_positions()
 
@@ -85,7 +158,11 @@ for t in range(T):
         pos[t, n, 0] = positions[t][n][0]
         pos[t, n, 1] = positions[t][n][1]
         pos[t, n, 2] = positions[t][n][2]
+```
 
+Then from the `pos` array you may use the following to calculate the radius of gyration (the assertion statements may help you understand how the arrays are shaped)
+
+```python
 # calculate radius of gyration
 mean_pos = np.mean(pos, axis=1)
 
@@ -107,204 +184,215 @@ radius_g = np.sqrt(squared_radius_g)
 
 assert radius_g.shape == times.shape == (T,)
 ```
-Plot the radius of gyration as a function of time, is it equilibrated? Calculate its time average and standard deviation over the whole timeseries.
 
-__1c)__ Put all of the above into one function `simulate(stiffness)` that performs the whole simulation and analysis for a given stiffness parameter and returns the mean (one number only, not an array) and standard deviation of the radius of gyration. The function body should roughly consist of
-```python
-def simulate(stiffness):
-    system = readdy.ReactionDiffusionSystem(...)
-    ... # system configuration
-    simulation = system.simulation(...)
-    out_file = os.path.join(data_dir, "polymer_"+str(stiffness)+".h5")
-    ... # simulation setup
-    simulation.run(...)
-    ... # calculation of radius of gyration
-    return mean_radius_of_gyration, deviation_radius_of_gyration
-```
-Measure the mean radius of gyration with standard deviation as a function of the stiffness parameter for values `[0.1, 0.5, 1.0, 5.0, 10.]`. This might look like:
-```python
-values = [0.1, 0.5, 1., 5., 10.]
-rgs = []
-devs = []
-for stiffness in values:
-    rg, dev = simulate(stiffness)
-    rgs.append(rg)
-    devs.append(dev)
-```
-Plot the mean radius of gyration as a function of the stiffness. Explain your result by looking also at the VMD output.
+Plot the radius of gyration as a function of time, is it equilibrated? If not, simulate for a longer time.
 
-### Task 2) linear filament assembly
-In this task we will also look at a linear polymer chain, but this time we will not place it initially, but instead we will let it self-assemble from monomers in solution. The polymer that we will build will have the following structure
-```
-head--core--(...)--core--tail
-```
-where `(...)` means that there can be many core particles, but the structure is always linear.
+__1b)__ The mean correlation of segments $\langle \mathbf{r}_i\cdot\mathbf{r}_j \rangle$ shall be calculated from the `pos` array. You will average over all pairs of the linear chain and also over all times.
 
-The simulation box is  __periodic__  with `box_size=[20., 20., 20.]`.
+Use the following snippet to calculate the `segments` vector
 
-We define three __topology particle species__ and one normal particle species
 ```python
-system.add_species("substrate", 0.1)
-system.add_topology_species("head", 0.1)
-system.add_topology_species("core", 0.1)
-system.add_topology_species("tail", 0.1)
+assert pos.shape == (T, N, 3)
+# calculate segments
+segments = pos[:, 1:, :] - pos[:, :-1, :]
 ```
-We also define one topology type
-```python
-system.topologies.add_type("filament")
-```
-There should be the following potentials for topology particles
-```python
-system.topologies.configure_harmonic_bond(
-    "head", "core", force_constant=100, length=1.)
-system.topologies.configure_harmonic_bond(
-    "core", "core", force_constant=100, length=1.)
-system.topologies.configure_harmonic_bond(
-    "core", "tail", force_constant=100, length=1.)
-```
-Like in task 1) the polymer should be stiff, we can compactly write this for all triplets of particle types:
-```python
-triplets = [
-    ("head", "core", "core"),
-    ("core", "core", "core"),
-    ("core", "core", "tail"),
-    ("head", "core", "tail")
-]
-for (t1, t2, t3) in triplets:
-    system.topologies.configure_harmonic_angle(
-        t1, t2, t3, force_constant=50., 
-        equilibrium_angle=np.pi)
-```
-We now introduce a [topology reaction](https://readdy.github.io/system.html#topology_reactions). They allow changes to the graph of a topology in form of a reaction. Here we will use the following definition.
-```python
-system.topologies.add_spatial_reaction(
-    "attach: filament(head) + (substrate) -> filament(core--head)",
-    rate=5.0, radius=1.5
-)
-```
-Using the [documentation](https://readdy.github.io/system.html#spatial-reactions), familiarize yourself, what this means. Do not hesitate to ask, since topology reactions can become quite a tricky concept!
 
-Next create a simulation object. We want to observe the following
-```python
-simulation.record_trajectory(stride=100)
-simulation.observe.topologies(stride=100)
-```
-Add one filament topology to the simulation
-```python
-init_top_pos = np.array([
-    [ 1. ,0. ,0.],
-    [ 0. ,0. ,0.],
-    [-1. ,0. ,0.]
-])
-top = simulation.add_topology(
-  "filament", ["head", "core", "tail"], init_top_pos)
-top.get_graph().add_edge(0, 1)
-top.get_graph().add_edge(1, 2)
-```
-Additionally we need substrate particles, that can attach themselves to the filament
-```python
-n_substrate = 300
-origin = np.array([-10., -10., -10.])
-extent = np.array([20., 20., 20.])
-init_pos = np.random.uniform(size=(n_substrate,3)) * extent + origin
-simulation.add_particles("substrate", positions=init_pos)
-```
-Then, run the simulation
-```python
-if os.path.exists(simulation.output_file):
-    os.remove(simulation.output_file)
-dt = 5e-3
-simulation.run(400000, dt)
-```
-One important observable will be the length of the filament as a function of time. It can be obtained from the trajectory as follows:
-```python
-times, topology_records = traj.read_observable_topologies()
-chain_length = [ len(tops[0].particles) for tops in topology_records ]
-```
-The last line is a [list comprehension](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions). `tops` is a list of topologies for a given time step. Hence, `tops[0]` is the first (and in this case, the only) topology in the system. `tops[0].particles` is a list of particles belonging to this topology. Thus, its length yields the length of the filament.
+The correlation between $i$ and $j$ shall be measured as a function of their separation $s=\mid j-i\mid$, which is a value between 0 and $N-1$, e.g.
 
-__2a)__ Have a look at the VMD output. Describe what happens? Additionally plot the length of the filament as a function of time. __Note__ that you shall now plot the simulation time and not the time step indices, i.e. do the following
 ```python
-times = np.array(times) * dt
+n_beads = pos.shape[1]
+separations = np.arange(0, n_beads - 1, 1)
+corrs = None # your task
 ```
-where `dt` is the time step size.
 
-__2b)__ Using your data of the filament-length, fit a function of the form
+Now for every separation $s$, calculate the average correlation, averaged over all pairs $(i,j)$ that lead to $$s=\mid j-i\mid$$.
+
+__Hints:__
+
+- The calculation may involve a double loop over all segments
+  
+  ```python
+  for i in range(n_beads-1):
+      for j in range(i, n_beads-1):
+          # something
+  ```
+- The scalar product of the $i$th and the $j$th bead for all times is
+  
+  ```python
+  np.sum(segments[:, i, :] * segments[:, j, :], axis=1)
+  ```
+  
+  where the summation over `axis=1` is over the x,y,z coordinates
+
+Then plot the mean correlation as a function of the separation. What do you observe?
+
+To determine the persistence length $l_p$, fit a function of the form
 
 $$
-f(t)=a(1-e^{-bt})+3
+f(s)=c_1e^{-sc_2}
 $$
 
-to your data. You should use [scipy.optimize.curve_fit](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html) to do so
+to the data using `scipy.optimize.curve_fit`. From the constant $c_2$ you should be able to obtain the persistence length. What is its value?
+
+__1c)__ Repeat a) and b) for the FRC. Note the value for $l_p$ for both models. 
+
+Given the  values in the introduction text, which of the models (FJC, FRC) is better suited to model unstructured RNA?
+
+### Task 2) Identify given structures
+
+Obtain the two data files [`a.npy`](https://userpage.fu-berlin.de/chrisfr/readdy_website/assets/a.npy) and [`b.npy`](https://userpage.fu-berlin.de/chrisfr/readdy_website/assets/b.npy) and save them to a directory of your liking. Each of them contains 100 positions of beads, i.e. `a` and `b` are two polymer configurations. You can load them as follows
+
 ```python
-import scipy.optimize as so
-
-def func(t, a, b):
-    return a*(1. - np.exp(-b * t)) + 3.
-
-popt, pcov = so.curve_fit(func, times, chain_length)
-
-print("popt", popt)
-print("pcov", pcov)
-
-f = lambda t: func(t, popt[0], popt[1])
-
-plt.plot(times, chain_length, label="data")
-plt.plot(times, f(times), label=r"fit $f(t)=a(1-e^{-bt})+3$")
-plt.xlabel("Time")
-plt.ylabel("Filament length")
-plt.legend()
-plt.show()
+a = np.load("a.npy")
+b = np.load("b.npy")
+assert a.shape == (100, 3)
+assert b.shape == (100, 3)
 ```
-__Question:__ Given the result of the fitting parameters
-- How large is the equilibration rate?
-- What will be the length of the filament for $t\to\infty$?
 
-__2c)__ We now introduce a disassembly reaction for the `tail` particle. This is done by adding the following to your system configuration.
+Your task is to identify which of them is the FJC model and which is the FRC model, from what you've learned in task 1.
+
+### Task 3) First-passage times of finding target
+
+You shall now use the configuration `x.npy` (where `x` is either `a` or `b`)from task 2 that corresponds to the FRC, to set up another simulation, in which one bead of the polymer is of `target` type. This target has to be found by freely diffusing `A` particles. The application you should have in mind is proteins docking to a certain part of a nucleid acids. To determine when an `A` particle has found the target we implement the following kind of reaction
+
+$$
+\mathrm{A} + \mathrm{target} \to \mathrm{B} + \mathrm{target}
+$$
+
+The time when the first `B` particle is created, then corresponds to the first-passage time of that reaction.
+
+__3a)__ Perform a simulation that initializes the polymer from `x.npy` where the 10th bead is of type `target`, and places 50 `A` particles normally distributed (with variance $\sigma=0.5$) around the origin.
+
+Therefore use the following system configuration
+
 ```python
-def rate_function(topology):
-    """
-    if the topology has at least (head, core, tail)
-    the tail shall be removed with a fixed probability per time
-    """
-    vertices = topology.get_graph().get_vertices()
-    if len(vertices) > 3:
-        return 0.05
-    else:
-        return 0.
+system = readdy.ReactionDiffusionSystem(
+    box_size=[16., 16., 16.],
+    periodic_boundary_conditions=[False, False, False],
+    unit_system=None)
 
-def reaction_function(topology):
-    """
-    find the tail and remove it,
-    and make the adjacent core particle the new tail
-    """
-    recipe = readdy.StructuralReactionRecipe(topology)
-    vertices = topology.get_graph().get_vertices()
+system.add_topology_species("monomer", 0.1)
+system.add_topology_species("target", 0.1)
+system.add_species("A", 0.5)
+system.add_species("B", 0.5)
 
-    tail_idx = None
-    adjacent_core_idx = None
-    for v in vertices:
-        if topology.particle_type_of_vertex(v) == "tail":
-            adjacent_core_idx = v.neighbors()[0].get().particle_index
-            tail_idx = v.particle_index
+system.topologies.add_type("polymer")
 
-    recipe.separate_vertex(tail_idx)
-    recipe.change_particle_type(tail_idx, "substrate")
-    recipe.change_particle_type(adjacent_core_idx, "tail")
+origin = np.array([-7.5, -7.5, -7.5])
+extent = np.array([15., 15., 15.])
 
-    return recipe
-
-
-system.topologies.add_structural_reaction(
-    "filament",
-    reaction_function=reaction_function, 
-    rate_function=rate_function)
+system.potentials.add_box("monomer", force_constant=50., origin=origin, extent=extent)
+system.potentials.add_box("target", force_constant=50., origin=origin, extent=extent)
+system.potentials.add_box("A", force_constant=50., origin=origin, extent=extent)
+system.potentials.add_box("B", force_constant=50., origin=origin, extent=extent)
 ```
-Familiarize yourself with this kind of [structural topology reaction](https://readdy.github.io/system.html#structural-reactions)
 
-Repeat the same analysis as before, and also observe your VMD output. 
-- How large is the equilibration rate?
-- What will be the length of the filament for $t\to\infty$?
+with the following topology potentials
 
+```python
+system.topologies.configure_harmonic_bond(
+    "monomer", "monomer", force_constant=50., length=bond_length)
+system.topologies.configure_harmonic_bond(
+    "monomer", "target", force_constant=50., length=bond_length)
+
+
+system.topologies.configure_harmonic_angle(
+    "monomer", "monomer", "monomer", force_constant=20.,
+    equilibrium_angle=2.530727415391778)
+system.topologies.configure_harmonic_angle(
+    "monomer", "monomer", "target", force_constant=20.,
+    equilibrium_angle=2.530727415391778)
+system.topologies.configure_harmonic_angle(
+    "monomer", "target", "monomer", force_constant=20.,
+    equilibrium_angle=2.530727415391778)
+```
+
+Define a boolean flag `interaction = True`.
+If the bool `interaction` is `True` then there should be a [weak interaction](https://readdy.github.io/system.html#weak-interaction-piecewise-harmonic) between `A` and `monomer` particles with a `force_constant` of 50, `desired_distance=bond_length`, a `depth` of 1.4, and a `cutoff` of `2.2*bond_length`.
+What does such an interaction result in?
+
+Additionally there will be repulsion potentials between `monomers` and between `A` particles.
+
+```python
+system.potentials.add_harmonic_repulsion(
+    "monomer", "monomer", force_constant=50., 
+    interaction_distance=1.1*bond_length)
+system.potentials.add_harmonic_repulsion(
+    "A", "A", force_constant=50., interaction_distance=1.5*bond_length)
+```
+
+Finally the system needs the reaction
+
+```python
+system.reactions.add("found: A +(0.48) target -> B + target", rate=10000.)
+```
+
+where we use a very high rate, such that the reaction will happen directly on contact, where 0.48 is the contact distance.
+
+Observe the number of B particles with a stride of 1.
+
+Load the polymer configuration and turn the 10th monomer into a target.
+
+```python
+init_pos = np.load("x.npy")
+
+types = len(init_pos) * ["monomer"]
+types[10] = "target" # define the target to be the 10-th monomer
+
+top = sim.add_topology("polymer", types, init_pos)
+for i in range(1, len(init_pos)):
+    top.get_graph().add_edge(i - 1, i)
+```
+
+Place 50 A particles normally distributed, with variance $\sigma=0.5$, around the origin.
+
+Simulate the system with a timestep of 0.001 for 30000 steps. Have a look at the VMD output. 
+
+- How do the `A` particles interact with the polymer?
+- Calculate the first passage time from the observed number of particles, i.e. the time when the first `B` was created.
+
+__3b)__ Combine the simulation procedure above into a function of the signature
+
+```python
+def find_target(interaction=False):
+    ...
+    # Since we will run many simulations
+    # you may want to supress the textual output by
+    # setting the two options show_progress
+    # and show_summary
+    sim.show_progress = False
+    sim.run(..., show_summary=False)
+    ...
+    return passage_time
+```
+
+__Hint:__ One such simulation should not take much longer than 10 seconds.
+
+Gather passage times in a list
+
+```python
+ts_int = []
+```
+
+Repeat the simulation many times (50-100 should suffice) and append the result to the list.
+
+```python
+from tqdm import tqdm_notebook as tqdm
+n=50
+for _ in tqdm(range(n)):
+    ts_int.append(find_target(interaction=True))
+```
+
+As this might take a while, you will want to observe how long the whole process takes, which is done here using `tqdm`.
+
+Do the same for the case of no interaction, i.e. set `interaction=False` and gather the results in another list `ts_noint`.
+
+For both cases `interaction=True` and `interaction=False`, calculate the distribution of first passage times, i.e. plot a histogram of the lists you constructed using `plt.hist()`. Use `bins=np.logspace(0,2,20)` and `density=True`.
+
+When assuming a memory less (Poisson) process, the only relevant parameter is the mean rate $\lambda=N/\sum_{i=1}^N\tau_i$. Plot the distribution of first-passage-times  with mean rate $\lambda$, i.e. the Poisson probability __density__ (not the cumulative) of 1 event occurring before time t. Compare against your measured distribution of waiting times?
+
+Is the process of finding the target with or without interaction well suited to be modeled as a memory-less process?
+
+Now additionally mark the __mean__ first passage time for each case using `plt.vlines()`. Is the difference of the two cases well described by the mean first passage time?
 
 {% endif %}
