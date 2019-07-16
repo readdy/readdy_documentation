@@ -60,7 +60,7 @@ __1c)__ Repeat the procedures a) and b) but change the diffusion coefficient to 
 
 Simulate a Lotka-Volterra/predator-prey system for the given parameters and __determine the period of oscillation__.
 
-There are two particle species `A` (prey) and `B` (predator) with the same diffusion coefficient $D=0.7$. Both particle species shall be confined to a quadratic 2D plane with an edge length of roughly 100, and non periodic boundaries, i.e. the 2D plane must be fully contained in the simulation box. Choose a very small thickness for the plane, e.g. 0.02, and a force constant of 50.
+There are two particle species `A` (prey) and `B` (predator) with the same diffusion coefficient $D=0.7$. Both particle species shall be confined to a quadratic 2D plane with an edge length of roughly 50, and non periodic boundaries, i.e. the 2D plane must be fully contained in the simulation box. Choose a very small thickness for the plane, e.g. 0.02, and a force constant of 50.
 
 Particles of the __same__ species interact via harmonic repulsion, with a force constant of 50, and an interaction distance of 2.
 
@@ -78,7 +78,7 @@ $$
 \mathrm{decay}: \mathrm{B}\to \emptyset\quad\mathrm{with }~ \lambda=3\times 10^{-2}
 $$
 
-Initialize a system by randomly positioning 1000 particles of each species on the 2D plane. Run the simulation for 100,000 integration steps with a step size of 0.01. Observe the number of particles and the trajectory, with a stride of 100.
+Initialize a system by randomly positioning 250 particles of each species on the 2D plane. Run the simulation for 100,000 integration steps with a step size of 0.01. Observe the number of particles and the trajectory, with a stride of 100.
 
 From the observable, plot the number of particles for the two species as a function of time in the same plot. Make sure to label the lines accordingly. Additionally plot the phase space trajectory, i.e. plot the number of predator particles against the number of prey particles.
 
@@ -106,7 +106,7 @@ is controlled by $\ell$.
 Perform the same simulation as in Task 1) but for different scaling parameters $\ell$, each time saving the resulting plots (time series and phase plot) to a file, use `plt.savefig(...)`. Run each simulation for $n$ number of integration steps, where
 
 $$
-n(\ell) = 10^4 + \frac{10^6}{\sqrt{\ell}}
+n(\ell) = 10^4 + \frac{10^5}{\sqrt{\ell}}
 $$
 
 Vary the scaling parameter from 1 to 400.
