@@ -151,6 +151,7 @@ Therefore set up the same system as in Task 4) but this time the system shall be
 
 You may want to equilibrate the initial particle positions, use checkpointing.
 
+
 Instead of observing the particle positions, observe the [radial distribution function](https://readdy.github.io/simulation.html#radial-distribution-function)
 
 ```python
