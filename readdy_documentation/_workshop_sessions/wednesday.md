@@ -253,7 +253,7 @@ Your task is to identify which of them is the FJC model and which is the FRC mod
 
 ### Task 3) First-passage times of finding target
 
-You shall now use the configuration `x.npy` (where `x` is either `a` or `b`)from task 2 that corresponds to the FRC, to set up another simulation, in which one bead of the polymer is of `target` type. This target has to be found by freely diffusing `A` particles. The application you should have in mind is proteins docking to a certain part of a nucleid acids. To determine when an `A` particle has found the target we implement the following kind of reaction
+You shall now use the configuration `x.npy` (where `x` is either `a` or `b`)from task 2 that corresponds to the FRC, to set up another simulation, in which one bead of the polymer is of `target` type. Freely diffusing `A` particles have to find the `target` particle. The application you should have in mind is proteins docking to a certain part of nucleid acids, which is crucial for the function of each biological cell. To determine when an `A` particle has found the target we implement the following kind of reaction
 
 $$
 \mathrm{A} + \mathrm{target} \to \mathrm{B} + \mathrm{target}
@@ -386,6 +386,8 @@ for _ in tqdm(range(n)):
 As this might take a while, you will want to observe how long the whole process takes, which is done here using `tqdm`.
 
 Do the same for the case of no interaction, i.e. set `interaction=False` and gather the results in another list `ts_noint`.
+
+_ProTip:_ To save computation time, run this second case in a copy of your notebook (i.e. at the same time) and save the resulting list `ts_noint` into a pickle file, which you can read in in the original notebook.
 
 For both cases `interaction=True` and `interaction=False`, calculate the distribution of first passage times, i.e. plot a histogram of the lists you constructed using `plt.hist()`. Use `bins=np.logspace(0,2,20)` and `density=True`.
 
