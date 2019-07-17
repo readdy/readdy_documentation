@@ -4,8 +4,6 @@ sectionName: wednesday
 position: 3
 ---
 
-{% if false %}
-
 {: .centered}
 ![](assets/polymer.png)
 
@@ -396,5 +394,3 @@ When assuming a memory less (Poisson) process, the only relevant parameter is th
 Is the process of finding the target with or without interaction well suited to be modeled as a memory-less process?
 
 Now additionally mark the __mean__ first passage time for each case using `plt.vlines()`. Is the difference of the two cases well described by the mean first passage time?
-
-{% endif %}
