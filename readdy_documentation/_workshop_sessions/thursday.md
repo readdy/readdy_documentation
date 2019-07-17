@@ -2,7 +2,7 @@
 title: Thursday
 sectionName: thursday
 position: 4
----   
+---
 
 {% if false %}
 
@@ -222,10 +222,177 @@ First we need a model for one monomer, which should look as follows
 
  ![](assets/monomer.svg)
 
-It is essentially one bigger `core` particle with two `sites` attached. This is sometimes called a _patchy particle_, i.e. a particle with reaction patches. The angle between the triplet `site--core--site`, shall be fixed to 120°. The `sites` shall react with the `sites` of other monomers to form a dimer that looks like
+It is essentially one bigger `core` particle with two `sites` attached. This is sometimes called a _patchy particle_, i.e. a particle with reaction patches. In the language of ReaDDy, this group of particles is a topology, let's give it the name `CA`
+
+```python
+system.topologies.add_type("CA")
+system.add_topology_species("core", 0.1)
+system.add_topology_species("site", 0.1)
+```
+
+The angle between the triplet `site--core--site`, shall be fixed to 120°. The `sites` shall react with the `sites` of other monomers to form a dimer that looks like
 
 {: .centered}
 
 ![](assets/dimer.svg)
+
+For this dimer, the four particles shall be confined to a single 2D plane, which we do using topology potentials. Summarizing all potentials that you need to configure for the particles:
+
+- harmonic bond between `core--site` with force constant 100 and length 1
+- harmonic bond between `core--core` with force constant 100 and length 2
+- harmonic bond between `site--site` with force constant 100 and length 0.1
+- harmonic angle between `site--core--site` with force constant 200 and equilibrium angle 120 degrees
+- harmonic angle between `site--core--core` with force constant 200 and equilibrium angle 120 degrees
+- harmonic angle between `core--core--core` with force constant 200 and equilibrium angle 120 degrees
+- dihedral between `core--core--core--core` with force constant 200, mutliplicity of 1 and equilibrium angle of 0
+- dihedral between `site--core--core--core` with force constant 200, mutliplicity of 1 and equilibrium angle of 0
+- dihedral between `site--core--core--site` with force constant 200, mutliplicity of 1 and equilibrium angle of 0
+- (normal) harmonic repulsion between `core` and `core` with force constant 80 and interaction distance 2
+
+The __formation of the dimer__ will be done using a [spatial topology reaction](https://readdy.github.io/system.html#spatial-reactions)
+
+of the form 
+
+```python
+system.topologies.add_spatial_reaction(
+    "attach: CA(site)+CA(site)->CA(site--site) [self=true]", rate=10., radius=0.4)
+```
+
+After such a reaction the connectivity looks like `(...)--core--site--site--core--(...)`. In a second step after the reaction we want to get rid of the two `site` particles in the middle. This will be done using a [structural topology reaction](https://readdy.github.io/system.html#structural-reactions) of the following kind (make sure that you understand what happens in these code snippets. Do ask, if you have problems understanding!). The first ingredient is the rate function for the structural reaction, i.e. given a toplogy this function shall return a very high rate, if there is a `site--site` connection, and shall return 0 otherwise
+
+```python
+def clean_sites_rate_function(topology):
+    edges = topology.get_graph().get_edges()
+    vertices = topology.get_graph().get_vertices()
+
+    if len(vertices) > 3:
+        for e in edges:
+            v1_ref, v2_ref = e[0], e[1]
+            v1 = v1_ref.get()
+            v2 = v2_ref.get()
+            v1_type = topology.particle_type_of_vertex(v1)
+            v2_type = topology.particle_type_of_vertex(v2)
+            if v1_type == "site" and v2_type == "site":
+                return 1e12
+    else:
+        return 0.
+    return 0.
+```
+
+The second ingredient is the reaction function, that performs the removing of the two `site` particles, after the rate function has returned a very high rate
+
+```python
+def clean_sites_reaction_function(topology):
+
+    recipe = readdy.StructuralReactionRecipe(topology)
+    vertices = topology.get_graph().get_vertices()
+
+    def search_configuration():
+        # dfs for finding configuration core-site-site-core
+        for v1 in vertices:
+            if topology.particle_type_of_vertex(v1) == "core":
+                for v2_ref in v1.neighbors():
+                    v2 = v2_ref.get()
+                    if topology.particle_type_of_vertex(v2) == "site":
+                        for v3_ref in v2.neighbors():
+                            v3 = v3_ref.get()
+                            if v3.particle_index != v1.particle_index:
+                                if topology.particle_type_of_vertex(v3) == "site":
+                                    for v4_ref in v3.neighbors():
+                                        v4 = v4_ref.get()
+                                        if v4.particle_index != v2.particle_index:
+                                            if topology.particle_type_of_vertex(v4) == "core":
+                                                return v1.particle_index, v2.particle_index, v3.particle_index, v4.particle_index
+
+    core1_p_idx, site1_p_idx, site2_p_idx, core2_p_idx = search_configuration()
+
+    # find corresponding vertex indices from particle indices
+    core1_v_idx = None
+    site1_v_idx = None
+    site2_v_idx = None
+    core2_v_idx = None
+    for i, v in enumerate(vertices):
+        if v.particle_index == core1_p_idx and core1_v_idx is None:
+            core1_v_idx = i
+        elif v.particle_index == site1_p_idx and site1_v_idx is None:
+            site1_v_idx = i
+        elif v.particle_index == site2_p_idx and site2_v_idx is None:
+            site2_v_idx = i
+        elif v.particle_index == core2_p_idx and core2_v_idx is None:
+            core2_v_idx = i
+        else:
+            pass
+
+    if (core1_v_idx is not None) and (core2_v_idx is not None) and (site1_v_idx is not None) and (
+            site2_v_idx is not None):
+        recipe.add_edge(core1_v_idx, core2_v_idx)
+        recipe.separate_vertex(site1_v_idx)
+        recipe.separate_vertex(site2_v_idx)
+        recipe.change_particle_type(site1_v_idx, "dummy")
+        recipe.change_particle_type(site2_v_idx, "dummy")
+    else:
+        raise RuntimeError("core-site-site-core wasn't found")
+
+    return recipe
+```
+
+__2a)__ Simulate the system described above in a __periodic box__ of size `[25, 25, 25]` for `n_steps=50000` steps with a timestep of 0.005. Initially place 150 `CA` patchy particles uniformly distributed in the box. While simulating, observe the trajectory and topologies with the __same stride__.
+
+```python
+sim.record_trajectory(n_steps//2000)
+sim.observe.topologies(n_steps//2000)
+```
+
+What do you observe in the VMD output? Do particles assemble in the way you expected?
+
+__Hints__:
+
+- You should place the particles such that the `site` particles are already at   their prescribed 120 degree angle and a distance of 1 away from the `core`     particle. Adding one such particle can be done in the following way
+  
+  ```python
+  core = np.array([0., 0., 0.])
+  site1 = np.array([0., 0., 1.])
+  site2 = np.array([np.sin(np.pi * 60. / 180.), 0., - 1. * np.cos(np.pi * 60. / 180.)])
+  
+  top = sim.add_topology("CA", ["site", "core", "site"], np.array([site1, core, site2]))
+  top.get_graph().add_edge(0, 1)
+  top.get_graph().add_edge(1, 2)
+  ```
+- To distribute the particles uniformly you should add a random translation vector to all positions `core`, `site1` and `site2`.
+- If you want to be super cool, you can rotate the patchy particle by a random amount before translating it. Ask google how to generate a random rotation matrix and how to apply it to your vectors `core`, `site1` and `site2`
+
+__2b)__ From your output file and using the topologies and trajectory observable, calculate the _time dependent_ distribution of molecular mass. This means: Given an instance of a topology, the degree of polymerization is the number of connected `core` particles in this topology. For one polymer the molecular mass is equal to the degree of polymerization. Obtain such a value for all topologies in a given timestep and make a histogram of that. Now that histogram only counts the occurrence of how many times a topology with a certain molecular mass shows up. To convert that into a distribution of molecular mass itself, you have to multiply the number of occurrence for each degree of polymerization by the degree of polymerization itself. Repeat this for all observed times to obtain as many histograms as there are timesteps.
+
+__Hints__
+
+- The actual trajectory can be obtained from the trajectory file like so
+  
+  ```python
+  traj_file = readdy.Trajectory(out_file)
+  traj = traj_file.read()
+  ```
+- The particle type (string) of a particle with index `v` at time `t` is
+  
+  ```python
+  traj[t][v].type
+  ```
+- Construct the histogram for each time using `np.histogram(current_sizes, bins=bin_edges)`, where `current_sizes` is the list of the molecular masses you have obtained, and `bin_edges=np.linspace(1,10,1)`
+- For plotting it might come in handy to convert the `bin_edges` to `bin_centers`, by calculating the midpoints for each bin
+- Plot the histograms using the following snippet
+  
+  ```python
+  xs = np.array(times) * dt
+  ys = bin_centers
+  X, Y = np.meshgrid(xs, ys-1)
+  Z = all_histograms.transpose()
+  plt.pcolor(X, Y, Z, cmap=plt.cm.viridis_r)
+  plt.xlabel("Time")
+  plt.ylabel("Degree of polymerization")
+  plt.title("Distribution of molecular mass")
+  ```
+
+__2c)__ Calculate a similar distribution of molecular mass, but now only for _completely assembled_ topologies, i.e. topologies with no open `site` particles left. What is the percentage of "misfolded" topologies? 
+
+__2d) Bonus task__: Introduce a third reactive patch for each patchy particle called `offsite`, which allows binding to other `offsite` particles. In this way try to assemble a larger super structure out of the hexamers.
 
 {% endif %}
