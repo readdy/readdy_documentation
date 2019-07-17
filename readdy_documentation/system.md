@@ -5,8 +5,8 @@ title: System configuration
 
 At first create a `ReactionDiffusionSystem`, which determines _what_ to simulate.
 This includes setting a unit system, the size and periodicity of
-the simulation-box, particle species, [reactions]({{site.baseurl}}/reactions.html),
-[potentials]({{site.baseurl}}/potentials.html) and [topologies]({{site.baseurl}}/topologies.html).
+the simulation-box, particle species, [reactions]({{site.baseurl}}/system.html#reactions),
+[potentials]({{site.baseurl}}/system.html#potentials) and [topologies]({{site.baseurl}}/system.html#topologies).
 These are set via properties and methods of the `system` object.
 
 
