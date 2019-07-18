@@ -394,7 +394,7 @@ __Hints__
   ```python
   traj[t][v].type
   ```
-- Construct the histogram for each time using `np.histogram(current_sizes, bins=bin_edges)`, where `current_sizes` is the list of the molecular masses you have obtained, and `bin_edges=np.linspace(1,10,1)`
+- Construct the histogram for each time using `np.histogram(current_sizes, bins=bin_edges)`, where `current_sizes` is the list of the molecular masses you have obtained, and `bin_edges=np.arange(1,10,1)`
 - For plotting it might come in handy to convert the `bin_edges` to `bin_centers`, by calculating the midpoints for each bin
 - Plot the histograms using the following snippet
   
