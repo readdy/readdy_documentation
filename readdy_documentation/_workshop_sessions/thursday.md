@@ -219,6 +219,9 @@ Repeat the same analysis as before, and also observe your VMD output.
 
 ### Task 2) Assembly of virus capsids
 
+{: .centered}
+![](https://cdn.rcsb.org/pdb101/motm/images/200-Quasisymmetry_in_Icosahedral_Viruses-Quasisymmetry.jpg)
+
 This task will suggest a model for the assembly of monomers into hexamers, and in the bonus task: the assembly of these hexamers into even larger superstructures.
 
 First we need a model for one monomer, which should look as follows
@@ -398,6 +401,8 @@ __Hints__
 
 __2c)__ Calculate a similar distribution of molecular mass, but now only for _completely assembled_ topologies, i.e. topologies with no open `site` particles left. What is the percentage of "misfolded" topologies?
 
-__2d) Bonus task__: Introduce a third reactive patch for each patchy particle called `offsite`, which allows binding to other `offsite` particles. In this way try to assemble a larger super structure out of the hexamers.
+__2d)__ From looking at your distribution of pentamers, hexamers, and heptamers. Can you form a full capsid out of the patchy particles we have used? Have a look at the introductory image with the viruses, what do you notice about the capsomers?  
+
+__2e) Bonus task__: Introduce a third reactive patch for each patchy particle called `offsite`, which allows binding to other `offsite` particles. In this way try to assemble a larger super structure out of the hexamers.
 
 {% endif %}
