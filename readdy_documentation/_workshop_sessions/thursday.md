@@ -4,11 +4,16 @@ sectionName: thursday
 position: 4
 ---
 
-{% if false %}
+{% if true %}
 
 This session will deal with the self assembly of macromolecular structures due to reactions.
 
-### Task 1) linear filament assembly
+
+{: .centered}
+![](https://www.kerafast.com/images/Product/large/1477.jpg)
+
+### Task 1) linear filament (e.g. actin) assembly
+
 
 In this task we will look at a linear polymer chain, but instead of placing all beads initially, we will let it self-assemble from monomers in solution. The polymer that we will build will have the following structure
 
@@ -391,7 +396,7 @@ __Hints__
   plt.title("Distribution of molecular mass")
   ```
 
-__2c)__ Calculate a similar distribution of molecular mass, but now only for _completely assembled_ topologies, i.e. topologies with no open `site` particles left. What is the percentage of "misfolded" topologies? 
+__2c)__ Calculate a similar distribution of molecular mass, but now only for _completely assembled_ topologies, i.e. topologies with no open `site` particles left. What is the percentage of "misfolded" topologies?
 
 __2d) Bonus task__: Introduce a third reactive patch for each patchy particle called `offsite`, which allows binding to other `offsite` particles. In this way try to assemble a larger super structure out of the hexamers.
 
