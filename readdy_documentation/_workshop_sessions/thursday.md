@@ -8,12 +8,10 @@ position: 4
 
 This session will deal with the self assembly of macromolecular structures due to reactions.
 
+### Task 1) linear filament (e.g. actin) assembly
 
 {: .centered}
 ![](https://www.kerafast.com/images/Product/large/1477.jpg)
-
-### Task 1) linear filament (e.g. actin) assembly
-
 
 In this task we will look at a linear polymer chain, but instead of placing all beads initially, we will let it self-assemble from monomers in solution. The polymer that we will build will have the following structure
 
@@ -205,6 +203,7 @@ def reaction_function(topology):
 
 
 system.topologies.add_structural_reaction(
+    "detach",
     "filament",
     reaction_function=reaction_function, 
     rate_function=rate_function)
@@ -342,6 +341,17 @@ def clean_sites_reaction_function(topology):
         raise RuntimeError("core-site-site-core wasn't found")
 
     return recipe
+```
+
+Finally add the structural reaction to the system
+
+```python
+system.topologies.add_structural_reaction(
+    "clean_sites", topology_type="CA", 
+    reaction_function=clean_sites_reaction_function,
+    rate_function=clean_sites_rate_function,
+    raise_if_invalid=True,
+    expect_connected=False)
 ```
 
 __2a)__ Simulate the system described above in a __periodic box__ of size `[25, 25, 25]` for `n_steps=50000` steps with a timestep of 0.005. Initially place 150 `CA` patchy particles uniformly distributed in the box. While simulating, observe the trajectory and topologies with the __same stride__.
