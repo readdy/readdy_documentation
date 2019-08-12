@@ -86,16 +86,21 @@ The function takes a topology instance as argument and returns a floating point 
 For performance reasons it is only evaluated if the topology changes structurally, therefore the rate should optimally not depend on anything that can change a lot in the simulation time between evaluating the rate function and performing the reaction, e.g., the particles' spatial configuration.
 
 ### Adding a structural reaction
-Given these two functions, the reaction and the rate function, all that is left to do is to add them to a certain topology type in the system:
+Given these two functions, the reaction and the rate function, all that is left to do is to 
+add them to a certain topology type in the system:
 ```python
 system.topologies.add_structural_reaction(
+    name="my_structural_reaction",
     topology_type="TType", 
     reaction_function=no_op_reaction_function, 
     rate_function=my_rate_function, 
     raise_if_invalid=True, expect_connected=False
 )
 ```
-adding a structural reaction to all topologies of type `TType` with the provided reaction and rate functions. The first option `raise_if_invalid` raises, if set to `True`, an error if the outcome of the reaction function is invalid, otherwise it will just roll back to the state of before the reaction and print a warning into the log. The second option `expect_connected` can trigger depending on the value of `raise_if_invalid` a raise if set to `True` and the topology's connectivity graph decayed into two or more independent components.
+where `name` is a user-provided unique identifier for this reaction, which is used in observing reaction counts. 
+The above snippet adds the structural reaction `my_structural_reaction` to all topologies of type `TType` with the provided reaction function and rate function.
+The option `raise_if_invalid` raises, if set to `True`, an error if the outcome of the reaction function is invalid, otherwise it will just roll back to the state of before the reaction and print a warning into the log.
+The other option `expect_connected` can trigger depending on the value of `raise_if_invalid` a raise if set to `True` and the topology's connectivity graph decayed into two or more independent components.
 
 ## Spatial reactions
 Spatial reactions are locally triggered by proximity of particles, therefore they are not only defined on topology types but also on particle types. In principle there are two kinds of spatial reactions: The kind that causes forming a bond between two particles and the kind that just changes a particle/topology type, corresponding to particle fusion and enzymatic reactions, respectively. Analogously spatial topology reactions also possess 
