@@ -38,7 +38,7 @@ def no_op_reaction_function(topology):
 ```
 One can base the behavior of the reaction on the current state of the topology instance. It offers information about the contained particles configuration:
 - `topology.get_graph()` yields the connectivity graph of the topology:
-  - `graph.get_vertices()` yields a list of vertices that has a 1-1 correspondence to what is yielded by `topology.particles`. Each vertex is itself can again be iterated, yielding its adjacent vertices:
+  - `graph.get_vertices()` yields a list of vertices that has a 1-1 correspondence to what is yielded by `topology.particles`. Each vertex itself can be iterated, yielding its adjacent vertices:
     ```python
     # for every vertex
     for v in graph.get_vertices():
@@ -63,11 +63,12 @@ One can base the behavior of the reaction on the current state of the topology i
 
 With these information, there are several operations that can be added to a recipe:
 - `recipe.change_particle_type(vertex_index, type)`: Changes the particle type of the to `vertex_index` associated particle to the given type, where the vertex index corresponds to the particle's index.
-- `recipe.add_edge(v_index1, v_index2):` Introduces an edge in the graph between vertices corresponding to indices `v_index1` and `v_index2`.
+- `recipe.add_edge(v_index1, v_index2)`: Introduces an edge in the graph between vertices corresponding to indices `v_index1` and `v_index2`.
 - `recipe.remove_edge(v_index1, v_index2)`: Attempts to remove an edge between vertices corresponding to the indices. Depending on the configuration of the topology reaction, this can lead to a failed state or multiple sub-topologies.
-- `recipe.remove_edge(edge):` Same as with indices just that it takes an edge instance as contained in `graph.get_edges()`.
+- `recipe.remove_edge(edge)`: Same as with indices just that it takes an edge instance as contained in `graph.get_edges()`.
 - `recipe.separate_vertex(index)`: Removes all edges from the topology's graph that contain the vertex corresponding to the provided index. If no new edge is formed between the given vertex this call, depending on the configuration of the reaction, can lead to a failed state or to formation of a topology consisting out of only one particle. In the latter case, this call can be followed by a call to `recipe.change_particle_type`, where the target type is no topology type. Then, no one-particle topology will be formed but the particle will simply be emitted and treated as normal particle.
-- `recipe.change_topology_type(type):` Changes the type of the topology to the given type, potentially changing its structural and spatial topology reactions.
+- `recipe.change_topology_type(type)`: Changes the type of the topology to the given type, potentially changing its structural and spatial topology reactions.
+- `recipe.append_particle(list_of_neighbor_vertices, particle_type, position)`: ...
 
 ### The rate function
 Same as ordinary reactions, also structural topology reactions have a rate with which they occur. This rate is microscopic, has units of inverse time and can be understood as the probability per unit time of the reaction taking place. Same as for normal reactions, the probability is evaluated as $p=1-e^{-\lambda\tau}$, where $\lambda\geq0$ is the rate and $\tau$ the integration time step.
