@@ -89,7 +89,10 @@
                 </a>
             {% endfor %}
         {% endif %}
-        <a class="side-nav-item{% if page.url == '/reference_manual.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/reference_manual.html">Reference Manual</a>
+
+        {% if false %}
+            <a class="side-nav-item{% if page.url == '/reference_manual.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/reference_manual.html">Reference Manual</a>
+        {% endif %}
 
         <div class="nav-supergroup-delimiter">
             <b>Legal notices</b>
