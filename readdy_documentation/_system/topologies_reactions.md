@@ -68,7 +68,7 @@ With these information, there are several operations that can be added to a reci
 - `recipe.remove_edge(edge)`: Same as with indices just that it takes an edge instance as contained in `graph.get_edges()`.
 - `recipe.separate_vertex(index)`: Removes all edges from the topology's graph that contain the vertex corresponding to the provided index. If no new edge is formed between the given vertex this call, depending on the configuration of the reaction, can lead to a failed state or to formation of a topology consisting out of only one particle. In the latter case, this call can be followed by a call to `recipe.change_particle_type`, where the target type is no topology type. Then, no one-particle topology will be formed but the particle will simply be emitted and treated as normal particle.
 - `recipe.change_topology_type(type)`: Changes the type of the topology to the given type, potentially changing its structural and spatial topology reactions.
-- `recipe.append_particle(list_of_neighbor_vertices, particle_type, position)`: ...
+- `recipe.append_particle(list_of_neighbor_vertices, particle_type, position)`: Adds a new particle to the topology. It will have the specified `particle_type` and `position` and will be connected to the vertices specified in `list_of_neighbor_vertices`.
 
 ### The rate function
 Same as ordinary reactions, also structural topology reactions have a rate with which they occur. This rate is microscopic, has units of inverse time and can be understood as the probability per unit time of the reaction taking place. Same as for normal reactions, the probability is evaluated as $p=1-e^{-\lambda\tau}$, where $\lambda\geq0$ is the rate and $\tau$ the integration time step.
