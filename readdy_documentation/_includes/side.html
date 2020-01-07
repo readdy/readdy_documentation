@@ -97,18 +97,20 @@
         <a class="side-nav-item{% if page.url == '/imprint.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/imprint.html">Imprint</a>
         <a class="side-nav-item{% if page.url == '/software_license.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/software_license.html">Software license</a>
 
-        <div class="nav-supergroup-delimiter">
-            <b>Summer workshop 2019</b>
-        </div>
-        <a class="side-nav-item{% if page.url == '/workshop_info.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/workshop_info.html">Workshop info</a>
-        <a class="side-nav-item{% if page.url == '/workshop_sessions.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/workshop_sessions.html">Practical sessions</a>
-        {% if page.url == '/workshop_sessions.html' %}
-            {% assign sorted_sessions = site.workshop_sessions | sort: 'position' %}
-            {% for entry in sorted_sessions %}
-                <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/workshop_sessions.html#{{ entry.sectionName }}">
-                    {{ entry.title | markdownify | remove: '<p>' | remove: '</p>' }}
-                </a>
-            {% endfor %}
+        {% if false %}
+            <div class="nav-supergroup-delimiter">
+                <b>Summer workshop 2019</b>
+            </div>
+            <a class="side-nav-item{% if page.url == '/workshop_info.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/workshop_info.html">Workshop info</a>
+            <a class="side-nav-item{% if page.url == '/workshop_sessions.html' %} active{% endif %}" href="{{ site.url }}{{ site.baseurl }}/workshop_sessions.html">Practical sessions</a>
+            {% if page.url == '/workshop_sessions.html' %}
+                {% assign sorted_sessions = site.workshop_sessions | sort: 'position' %}
+                {% for entry in sorted_sessions %}
+                    <a class="side-nav-sub-item" href="{{ site.url }}{{ site.baseurl }}/workshop_sessions.html#{{ entry.sectionName }}">
+                        {{ entry.title | markdownify | remove: '<p>' | remove: '</p>' }}
+                    </a>
+                {% endfor %}
+            {% endif %}
         {% endif %}
 
     </nav>
