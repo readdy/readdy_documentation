@@ -6,7 +6,7 @@ title: ReaDDy
 Welcome to the website of ReaDDy - a particle-based reaction-diffusion simulator, written in C++ with python bindings. 
 ReaDDy is an open-source project, developed and maintained by [Moritz Hoffmann](https://github.com/clonker), 
 [Christoph Fröhner](https://github.com/chrisfroe) and [Frank Noé](https://github.com/franknoe) 
-of the Computational Molecular Biology group at the Freie Universität Berlin. This project continues
+of the AI4Science (former CMB) group at the Freie Universität Berlin. This project continues
 the [java software](https://github.com/readdy/readdy_java) of the same name, by
 [Johannes Schöneberg](https://sites.google.com/a/schoeneberglab.org/johannes-schoeneberg/)
 and Frank Noé.
