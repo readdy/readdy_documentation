@@ -52,9 +52,9 @@ All observables including the actual trajectory have functions to read back the 
 The actual trajectory can be read back as a list of lists by invoking
 ```python
 for frame in trajectory.read():
-for particle in frame:
-  print("Particle with id {} of type {} at position {}"
-        .format(particle.id, particle.type, particle.position))
+  for particle in frame:
+    print("Particle with id {} of type {} at position {}" 
+          .format(particle.id, particle.type, particle.position))
 ```
 
 Except for the trajectory all observables can be stored at a different place in the file by providing a `save` argument 
