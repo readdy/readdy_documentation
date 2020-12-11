@@ -37,11 +37,11 @@ def no_op_reaction_function(topology):
     return recipe
 ```
 One can base the behavior of the reaction on the current state of the topology instance. It offers information about the contained particles configuration:
-- `topology.get_graph()` yields the connectivity graph of the topology:
-  - `graph.get_vertices()` yields a list of vertices that has a 1-1 correspondence to what is yielded by `topology.particles`. Each vertex itself can be iterated, yielding its adjacent vertices:
+- `topology.get_graph()` or `topology.graph` yields the connectivity graph of the topology:
+  - `graph.get_vertices()` or `graph.vertices` yields a list of vertices that has a 1-1 correspondence to what is yielded by `topology.particles`. Each vertex itself can be iterated, yielding its adjacent vertices:
     ```python
     # for every vertex
-    for v in graph.get_vertices():
+    for v in graph.vertices:
         print("vertex {}".format(v.particle_index))
         # obtain number of its neighbors' neighbors
         n_neighbors_neighbors = 0
@@ -49,24 +49,22 @@ One can base the behavior of the reaction on the current state of the topology i
             for neighbor_neighbor in neighbor.get():
                 n_neighbors_neighbors += 1
     ```
-  - `graph.get_edges()` yields a list of edges contained in the graph, where each edge is represented by a tuple of vertex-references, that can be dereferenced by a call to `get()`:
+  - `graph.get_edges()` or `graph.edges` yields a list of edges contained in the graph, where each edge is represented by a tuple of vertices:
     ```python
     for e in graph.get_edges():
-        v1_ref, v2_ref = e[0], e[1]
-        v1 = v1_ref.get()
-        v2 = v2_ref.get()
+        v1, v2 = e[0], e[1]
         print("edge {} -- {}".format(v1.particle_index, v2.particle_index))
     ```
-- `topology.position_of_vertex(v)` yields the position of the particle corresponding to the provided vertex (or vertex pointer, so a call to `.get()` is not required),
-- `topology.particle_type_of_vertex(v)` yields the type of the particle corresponding to the provided vertex (or vertex pointer, so a call to `.get()` is not required),
-- `particle_id_of_vertex` yields the unique id of the particle corresponding to the provided vertex (or vertex pointer, so a call to `.get()` is not required).
+- `topology.position_of_vertex(v)` yields the position of the particle corresponding to the provided vertex,
+- `topology.particle_type_of_vertex(v)` yields the type of the particle corresponding to the provided vertex,
+- `topology.particle_id_of_vertex(v)` yields the unique id of the particle corresponding to the provided vertex.
 
 With these information, there are several operations that can be added to a recipe:
-- `recipe.change_particle_type(vertex_index, type)`: Changes the particle type of the to `vertex_index` associated particle to the given type, where the vertex index corresponds to the particle's index.
-- `recipe.add_edge(v_index1, v_index2)`: Introduces an edge in the graph between vertices corresponding to indices `v_index1` and `v_index2`.
-- `recipe.remove_edge(v_index1, v_index2)`: Attempts to remove an edge between vertices corresponding to the indices. Depending on the configuration of the topology reaction, this can lead to a failed state or multiple sub-topologies.
+- `recipe.change_particle_type(vertex_index, type)`: Changes the particle type of the to `vertex_index` associated particle to the given type, where the vertex index corresponds to the particle's index. Can also be called with vertex instance directly.
+- `recipe.add_edge(v_index1, v_index2)`: Introduces an edge in the graph between vertices corresponding to indices `v_index1` and `v_index2`. Can also be called with vertex instances directly.
+- `recipe.remove_edge(v_index1, v_index2)`: Attempts to remove an edge between vertices corresponding to the indices. Depending on the configuration of the topology reaction, this can lead to a failed state or multiple sub-topologies. Can also be called with vertex instance directly.
 - `recipe.remove_edge(edge)`: Same as with indices just that it takes an edge instance as contained in `graph.get_edges()`.
-- `recipe.separate_vertex(index)`: Removes all edges from the topology's graph that contain the vertex corresponding to the provided index. If no new edge is formed between the given vertex this call, depending on the configuration of the reaction, can lead to a failed state or to formation of a topology consisting out of only one particle. In the latter case, this call can be followed by a call to `recipe.change_particle_type`, where the target type is no topology type. Then, no one-particle topology will be formed but the particle will simply be emitted and treated as normal particle.
+- `recipe.separate_vertex(index)`: Removes all edges from the topology's graph that contain the vertex corresponding to the provided index (or vertex instance). If no new edge is formed between the given vertex this call, depending on the configuration of the reaction, can lead to a failed state or to formation of a topology consisting out of only one particle. In the latter case, this call can be followed by a call to `recipe.change_particle_type`, where the target type is no topology type. Then, no one-particle topology will be formed but the particle will simply be emitted and treated as normal particle.
 - `recipe.change_topology_type(type)`: Changes the type of the topology to the given type, potentially changing its structural and spatial topology reactions.
 - `recipe.append_particle(list_of_neighbor_vertices, particle_type, position)`: Adds a new particle to the topology. It will have the specified `particle_type` and `position` and will be connected to the vertices specified in `list_of_neighbor_vertices`.
 
