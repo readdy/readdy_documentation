@@ -1,6 +1,6 @@
 # ReaDDy documentation
 
-[![Build Status](https://travis-ci.org/readdy/readdy_documentation.svg?branch=master)](https://travis-ci.org/readdy/readdy_documentation)
+[![Build Status](https://app.travis-ci.com/readdy/readdy_documentation.svg?branch=master)](https://app.travis-ci.com/github/readdy/readdy_documentation)
 
 This repository contains the jekyll source code we use to build our documentation, which is located at the [`readdy/readdy.github.io`](https://github.com/readdy/readdy.github.io) repository.
 
