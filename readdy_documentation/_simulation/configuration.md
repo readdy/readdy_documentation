@@ -114,6 +114,8 @@ influencing the time needed for IO during the simulation and the resulting file 
 
 For reading back the trajectory data, please refer to [post-processing]({{site.baseurl}}/results.html).
 
+> **_NOTE:_** When running long simulations on a cluster it can happen that the process runs into a timeout causing the already recorded data to be corrupted. This can *possibly* be mitigated by configuring the job manager to send SIGINT before KILLing the process. That way the file can still be properly closed (see [issue #220](https://github.com/readdy/readdy/issues/220#issuecomment-938887719), thanks [@jansteinkuehler](https://github.com/jansteinkuehler)). Please make sure this works in your environment before running long simulations.
+
 ## Checkpointing
 
 Checkpoints in ReaDDy consist out of the particles' and topologies' configurations at specific points in simulation time. They can be enabled by calling
