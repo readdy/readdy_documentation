@@ -22,14 +22,16 @@ function install_miniconda_with_jupyter {
   # we need jupyter to convert the notebooks, therefore use miniconda
   mkdir -p $HOME/conda_dl || true
   cd $HOME/conda_dl
-  wget -nv https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+  wget -nv https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
   bash miniconda.sh -b -p $HOME/miniconda
   export PATH="$HOME/miniconda/bin:$PATH"
   hash -r
   conda config --set always_yes yes --set changeps1 no
-  conda update -q conda
-  conda info -a
-  conda install -q jupyter
+  export MAMBA_ALWAYS_YES=true
+  conda config --env --add channels conda-forge
+  conda install mamba
+  mamba update --all -q
+  mamba install -q jupyter pip sphinx
   cd -
 }
 
@@ -74,7 +76,6 @@ function convert_tutorials {
 function make_reference_doc {
   mkdir -p $HOME/reference || true
   cd $HOME/readdy/docs/sphinx
-  pip install Sphinx
   make html
 }
 
